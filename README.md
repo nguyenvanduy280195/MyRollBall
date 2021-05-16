@@ -1,9 +1,9 @@
 CMake
 =======
 
-These are steps to run project with cmake
+These are steps to run the project with cmake
 
-## 1. Run `list-cpp-h-files.bat`
+## 1. Run `tools/list-cpp-h-files.bat`
 
 
 In `fileCpp.txt`
