@@ -60,8 +60,8 @@ list(APPEND GAME_SOURCE
      Classes/HelloWorldScene.cpp
      )
 list(APPEND GAME_HEADER
-     Classes/AppDelegate.h
-     Classes/HelloWorldScene.h
+       Classes/AppDelegate.h
+       Classes/HelloWorldScene.h
      )
 
 if(ANDROID)
