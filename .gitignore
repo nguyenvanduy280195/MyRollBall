@@ -1,2 +1,4 @@
 /cocos2d
-.cocos-project.json
+/proj.ios_mac
+/proj.linux
+/proj.win32
