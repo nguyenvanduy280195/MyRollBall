@@ -1,2 +1,0 @@
-AppDelegate.h
-HelloWorldScene.h

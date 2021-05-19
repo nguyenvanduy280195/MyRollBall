@@ -1,0 +1,16 @@
+Classes/AppDelegate.cpp
+Classes/HelloWorldScene.cpp
+Classes/Level.cpp
+Classes/Player.cpp
+Classes/Managers/HandlerManager.cpp
+Classes/Managers/KeyboardHandler.cpp
+Classes/Scenes/InGameScene.cpp
+
+Classes/AppDelegate.h
+Classes/HelloWorldScene.h
+Classes/Level.h
+Classes/Player.h
+Classes/Managers/HandlerManager.h
+Classes/Managers/KeyboardHandler.h
+Classes/Scenes/InGameScene.h
+Classes/Utils/Cocos2dCreator.h

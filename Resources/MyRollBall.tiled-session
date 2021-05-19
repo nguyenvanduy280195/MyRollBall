@@ -3,15 +3,41 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Levels/level_001.tmx",
+    "activeFile": "Levels/001.tmx",
     "expandedProjectPaths": [
-        "Tilesets",
         "Levels",
+        "Tilesets",
+        "TileGameResources",
         "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Levels/001.tmx": {
+            "scale": 1,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 513,
+                "y": 494
+            }
+        },
+        "Levels/001.tmx#background_brown": {
+            "scaleInDock": 1
+        },
+        "Levels/001.tmx#block_corner": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "Levels/001.tmx#block_corner_large": {
+            "scaleInDock": 1
+        },
+        "Levels/001.tmx#block_large": {
+            "scaleInDock": 1
+        },
+        "Levels/001.tmx#meta-64x64": {
             "scaleInDock": 1
         },
         "Levels/Backgrounds.tsx": {
@@ -39,45 +65,109 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "Levels/background.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 514,
+                "y": 812
+            }
+        },
+        "Levels/background.tmx#background_blue": {
+            "scaleInDock": 1
+        },
         "Levels/backgrounds.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
-        "Levels/level_001.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 4,
+        "Levels/ground.tmx": {
+            "scale": 0.0625,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 604.6666666666667,
-                "y": 201.33333333333337
+                "x": -120,
+                "y": 1696
+            }
+        },
+        "Levels/ground.tmx#ground": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Levels/ground.tmx#meta": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Levels/level_001.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 962.121212121212,
+                "y": 712.1212121212121
             }
         },
         "Levels/level_001.tmx#Balls": {
             "dynamicWrapping": false
         },
         "Levels/level_002.tmx": {
-            "scale": 0.24514232673267325,
+            "scale": 0.25,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 3167.5476460936516,
-                "y": 801.5751609238926
+                "x": 3642,
+                "y": 4
             }
         },
-        "Tilesets/Backgrounds.tsx": {
-            "dynamicWrapping": true,
+        "Levels/level_002.tmx#background-brown": {
             "scaleInDock": 1
+        },
+        "Levels/level_003.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 92.99999999999997,
+                "y": 642
+            }
+        },
+        "Levels/level_003.tmx#Backgrounds": {
+            "scaleInDock": 1
+        },
+        "TileGameResources/TileMap.tmx": {
+            "scale": 0.53675,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 800.18630647415,
+                "y": 801.1178388448999
+            }
+        },
+        "TileGameResources/TileMap.tmx#tmw_desert_spacing": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "Tilesets/Backgrounds.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "Tilesets/Balls.tsx": {
-            "scaleInDock": 1
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "Tilesets/Blocks.tsx": {
-            "scaleInDock": 1
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "Tilesets/Holes.tsx": {
-            "scaleInDock": 1
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "Tilesets/Keys.tsx": {
-            "scaleInDock": 1
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "Tilesets/backgrounds.tsx": {
             "dynamicWrapping": true,
@@ -86,29 +176,39 @@
         }
     },
     "last.externalTilesetPath": "C:/Users/tensa/OneDrive/Desktop/MyRollBall/Tilesets",
-    "last.imagePath": "C:/Users/tensa/OneDrive/Desktop/MyRollBall/Assets",
-    "map.height": 25,
+    "last.imagePath": "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources",
+    "map.fixedSize": true,
+    "map.height": 10,
     "map.lastUsedFormat": "tmx",
+    "map.renderOrder": null,
     "map.tileHeight": 64,
     "map.tileWidth": 64,
     "openFiles": [
-        "Levels/level_001.tmx",
-        "Levels/level_002.tmx"
+        "Levels/001.tmx"
     ],
     "project": "MyRollBall.tiled-project",
+    "property.type": "int",
     "recentFiles": [
-        "Levels/level_002.tmx",
+        "Levels/001.tmx",
+        "Levels/ground.tmx",
+        "TileGameResources/TileMap.tmx",
         "Levels/level_001.tmx",
-        "Levels/Keys.tsx",
-        "Levels/Holes.tsx",
-        "Levels/Blocks.tsx",
-        "Levels/Backgrounds.tsx",
-        "Levels/Balls.tsx",
-        "Levels/backgrounds.tsx",
-        "Tilesets/backgrounds.tsx",
-        "level_001.tmx"
+        "Tilesets/Backgrounds.tsx",
+        "Levels/background.tmx",
+        "Levels/level_002.tmx",
+        "Levels/level_003.tmx",
+        "Tilesets/Holes.tsx",
+        "Tilesets/Blocks.tsx",
+        "Tilesets/Keys.tsx",
+        "Tilesets/Balls.tsx"
     ],
     "resizeMap.removeObjects": false,
+    "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx",
-    "tileset.type": 1
+    "tileset.tileSize": {
+        "height": 64,
+        "width": 64
+    },
+    "tileset.type": 0,
+    "tileset.useTransparentColor": true
 }

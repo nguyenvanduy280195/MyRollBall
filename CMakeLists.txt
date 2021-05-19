@@ -55,14 +55,27 @@ if(APPLE OR WINDOWS)
 endif()
 
 # add cross-platforms source files and header files 
+
 list(APPEND GAME_SOURCE
-     Classes/AppDelegate.cpp
-     Classes/HelloWorldScene.cpp
-     )
+Classes/AppDelegate.cpp
+Classes/HelloWorldScene.cpp
+Classes/Level.cpp
+Classes/Player.cpp
+Classes/Managers/HandlerManager.cpp
+Classes/Managers/KeyboardHandler.cpp
+Classes/Scenes/InGameScene.cpp
+)
+
 list(APPEND GAME_HEADER
-       Classes/AppDelegate.h
-       Classes/HelloWorldScene.h
-     )
+Classes/AppDelegate.h
+Classes/HelloWorldScene.h
+Classes/Level.h
+Classes/Player.h
+Classes/Managers/HandlerManager.h
+Classes/Managers/KeyboardHandler.h
+Classes/Scenes/InGameScene.h
+Classes/Utils/Cocos2dCreator.h
+)
 
 if(ANDROID)
     # change APP_NAME to the share library name for Android, it's value depend on AndroidManifest.xml
