@@ -3,7 +3,7 @@
 #include "2d/CCNode.h"
 #include "base/CCEventDispatcher.h"
 
-void KeyboardHandler::Setup(cocos2d::Node* node)
+KeyboardHandler::KeyboardHandler(cocos2d::Node* owner)
 {
 	auto keyListener = cocos2d::EventListenerKeyboard::create();
 	keyListener->onKeyPressed = [this](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event*)
@@ -16,5 +16,5 @@ void KeyboardHandler::Setup(cocos2d::Node* node)
 	};
 
 
-	node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(keyListener, node);
+	owner->getEventDispatcher()->addEventListenerWithSceneGraphPriority(keyListener, owner);
 }

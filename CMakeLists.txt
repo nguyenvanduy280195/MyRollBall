@@ -61,6 +61,7 @@ Classes/AppDelegate.cpp
 Classes/HelloWorldScene.cpp
 Classes/Level.cpp
 Classes/Player.cpp
+Classes/Managers/AccelerationHandler.cpp
 Classes/Managers/HandlerManager.cpp
 Classes/Managers/KeyboardHandler.cpp
 Classes/Scenes/InGameScene.cpp
@@ -71,6 +72,7 @@ Classes/AppDelegate.h
 Classes/HelloWorldScene.h
 Classes/Level.h
 Classes/Player.h
+Classes/Managers/AccelerationHandler.h
 Classes/Managers/HandlerManager.h
 Classes/Managers/KeyboardHandler.h
 Classes/Scenes/InGameScene.h

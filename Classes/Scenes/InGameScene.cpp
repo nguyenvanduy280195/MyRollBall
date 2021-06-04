@@ -13,6 +13,9 @@
 #include "Managers/HandlerManager.h"
 #include "Managers/KeyboardHandler.h"
 #include "physics/CCPhysicsContact.h"
+#include "CCEventListenerAcceleration.h"
+#include "2d/CCFastTMXTiledMap.h"
+#include "platform/CCDevice.h"
 
 using Vec2 = cocos2d::Vec2;
 using KeyCode = cocos2d::EventKeyboard::KeyCode;
@@ -22,7 +25,7 @@ cocos2d::Scene* InGameScene::CreateScene()
 {
 	auto scene = cocos2d::Scene::createWithPhysics();
 	scene->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
-
+	scene->getPhysicsWorld()->setGravity(cocos2d::Vec2(0, 0));
 	auto inGame = Cocos2dCreator::CreateNode<InGameScene>();
 	scene->addChild(inGame);
 	return scene;
@@ -44,10 +47,11 @@ bool InGameScene::init()
 	_handlerManager = new(std::nothrow) HandlerManager(this);
 
 	// level
-	_level = Cocos2dCreator::CreateNode<Level>("Levels/001.tmx");
+	_level = Cocos2dCreator::CreateNode<Level>("levels/001.tmx");
 	addChild(_level);
 
 	auto startPosition = _level->GetStartPosition();
+	//auto startPosition = Vec2(100, 100);
 
 	// player
 	_player = Cocos2dCreator::CreateNode<Player>(startPosition, _handlerManager);
@@ -88,9 +92,10 @@ void InGameScene::update(float)
 	auto& playerPosition = _player->getPosition();
 	auto& viewport = cocos2d::Camera::getDefaultViewport();
 
-	if (playerPosition.x > 0.5f * viewport.w && playerPosition.y < _level->getContentSize().width - 0.5f * viewport.w)
-	{
-		cocos2d::Camera::getDefaultCamera()->setPositionX(_player->getPositionX());
-	}
+	//if (playerPosition.x > 0.5f * viewport.w && playerPosition.y < _level->getContentSize().width - 0.5f * viewport.w)
+	//{
+	//	cocos2d::Camera::getDefaultCamera()->setPosition(_player->getPosition());
+	//}
+	cocos2d::Camera::getDefaultCamera()->setPosition(_player->getPosition());
 }
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="64" tileheight="64" infinite="0" nextlayerid="6" nextobjectid="9">
+ <tileset firstgid="1" source="background_blue.tsx"/>
+ <tileset firstgid="2" source="block_large.tsx"/>
+ <tileset firstgid="4" source="background_brown.tsx"/>
+ <layer id="1" name="background" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYWBgYBnFgwYDAD0/AZE=
+  </data>
+ </layer>
+ <layer id="2" name="ground" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYGJgSGAGYjw0A5AmCJghZhEEI9U8QuEMUgMA8fgGWw==
+  </data>
+ </layer>
+ <objectgroup id="3" name="meta">
+  <object id="5" name="wall-left" x="0" y="0" width="64" height="640"/>
+  <object id="6" name="wall-right" x="576" y="0" width="64" height="640"/>
+  <object id="7" name="wall-bottom" x="64" y="576" width="512" height="64"/>
+  <object id="8" name="wall-top" x="64" y="0" width="512" height="64"/>
+ </objectgroup>
+ <objectgroup id="4" name="positions">
+  <object id="1" name="start" x="114" y="528">
+   <point/>
+  </object>
+  <object id="2" name="end" x="520" y="116">
+   <point/>
+  </object>
+ </objectgroup>
+</map>

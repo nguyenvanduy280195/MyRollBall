@@ -8,4 +8,5 @@ public:
 	~HandlerManager();
 
 	class KeyboardHandler* keyboardHandler;
+	class AccelerationHandler* accelerationHandler;
 };
