@@ -1,0 +1,16 @@
+{
+  "player": {
+    "moveSpeed": 3000.0,
+    "maxMoveSpeed": 300.0,
+    "destiny": 0.1,
+    "restitution": 0.5,
+    "friction": 0.5
+  },
+  "screen-log": {
+    "font-family": "fonts/Marker Felt.ttf",
+    "font-size": 24.0,
+    "text-color": "#00ff00",
+    "removing-timer-limit": 2.0,
+    "log-count-limit": 10
+  }
+}

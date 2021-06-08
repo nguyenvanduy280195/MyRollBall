@@ -8,47 +8,20 @@ namespace cocos2d
 class PhysicsBody;
 }
 
-class HandlerManager;
-
 class Player : public cocos2d::Sprite
 {
 	using Vec2 = cocos2d::Vec2;
 public:
 
-	bool init(const Vec2& position, HandlerManager* handlerManager);
-	void update(float) override;
 
-	void SetOnGround(bool onGround) { _onGround = onGround; }
-
-	const float& GetMoveSpeed() const { return _info.moveSpeed; }
-private:
-	 cocos2d::PhysicsBody* MakeBody();
-	 void InitInfo();
-
-	struct Info
-	{
-		float maxMoveSpeed = 0.f;
-		float moveSpeed = 0.f;
-		float jumpSpeed = 0.f;
-
-	} _info;
-
-	HandlerManager* _handlerManager;
-
-	bool _onGround = false;
-
-	class PlayerPreventer* _preventer;
-};
-
-class PlayerPreventer : public cocos2d::Node
-{
-public:
-	bool init(class Player*, class KeyboardHandler*);
+	bool init(class IScene* owner, const Vec2& position);
 	void update(float) override;
 
 private:
-	cocos2d::PhysicsBody* MakeWallBody() const;
+	cocos2d::PhysicsBody* MakeBody();
+	void MoveByAcceleration(const Vec2& accelerationVec2);
+	void MoveByKeyboard(float deltaTime);
+	
+	class IScene* _owner;
 
-	class Player* _player;
-	class KeyboardHandler* _keyboardHandler;
 };

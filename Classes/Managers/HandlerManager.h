@@ -9,4 +9,7 @@ public:
 
 	class KeyboardHandler* keyboardHandler;
 	class AccelerationHandler* accelerationHandler;
+
+private:
+	class ContactHandler* _contactHandler;
 };

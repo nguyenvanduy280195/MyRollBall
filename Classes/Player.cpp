@@ -14,37 +14,28 @@
 
 #include "math/CCMathBase.h"
 
+#include "Infos/GameInfo.h"
+#include "Scenes/IScene.h"
+#include "ScreenLog/ScreenLog.h"
+#include "Bitmask.h"
+#include "Infos/PlayerInfo.h"
+
 using Super = cocos2d::Sprite;
 using KeyCode = cocos2d::EventKeyboard::KeyCode;
 
-
-
-bool Player::init(const cocos2d::Vec2& position, HandlerManager* handlerManager)
+bool Player::init(IScene* owner, const Vec2& position)
 {
 	if (!Super::initWithFile("levels/assets/ball_blue_large.png"))
 	{
 		return false;
 	}
-	_handlerManager = handlerManager;
-	_handlerManager->accelerationHandler->onAcceleration = [this](cocos2d::Acceleration* acceleration)
+	_owner = owner;
+	_owner->GetHandlerManager()->accelerationHandler->onAcceleration = [this](cocos2d::Acceleration* acceleration)
 	{
-		auto x = 0;
-		auto y = 0;
-		auto abs = [](double x) { return x > 0 ? x : -x; };
-
-		if (abs(_physicsBody->getVelocity().x) < _info.maxMoveSpeed)
-		{
-			x = _info.moveSpeed * acceleration->x;
-		}
-		if (abs(_physicsBody->getVelocity().y) < _info.maxMoveSpeed)
-		{
-			y = _info.moveSpeed * acceleration->y;
-		}
-
-		_physicsBody->applyImpulse(Vec2(x, y));
+		const auto accelerationVec2 = Vec2(acceleration->x, acceleration->y);
+		MoveByAcceleration(accelerationVec2);
 	};
 
-	InitInfo();
 
 	setPosition(position);
 
@@ -56,118 +47,73 @@ bool Player::init(const cocos2d::Vec2& position, HandlerManager* handlerManager)
 
 void Player::update(float deltaTime)
 {
-	if (_preventer == nullptr)
+	MoveByKeyboard(deltaTime);
+}
+
+void Player::MoveByAcceleration(const Vec2& accelerationVec2)
+{
+	auto f = [this](float t) {
+		auto x = _owner->GetGameInfo()->GetPlayerInfo().moveSpeed * t;
+		return x;
+	};
+	const auto deltaX = (int)(accelerationVec2.x * 100);
+	const auto x = (float) deltaX / 100;
+	const auto fx = f(x);
+
+    const auto deltaY = (int)(accelerationVec2.y * 100);
+	const auto y = (float) deltaY / 100;
+	const auto fy = f(y);
+
+	_physicsBody->applyImpulse(Vec2(fx, fy));
+
+	// debug
 	{
-		//_preventer = Cocos2dCreator::CreateNode<PlayerPreventer>(this, _handlerManager->keyboardHandler);
-		//_parent->addChild(_preventer);
+		const auto& velocity = _physicsBody->getVelocity();
+		CCLOG("P(%.0f, %.0f) V(%f, %f) A(%f, %f) F(%f, %f)",_position.x, _position.y,
+                                                            velocity.x, velocity.y,
+                                                            accelerationVec2.x, accelerationVec2.y,
+                                                            fx, fy);
+	}
+}
+
+void Player::MoveByKeyboard(float deltaTime)
+{
+	// x
+	auto x = 0.f;
+	if (_owner->GetHandlerManager()->keyboardHandler->pressingKeys[KeyCode::KEY_RIGHT_ARROW] && _physicsBody->getVelocity().x < _owner->GetGameInfo()->GetPlayerInfo().maxMoveSpeed)
+	{
+		x = _owner->GetGameInfo()->GetPlayerInfo().moveSpeed;
+	}
+	else if (_owner->GetHandlerManager()->keyboardHandler->pressingKeys[KeyCode::KEY_LEFT_ARROW] && -_owner->GetGameInfo()->GetPlayerInfo().maxMoveSpeed < _physicsBody->getVelocity().x)
+	{
+		x = -_owner->GetGameInfo()->GetPlayerInfo().moveSpeed;
 	}
 
-	int deltaX = 0;
-
-	if (_onGround && _handlerManager->keyboardHandler->pressingKeys[KeyCode::KEY_RIGHT_ARROW])
+	// y
+	auto y = 0.f;
+	if (_owner->GetHandlerManager()->keyboardHandler->pressingKeys[KeyCode::KEY_UP_ARROW])
 	{
-		deltaX = 1;
-
+		y = _owner->GetGameInfo()->GetPlayerInfo().moveSpeed;
 	}
-	else if (_onGround && _handlerManager->keyboardHandler->pressingKeys[KeyCode::KEY_LEFT_ARROW])
+	if (_owner->GetHandlerManager()->keyboardHandler->pressingKeys[KeyCode::KEY_DOWN_ARROW])
 	{
-		deltaX = -1;
-	}
-
-
-	int deltaY = 0;
-	if (_onGround && _handlerManager->keyboardHandler->pressingKeys[KeyCode::KEY_SPACE])
-	{
-		deltaY++;
-		_onGround = false;
+		y = -_owner->GetGameInfo()->GetPlayerInfo().moveSpeed;
 	}
 
-
-
-	// limit velocity
-	if (_physicsBody->getVelocity().x > _info.maxMoveSpeed || _physicsBody->getVelocity().x < -_info.maxMoveSpeed)
-	{
-		deltaX = 0;
-	}
-
-	auto force = Vec2(deltaX * _info.moveSpeed, deltaY * _info.jumpSpeed);
-	_physicsBody->applyImpulse(force);
-
+	_physicsBody->applyImpulse(Vec2(x, y));
 }
 
 cocos2d::PhysicsBody* Player::MakeBody()
 {
 	auto& contentSize = getContentSize();
-	const auto destiny = 2 / _info.moveSpeed;
-	const auto restitution = .5f;
-	const auto friction = .5f;
+	const auto destiny = _owner->GetGameInfo()->GetPlayerInfo().destiny;
+	const auto restitution = _owner->GetGameInfo()->GetPlayerInfo().restitution;
+	const auto friction = _owner->GetGameInfo()->GetPlayerInfo().friction;
 
 	auto body = cocos2d::PhysicsBody::createCircle(0.5f * contentSize.width, cocos2d::PhysicsMaterial(destiny, restitution, friction));
-	body->setCategoryBitmask(0x1);
-	body->setCollisionBitmask(0xFFFFFFFF);
-	body->setContactTestBitmask(0xFFFFFFFF);
-
-	return body;
-}
-
-void Player::InitInfo()
-{
-	_info.maxMoveSpeed = 400.f;
-	_info.moveSpeed = 500.f;
-	_info.jumpSpeed = 5000.f;
-}
-
-//========================================================================
-
-bool PlayerPreventer::init(class Player* player, class KeyboardHandler* keyboardHandler)
-{
-	if (!cocos2d::Node::init())
-	{
-		return false;
-	}
-
-	_player = player;
-	_keyboardHandler = keyboardHandler;
-
-	auto& playerContentSize = _player->getContentSize();
-
-	// left wall
-	auto leftPreventer = cocos2d::Sprite::create();
-	addChild(leftPreventer);
-	if (auto body = MakeWallBody())
-	{
-		leftPreventer->setPhysicsBody(body);
-	}
-	leftPreventer->setPositionX(-2 * playerContentSize.width);
-
-	// right wall
-	auto rightPreventer = cocos2d::Sprite::create();
-	addChild(rightPreventer);
-	if (auto body = MakeWallBody())
-	{
-		rightPreventer->setPhysicsBody(body);
-	}
-	rightPreventer->setPositionX(2 * playerContentSize.width);
-
-	setPosition(_player->getPosition());
-
-	scheduleUpdate();
-	return true;
-}
-
-void PlayerPreventer::update(float dt)
-{
-	if (_keyboardHandler->pressingKeys[KeyCode::KEY_RIGHT_ARROW] || _keyboardHandler->pressingKeys[KeyCode::KEY_LEFT_ARROW])
-	{
-		setPositionX(_player->getPositionX());
-	}
-}
-
-cocos2d::PhysicsBody* PlayerPreventer::MakeWallBody() const
-{
-	auto body = cocos2d::PhysicsBody::createBox(cocos2d::Size(_player->getContentSize().width, 500.f), cocos2d::PhysicsMaterial(.5f, .0f, .0f));
-
-	body->setDynamic(false);
+	body->setCategoryBitmask(PLAYER_CATEGORY_BITMASK);
+	body->setCollisionBitmask(PLAYER_COLLISION_BITMASK);
+	body->setContactTestBitmask(PLAYER_CONTACT_TEST_BITMASK);
 
 	return body;
 }

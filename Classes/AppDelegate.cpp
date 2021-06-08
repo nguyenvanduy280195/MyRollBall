@@ -23,9 +23,9 @@
  ****************************************************************************/
 
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
 #include "Scenes/InGameScene.h"
 #include "Utils/Cocos2dCreator.h"
+#include "Scenes/IntroLevelScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 
@@ -82,7 +82,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     // turn on display FPS
-    //director->setDisplayStats(true);
+    director->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     //director->setAnimationInterval(1.0f / 60);
@@ -110,7 +110,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     //auto scene = HelloWorld::createScene();
-    auto scene = InGameScene::CreateScene();
+    //auto scene = InGameScene::CreateScene();
+    auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>();
 
     // run
     director->runWithScene(scene);

@@ -58,25 +58,37 @@ endif()
 
 list(APPEND GAME_SOURCE
 Classes/AppDelegate.cpp
-Classes/HelloWorldScene.cpp
 Classes/Level.cpp
 Classes/Player.cpp
+Classes/Infos/GameInfo.cpp
 Classes/Managers/AccelerationHandler.cpp
+Classes/Managers/ContactHandler.cpp
 Classes/Managers/HandlerManager.cpp
 Classes/Managers/KeyboardHandler.cpp
 Classes/Scenes/InGameScene.cpp
+Classes/Scenes/IntroLevelScene.cpp
+Classes/ScreenLog/ScreenLog.cpp
+Classes/Utils/StaticMethods.cpp
 )
 
 list(APPEND GAME_HEADER
 Classes/AppDelegate.h
-Classes/HelloWorldScene.h
+Classes/Bitmask.h
 Classes/Level.h
 Classes/Player.h
+Classes/Infos/GameInfo.h
+Classes/Infos/PlayerInfo.h
+Classes/Infos/ScreenLogInfo.h
 Classes/Managers/AccelerationHandler.h
+Classes/Managers/ContactHandler.h
 Classes/Managers/HandlerManager.h
 Classes/Managers/KeyboardHandler.h
 Classes/Scenes/InGameScene.h
+Classes/Scenes/IntroLevelScene.h
+Classes/Scenes/IScene.h
+Classes/ScreenLog/ScreenLog.h
 Classes/Utils/Cocos2dCreator.h
+Classes/Utils/StaticMethods.h
 )
 
 if(ANDROID)
@@ -138,6 +150,7 @@ set(all_code_files
     )
 if(NOT ANDROID)
     add_executable(${APP_NAME} ${all_code_files})
+    target_compile_features(${APP_NAME} PUBLIC cxx_std_20)
 else()
     add_library(${APP_NAME} SHARED ${all_code_files})
     add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos/platform/android ${ENGINE_BINARY_PATH}/cocos/platform)
@@ -149,6 +162,7 @@ target_include_directories(${APP_NAME}
         PRIVATE Classes
         PRIVATE ${COCOS2DX_ROOT_PATH}/cocos/audio/include/
 )
+
 
 # mark app resources
 setup_cocos_app_config(${APP_NAME})
