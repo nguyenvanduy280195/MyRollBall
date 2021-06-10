@@ -16,7 +16,6 @@ public:
 	bool init(const std::string& filename);
 
 	cocos2d::Vec2 GetStartPosition() const;
-	std::unordered_map<std::string, int> nameTagMap;
 
 	bool Locked = false;
 
@@ -28,6 +27,6 @@ private:
 	cocos2d::Sprite* MakeStart(cocos2d::ValueMap& value);
 	cocos2d::Sprite* MakeGoal(cocos2d::ValueMap& value);
 	cocos2d::Sprite* MakeKey(cocos2d::ValueMap& value);
-
+	cocos2d::Sprite* MakeLaserShooter(cocos2d::ValueMap& value);
 	int _currentLevel = 1;
 };

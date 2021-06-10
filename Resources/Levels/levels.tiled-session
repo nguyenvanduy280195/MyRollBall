@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "002.tmx",
+    "activeFile": "003.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -12,8 +12,8 @@
             "scale": 1.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1128,
-                "y": 182
+                "x": 640,
+                "y": 639.3333333333333
             }
         },
         "001.tmx#background_brown": {
@@ -35,16 +35,24 @@
             "scale": 0.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1122,
-                "y": 154
+                "x": 639,
+                "y": 638
             }
         },
         "003.tmx": {
-            "scale": 1.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -19,
-                "y": 41.33333333333334
+                "x": 402.5,
+                "y": 915
+            }
+        },
+        "010.tmx": {
+            "scale": 0.1341875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 3204.471355379599,
+                "y": 3204.4713553795996
             }
         },
         "010.tmx#background_brown": {
@@ -120,24 +128,26 @@
         }
     },
     "last.imagePath": "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/assets",
-    "map.height": 10,
+    "map.height": 20,
     "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": null,
+    "map.renderOrder": null,
     "map.tileHeight": 64,
     "map.tileWidth": 64,
-    "map.width": 10,
+    "map.width": 20,
     "openFiles": [
-        "001.tmx",
-        "002.tmx"
+        "002.tmx",
+        "003.tmx"
     ],
     "project": "levels.tiled-project",
-    "property.type": "bool",
+    "property.type": "float",
     "recentFiles": [
-        "001.tmx",
         "002.tmx",
+        "003.tmx",
         "010.tmx",
+        "001.tmx",
         "hole_start.tsx",
         "hole_small_end_alt.tsx",
-        "003.tmx",
         "7.tsx",
         "8.tsx",
         "6.tsx",

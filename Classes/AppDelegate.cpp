@@ -111,7 +111,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
     //auto scene = HelloWorld::createScene();
     //auto scene = InGameScene::CreateScene();
-    auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>();
+    auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>(3);
 
     // run
     director->runWithScene(scene);

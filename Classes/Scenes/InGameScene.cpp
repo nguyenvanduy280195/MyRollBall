@@ -22,6 +22,8 @@
 #include "base/ccUTF8.h"
 #include "2d/CCTransition.h"
 
+#include "Dialogs/VictoryDialog.h"
+
 using Vec2 = cocos2d::Vec2;
 using KeyCode = cocos2d::EventKeyboard::KeyCode;
 
@@ -55,7 +57,7 @@ bool InGameScene::init(int level)
 		return false;
 	}
 	_currentLevel = level;
-	
+
 	_handlerManager = new(std::nothrow) HandlerManager(this);
 
 	_gameInfo = new(std::nothrow) GameInfo();
@@ -91,25 +93,69 @@ void InGameScene::update(float)
 
 void InGameScene::UpdateCameraPosition()
 {
-	auto& playerPosition = _player->getPosition();
-	auto& viewport = cocos2d::Camera::getDefaultViewport();
+//#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+#if 1
+	const auto playerPosition = _player->getPosition();
+	const auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+	const auto levelSize = _level->getContentSize();
 
-//	if (0.5f * viewport.w <= playerPosition.x && playerPosition.x <= _level->getContentSize().width - 0.5f * viewport.w)
-//	{
-//		cocos2d::Camera::getDefaultCamera()->setPositionX(_player->getPositionX());
-//	}
-//	if (0.5f * viewport.h <= playerPosition.y && playerPosition.y <= _level->getContentSize().height - 0.5f * viewport.h)
-//	{
-//		cocos2d::Camera::getDefaultCamera()->setPositionY(_player->getPositionY());
-//	}
+	const auto cameraXMin = 0.5f * visibleSize.width;
+	const auto cameraXMax = levelSize.width - 0.5f * visibleSize.width;
 
+	if (cameraXMin <= playerPosition.x && playerPosition.x <= cameraXMax)
+	{
+		cocos2d::Camera::getDefaultCamera()->setPositionX(playerPosition.x);
+	}
+	else if (playerPosition.x < cameraXMin)
+	{
+		cocos2d::Camera::getDefaultCamera()->setPositionX(cameraXMin);
+	}
+	else if (cameraXMax < playerPosition.x)
+	{
+		cocos2d::Camera::getDefaultCamera()->setPositionX(cameraXMax);
+	}
+
+
+	const auto cameraYMin = 0.5f * visibleSize.height;
+	const auto cameraYMax = levelSize.height - 0.5f * visibleSize.height;
+
+	if (cameraYMin <= playerPosition.y && playerPosition.y <= cameraYMax)
+	{
+		cocos2d::Camera::getDefaultCamera()->setPositionY(_player->getPositionY());
+	}
+	else if (playerPosition.y < cameraYMin)
+	{
+		cocos2d::Camera::getDefaultCamera()->setPositionY(cameraYMin);
+	}
+	else if (cameraYMax < playerPosition.y)
+	{
+		cocos2d::Camera::getDefaultCamera()->setPositionY(cameraYMax);
+	}
+#else
 	cocos2d::Camera::getDefaultCamera()->setPosition(_player->getPosition());
+#endif
+
+
+	
 }
 
 void InGameScene::NextLevel()
 {
 	unscheduleUpdate();
-	auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>(_currentLevel + 1);
-	auto sceneWithTransition = cocos2d::TransitionMoveInR::create(1, scene);
-	cocos2d::Director::getInstance()->replaceScene(sceneWithTransition);
+
+	// TODO: This can cause bugs in the future
+	_eventDispatcher->pauseEventListenersForTarget(this);
+
+	auto dialog = Cocos2dCreator::CreateNode<VictoryDialog>();
+	dialog->OnHomeButtonPressed = [](cocos2d::Ref*)
+	{
+
+	};
+	dialog->OnNextButtonPressed = [this](cocos2d::Ref*)
+	{
+		auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>(_currentLevel + 1);
+		auto sceneWithTransition = cocos2d::TransitionMoveInR::create(1, scene);
+		cocos2d::Director::getInstance()->replaceScene(sceneWithTransition);
+	};
+	getParent()->addChild(dialog);
 }

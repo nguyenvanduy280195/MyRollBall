@@ -5,6 +5,7 @@
 #include "base/ccUTF8.h"
 #include "2d/CCTransition.h"
 #include "InGameScene.h"
+#include "Dialogs/VictoryDialog.h"
 
 bool IntroLevelScene::init(int level)
 {

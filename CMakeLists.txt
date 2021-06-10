@@ -60,6 +60,7 @@ list(APPEND GAME_SOURCE
 Classes/AppDelegate.cpp
 Classes/Level.cpp
 Classes/Player.cpp
+Classes/Dialogs/VictoryDialog.cpp
 Classes/Infos/GameInfo.cpp
 Classes/Managers/AccelerationHandler.cpp
 Classes/Managers/ContactHandler.cpp
@@ -76,6 +77,7 @@ Classes/AppDelegate.h
 Classes/Bitmask.h
 Classes/Level.h
 Classes/Player.h
+Classes/Dialogs/VictoryDialog.h
 Classes/Infos/GameInfo.h
 Classes/Infos/PlayerInfo.h
 Classes/Infos/ScreenLogInfo.h

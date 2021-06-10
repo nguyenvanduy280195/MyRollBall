@@ -1,6 +1,7 @@
 #include "Level.h"
 #include "2d/CCSprite.h"
 #include "Bitmask.h"
+#include "2d/CCActionInterval.h"
 
 using Super = cocos2d::TMXTiledMap;
 using Vec2 = cocos2d::Vec2;
@@ -13,12 +14,8 @@ bool Level::init(const std::string& filename)
 		return false;
 	}
 
-	nameTagMap["wall-right"] = 0;
-	nameTagMap["wall-left"] = 1;
-	nameTagMap["wall-top"] = 2;
-	nameTagMap["wall-bottom"] = 3;
-	nameTagMap["player"] = 4;
-	nameTagMap["goal"] = 5;
+	auto body = MakeBody();
+	setPhysicsBody(body);
 
 
 	auto positionsObjects = getObjectGroup("positions");
@@ -42,11 +39,13 @@ bool Level::init(const std::string& filename)
 			auto key = MakeKey(valueMap);
 			addChild(key);
 		}
+		else if (name.compare("laser-shooter") == 0)
+		{
+			auto laserShooter = MakeLaserShooter(valueMap);
+			addChild(laserShooter);
+		}
 	}
 
-
-	auto body = MakeBody();
-	setPhysicsBody(body);
 
 	return true;
 }
@@ -72,16 +71,10 @@ cocos2d::PhysicsBody* Level::MakeBody()
 			auto size = Size(width, height);
 			auto offset = Vec2(xOffset, yOffset);
 			auto shape = cocos2d::PhysicsShapeEdgeBox::create(size, cocos2d::PHYSICSSHAPE_MATERIAL_DEFAULT, 0.0f, offset);
-			shape->setTag(nameTagMap[name]);
 			body->addShape(shape);
 		}
 	}
 
-	auto walls = MakeWalls();
-	for (auto& wall : walls)
-	{
-		body->addShape(wall);
-	}
 
 	body->setCategoryBitmask(WALL_CATEGORY_BITMASK);
 	body->setCollisionBitmask(WALL_COLLISION_BITMASK);
@@ -114,7 +107,6 @@ std::vector<cocos2d::PhysicsShape*> Level::MakeWalls()
 			auto offset = Vec2(xOffset, yOffset);
 			auto shape = cocos2d::PhysicsShapeEdgeBox::create(size, cocos2d::PHYSICSSHAPE_MATERIAL_DEFAULT, 0.0f, offset);
 
-			shape->setTag(nameTagMap[name]);
 			shapes.push_back(shape);
 		}
 	}
@@ -145,13 +137,11 @@ cocos2d::Sprite* Level::MakeGoal(cocos2d::ValueMap& value)
 	Locked = value["locked"].asBool();
 
 	auto sprite = cocos2d::Sprite::create(src);
-	sprite->setTag(nameTagMap[name]);
 	sprite->setPosition(x, y);
 
 
 	auto body = cocos2d::PhysicsBody::createCircle(0.25f * sprite->getContentSize().width);
 	body->setDynamic(false);
-	body->setTag(nameTagMap[name]);
 	body->setCategoryBitmask(GOAL_CATEGORY_BITMASK);
 	body->setCollisionBitmask(GOAL_COLLISION_BITMASK);
 	body->setContactTestBitmask(GOAL_CONTACT_TEST_BITMASK);
@@ -179,6 +169,49 @@ cocos2d::Sprite* Level::MakeKey(cocos2d::ValueMap& value)
 	key->setPhysicsBody(body);
 
 	return key;
+}
+
+cocos2d::Sprite* Level::MakeLaserShooter(cocos2d::ValueMap& value)
+{
+	auto x = value["x"].asFloat();
+	auto y = value["y"].asFloat();
+	auto src = value["src"].asString();
+	auto direction = value["direction"].asString();
+	auto srcLaser = value["src-laser"].asString();
+	auto laserScaleFactorY = value["laser-scale-factor-y"].asFloat();
+
+	auto laserShooter = cocos2d::Sprite::create(src);
+	laserShooter->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+	laserShooter->setPosition(x, y);
+	if (direction.compare("right") == 0)
+	{
+		laserShooter->setRotation(90);
+	}
+
+	auto laser = cocos2d::Sprite::create(srcLaser);
+	laserShooter->addChild(laser);
+
+	laser->setScaleY(laserScaleFactorY);
+	laser->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+	laser->setPosition(0.5f * laserShooter->getContentSize());
+
+	auto body = cocos2d::PhysicsBody::createBox(laser->getContentSize());
+	body->setDynamic(false);
+	body->setCategoryBitmask(0);
+	body->setCollisionBitmask(0);
+	body->setContactTestBitmask(0);
+
+	laser->setPhysicsBody(body);
+
+	auto fadeIn = cocos2d::FadeIn::create(2);
+	auto delay = cocos2d::DelayTime::create(2);
+	auto fadeOut = cocos2d::FadeOut::create(2);
+	auto sequence = cocos2d::Sequence::create(fadeIn, delay, fadeOut, delay, nullptr);
+	auto action = cocos2d::RepeatForever::create(sequence);
+
+	laser->runAction(action);
+
+	return laserShooter;
 }
 
 // TODO please check here
