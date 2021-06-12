@@ -12,8 +12,6 @@ class Player : public cocos2d::Sprite
 {
 	using Vec2 = cocos2d::Vec2;
 public:
-
-
 	bool init(class IScene* owner, const Vec2& position);
 	void update(float) override;
 
@@ -23,5 +21,4 @@ private:
 	void MoveByKeyboard(float deltaTime);
 	
 	class IScene* _owner;
-
 };

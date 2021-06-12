@@ -68,7 +68,10 @@ Classes/Managers/HandlerManager.cpp
 Classes/Managers/KeyboardHandler.cpp
 Classes/Scenes/InGameScene.cpp
 Classes/Scenes/IntroLevelScene.cpp
+Classes/ScreenLog/ScopeLock.cpp
+Classes/ScreenLog/ScopeLog.cpp
 Classes/ScreenLog/ScreenLog.cpp
+Classes/ScreenLog/ScreenLogMessage.cpp
 Classes/Utils/StaticMethods.cpp
 )
 
@@ -88,7 +91,10 @@ Classes/Managers/KeyboardHandler.h
 Classes/Scenes/InGameScene.h
 Classes/Scenes/IntroLevelScene.h
 Classes/Scenes/IScene.h
+Classes/ScreenLog/ScopeLock.h
+Classes/ScreenLog/ScopeLog.h
 Classes/ScreenLog/ScreenLog.h
+Classes/ScreenLog/ScreenLogMessage.h
 Classes/Utils/Cocos2dCreator.h
 Classes/Utils/StaticMethods.h
 )

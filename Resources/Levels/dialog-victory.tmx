@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="8">
+ <tileset firstgid="1" name="victory" tilewidth="164" tileheight="20" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="164" height="20" source="assets/drawing.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="2" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
+  <image source="assets/ui_tilesheet.png" width="480" height="144"/>
+ </tileset>
+ <tileset firstgid="272" name="trophy" tilewidth="16" tileheight="16" tilecount="100" columns="10">
+  <image source="assets/trophy.png" width="160" height="160"/>
+ </tileset>
+ <tileset firstgid="372" name="best-time" tilewidth="165" tileheight="16" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="165" height="16" source="assets/ui-best-time.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="373" name="time" tilewidth="74" tileheight="16" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="74" height="16" source="assets/ui-time.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="374" name="level" tilewidth="101" tileheight="16" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="101" height="16" source="assets/ui-level.png"/>
+  </tile>
+ </tileset>
+ <layer id="1" name="background" width="20" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzDEVwCAQRMEzEhAC+AGEkAgh6MwXsVXeFtNOj4ghMrFwizzYeEUOLiSRjIIq0vz58+fPnz9/v/g+QzSb3Q==
+  </data>
+ </layer>
+ <layer id="8" name="trophy" width="20" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzFOORFEARdFXM2jbRrVt27ZtzT/pNYS+Sf31Pcn6O9lJEpfpZaWSJJsccskjnwIKKaI49fdeiW8pZZRTQSVVVFNDbUCvzreeBhppopkWWknTFtBr9+2gky666aGXPvoZCOgN+g4xzAijjDHOBJNMBfSmfWeYZY55FlhkiWVWAnqrvmuss8EmW2yzwy57Ab193wMOOeKYE04545yLgN6l7xXX3HDLHfc88MhTQO/Z94VX3njng0+++OYnoBcXFxf3H/YLn+wZ+w==
+  </data>
+ </layer>
+ <group id="13" name="info">
+  <layer id="9" name="level" width="20" height="30">
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIKhB8oYB9oFo2AUjIJRgBsAADG5AHg=
+  </data>
+  </layer>
+  <layer id="11" name="time" width="20" height="30">
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQG1QyjjQLhgFo2AUDCQAAONGAHc=
+  </data>
+  </layer>
+  <layer id="12" name="best-time" width="20" height="30">
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMNJACeNAu2AUjILhDQCWIgB2
+  </data>
+  </layer>
+ </group>
+ <layer id="10" name="title" width="20" height="30">
+  <data encoding="base64" compression="zlib">
+   eJxjYKA9YKSDHaNgFIyCUTAKRsEoGAWDBQAAElwAAg==
+  </data>
+ </layer>
+ <objectgroup id="4" name="buttons">
+  <object id="1" name="home" x="160" y="368">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="src-disabled" value="levels/assets/blue_button_disabled.png"/>
+    <property name="src-normal" value="levels/assets/blue_button_normal.png"/>
+    <property name="src-pressed" value="levels/assets/blue_button_pressed.png"/>
+    <property name="title" value="Home"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="3" name="next" x="160" y="432">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="src-disabled" value="levels/assets/blue_button_disabled.png"/>
+    <property name="src-normal" value="levels/assets/blue_button_normal.png"/>
+    <property name="src-pressed" value="levels/assets/blue_button_pressed.png"/>
+    <property name="title" value="Next"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="texts">
+  <object id="5" name="level" x="240" y="256">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="6" name="time" x="240" y="288">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="7" name="best-time" x="240" y="320">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>

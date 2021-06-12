@@ -6,6 +6,9 @@
 #include "ui/UIText.h"
 #include "ui/UIVBox.h"
 #include "ui/UIRelativeBox.h"
+#include "2d/CCTMXTiledMap.h"
+#include "2d/CCTMXObjectGroup.h"
+
 
 using Size = cocos2d::Size;
 using Vec2 = cocos2d::Vec2;
@@ -27,173 +30,159 @@ bool VictoryDialog::init()
 	auto cameraPostion = cocos2d::Camera::getDefaultCamera()->getPosition();
 	setPosition(cameraPostion);
 
-	auto background = MakeBackground();
-	addChild(background);
+	auto tiledMap = cocos2d::TMXTiledMap::create("levels/dialog-victory.tmx");
+	tiledMap->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+	addChild(tiledMap);
 
-	auto ground = MakeGround();
-	addChild(ground);
+	RequireObjectGroupNotFound(tiledMap, "buttons", [this, tiledMap](cocos2d::TMXObjectGroup* objectGroup)
+	{
+		RequireObjectNotFound(objectGroup, "next", [this, tiledMap](cocos2d::ValueMap& value)
+		{
+			_nextButton = MakeButton(value);
+			RequireNotNull(_nextButton, [tiledMap](cocos2d::Node* button)
+			{
+				tiledMap->addChild(button);
+			});
+		});
 
-	auto title = MakeTitle();
-	ground->addChild(title);
+		RequireObjectNotFound(objectGroup, "home", [this, tiledMap](cocos2d::ValueMap& value)
+		{
+			_homeButton = MakeButton(value);
+			RequireNotNull(_homeButton, [tiledMap](cocos2d::Node* button)
+			{
+				tiledMap->addChild(button);
+			});
+		});
+	});
 
-	auto content = MakeContent();
-	ground->addChild(content);
+	RequireObjectGroupNotFound(tiledMap, "texts", [this, tiledMap](cocos2d::TMXObjectGroup* objectGroup)
+	{
+		RequireObjectNotFound(objectGroup, "level", [this, tiledMap](cocos2d::ValueMap& value)
+		{
+			_levelText = MakeText(value);
+			RequireNotNull(_levelText, [tiledMap](cocos2d::Node* text)
+			{
+				tiledMap->addChild(text);
+			});
+		});
 
-	auto homeButton = MakeHomeButton();
-	ground->addChild(homeButton);
+		RequireObjectNotFound(objectGroup, "time", [this, tiledMap](cocos2d::ValueMap& value)
+		{
+			_timeText = MakeText(value);
+			RequireNotNull(_timeText, [tiledMap](cocos2d::Node* text)
+			{
+				tiledMap->addChild(text);
+			});
+		});
 
-	auto nextButton = MakeNextButton();
-	ground->addChild(nextButton);
+		RequireObjectNotFound(objectGroup, "best-time", [this, tiledMap](cocos2d::ValueMap& value)
+		{
+			_bestTimeText = MakeText(value);
+			RequireNotNull(_bestTimeText, [tiledMap](cocos2d::Node* text)
+			{
+				tiledMap->addChild(text);
+			});
+		});
+	});
 
 	return true;
 }
 
-cocos2d::Node* VictoryDialog::MakeBackground() const
+void VictoryDialog::SetLevelTextContent(const std::string& content)
 {
-	auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	auto background = cocos2d::ui::Layout::create();
-	background->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	background->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
-	background->setBackGroundColor(cocos2d::Color3B::BLACK);
-	background->setOpacity(100.5f);
-	background->setContentSize(winSize);
-	return background;
+	_levelText->setString(content);
 }
 
-cocos2d::Node* VictoryDialog::MakeGround() const
+void VictoryDialog::SetTimeTextContent(const std::string& content)
 {
-	auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	auto ground = cocos2d::ui::VBox::create(Size(300, 500));
-	ground->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	ground->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
-	ground->setBackGroundColor(cocos2d::Color3B::GREEN);
-	return ground;
+	_timeText->setString(content);
 }
 
-cocos2d::Node* VictoryDialog::MakeTitle() const
+void VictoryDialog::SetBestTimeTextContent(const std::string& content)
 {
-	auto title = cocos2d::ui::Text::create("Victory", "fonts/Marker Felt.ttf", 50);
-	auto param = LinearLayoutParameter::create();
-	param->setMargin(cocos2d::ui::Margin(0, 10, 0, 0));
-	param->setGravity(LinearGravity::CENTER_HORIZONTAL);
-	title->setLayoutParameter(param);
-	return title;
+	_bestTimeText->setString(content);
 }
 
-cocos2d::Node* VictoryDialog::MakeContent() const
+void VictoryDialog::SetOnNextButtonPressed(const std::function<void(cocos2d::Ref*)>& onButtonPressed)
 {
-	auto content = VBox::create(Size(300, 300));
-	content->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
-	content->setBackGroundColor(cocos2d::Color3B::RED);
-	content->addChild(MakeTextWithRelativeLayoutParameter("Level: ",
-					  25,
-					  RelativeAlign::PARENT_TOP_LEFT,
-					  Margin(),
-					  "levelLabel",
-					  ""));
-	content->addChild(MakeTextWithRelativeLayoutParameter("Time: ",
-					  25,
-					  RelativeAlign::LOCATION_BELOW_LEFTALIGN,
-					  Margin(),
-					  "timeLabel",
-					  "levelLabel"));
-
-	content->addChild(MakeTextWithRelativeLayoutParameter("Best time: ",
-					  25,
-					  RelativeAlign::LOCATION_BELOW_LEFTALIGN,
-					  Margin(),
-					  "bestTimeLabel",
-					  "timeLabel"));
-
-
-	auto contentParam = LinearLayoutParameter::create();
-	content->setLayoutParameter(contentParam);
-
-	return content;
+	_nextButton->addClickEventListener(onButtonPressed);
 }
 
-cocos2d::ui::Layout* VictoryDialog::MakeButtons() const
+void VictoryDialog::SetOnHomeButtonPressed(const std::function<void(cocos2d::Ref*)>& onButtonPressed)
 {
-	auto buttonsBox = cocos2d::ui::RelativeBox::create();
-
-	auto homeButton = MakeHomeButton();
-	buttonsBox->addChild(homeButton);
-
-	auto nextButton = MakeNextButton();
-	buttonsBox->addChild(nextButton);
-
-	return buttonsBox;
+	_homeButton->addClickEventListener(onButtonPressed);
 }
 
-cocos2d::ui::Button* VictoryDialog::MakeHomeButton() const
+cocos2d::ui::Button* VictoryDialog::MakeButton(cocos2d::ValueMap& value)
 {
-	auto homeButton = MakeButton("Home");
-	
-	auto param = LinearLayoutParameter::create();
-	param->setGravity(LinearGravity::CENTER_HORIZONTAL);
-	param->setMargin(Margin(0, 5, 0, 5));
+	const auto name = value["name"].asString();
+	const auto title = value["title"].asString();
+	const auto titleFontName = value["font-name"].asString();
+	const auto titleFontSize = value["font-size"].asFloat();
+	const auto normalImage = value["src-normal"].asString();
+	const auto pressedImage = value["src-pressed"].asString();
+	const auto disabledImage = value["src-disabled"].asString();
+	const auto x = value["x"].asFloat();
+	const auto y = value["y"].asFloat();
 
-	homeButton->setLayoutParameter(param);
-	homeButton->addClickEventListener([this](cocos2d::Ref* ref)
-	{
-		if (OnHomeButtonPressed)
-		{
-			OnHomeButtonPressed(ref);
-		}
-	});
-
-	return homeButton;
-}
-
-cocos2d::ui::Button* VictoryDialog::MakeNextButton() const
-{
-	auto nextButton = MakeButton("Next");
-	
-	auto param = LinearLayoutParameter::create();
-	param->setGravity(LinearGravity::CENTER_HORIZONTAL);
-	param->setMargin(Margin(0, 5, 0, 5));
-
-	nextButton->setLayoutParameter(param);
-	nextButton->addClickEventListener([this](cocos2d::Ref* ref)
-	{
-		if (OnNextButtonPressed)
-		{
-			OnNextButtonPressed(ref);
-		}
-	});
-
-	return nextButton;
-}
-
-cocos2d::ui::Button* VictoryDialog::MakeButton(const std::string& title) const
-{
-	auto button = cocos2d::ui::Button::create("levels/assets/blue_button_normal.png",
-											  "levels/assets/blue_button_pressed.png",
-											  "levels/assets/blue_button_disabled.png");
+	auto button = cocos2d::ui::Button::create(normalImage, pressedImage, disabledImage);
+	button->setPosition(Vec2(x, y));
 	button->setTitleText(title);
+	button->setTitleFontName(titleFontName);
+	button->setTitleFontSize(titleFontSize);
+
 	return button;
 }
 
-cocos2d::ui::Text* VictoryDialog::MakeText(const std::string& content, float fontSize) const
+cocos2d::ui::Text* VictoryDialog::MakeText(cocos2d::ValueMap& value)
 {
-	return cocos2d::ui::Text::create(content, "fonts/Marker Felt.ttf", fontSize);;
+	const auto fontName = value["font-name"].asString();
+	const auto fontSize = value["font-size"].asFloat();
+	const auto x = value["x"].asFloat();
+	const auto y = value["y"].asFloat();
+
+	auto text = cocos2d::ui::Text::create("<text>", fontName, fontSize);
+	text->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+	text->setColor(cocos2d::Color3B::BLACK);
+	text->setPosition(Vec2(x, y));
+
+	return text;
 }
 
-cocos2d::ui::Text* VictoryDialog::MakeTextWithRelativeLayoutParameter(const std::string& content,
-																	  float fontSize,
-																	  const cocos2d::ui::RelativeLayoutParameter::RelativeAlign& align,
-																	  const cocos2d::ui::Margin& margin,
-																	  const std::string& relativeName,
-																	  const std::string& relativeToWidgetName) const
+void VictoryDialog::RequireObjectGroupNotFound(cocos2d::TMXTiledMap* tiledMap, const std::string& name, const std::function<void(cocos2d::TMXObjectGroup*)>& action)
 {
-	auto text = MakeText(content, 25);
+	auto textsObjectGroup = tiledMap->getObjectGroup(name);
+	if (textsObjectGroup)
+	{
+		action(textsObjectGroup);
+	}
+	else
+	{
+		CCLOG("`%s` not found", name.c_str());
+	}
+}
 
-	auto param = RelativeLayoutParameter::create();
-	param->setAlign(align);
-	param->setMargin(margin);
-	param->setRelativeName(relativeName);
-	param->setRelativeToWidgetName(relativeToWidgetName);
+void VictoryDialog::RequireObjectNotFound(cocos2d::TMXObjectGroup* objectGroup, const std::string& name, const std::function<void(cocos2d::ValueMap& value)>& action)
+{
+	auto valueMap = objectGroup->getObject(name);
+	if (valueMap != cocos2d::ValueMap())
+	{
+		action(valueMap);
+	}
+	else
+	{
+		CCLOG("`%s` not found", name.c_str());
+	}
+}
 
-	text->setLayoutParameter(param);
-	return text;
+void VictoryDialog::RequireNotNull(cocos2d::Node* node, const std::function<void(cocos2d::Node*)>& action)
+{
+	if (node)
+	{
+		action(node);
+	}
+	else
+	{
+		CCLOG("node is nullptr");
+	}
 }

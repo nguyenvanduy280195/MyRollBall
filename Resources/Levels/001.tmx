@@ -28,7 +28,7 @@
    </properties>
    <point/>
   </object>
-  <object id="11" name="goal" x="1129.36" y="165.682">
+  <object id="11" name="goal" x="1115.42" y="173.617">
    <properties>
     <property name="locked" type="bool" value="false"/>
     <property name="src" value="levels/assets/hole_large_end_alt.png"/>

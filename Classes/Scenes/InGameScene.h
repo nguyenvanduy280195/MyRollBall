@@ -8,6 +8,7 @@ namespace cocos2d
 {
 class TMXTiledMap;
 class Sprite;
+class Follow;
 }
 
 class InGameScene : public cocos2d::Layer, public IScene
@@ -31,11 +32,13 @@ public:
 	virtual HandlerManager* GetHandlerManager() const override { return _handlerManager; }
 	virtual GameInfo* GetGameInfo() const override { return _gameInfo; }
 
-	void NextLevel();
+	void Victory();
 
-private:
-	void UpdateCameraPosition();
-
+private: 
+	void TakeCameraAfterPlayer();
+	cocos2d::Vec2 GetVectorToPlayer() const;
+	void StopGame();
+	void ShowVictoryDialog();
 
 	class Level* _level;
 	class Player* _player;
@@ -47,4 +50,9 @@ private:
 	int _currentLevel;
 
 	const std::string FORMAT_LEVEL = "levels/%03d.tmx";
+
+	const std::string time_temp = "5:43";
+	const std::string bestTime_temp = "1:23";
+
+	cocos2d::Follow* _followingPlayer;
 };

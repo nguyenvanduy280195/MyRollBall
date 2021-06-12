@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="left-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+ <editorsettings>
+  <chunksize width="32" height="32"/>
+ </editorsettings>
+ <tileset firstgid="1" name="UIpackSheet_magenta" tilewidth="16" tileheight="16" spacing="2" tilecount="990" columns="30">
+  <image source="assets/UIpackSheet_magenta.png" width="538" height="592"/>
+ </tileset>
+ <layer id="1" name="background" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxbycjAsHIUj+JRPIpH8SgmEQMAXLAJsA==
+  </data>
+ </layer>
+</map>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="160"
+   height="32"
+   viewBox="0 0 42.333333 8.4666666"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="drawing.svg"
+   inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\drawing.png"
+   inkscape:export-xdpi="98.25"
+   inkscape:export-ydpi="98.25"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="px"
+     showgrid="false"
+     showborder="true"
+     inkscape:zoom="4.3333333"
+     inkscape:cx="74.653846"
+     inkscape:cy="-3.5769231"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1358"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:8.27277px;line-height:1.25;font-family:'KenVector Future';-inkscape-font-specification:'KenVector Future';stroke-width:0.20682"
+       x="1.3877788e-17"
+       y="6.7579813"
+       id="text6435"><tspan
+         sodipodi:role="line"
+         id="tspan6433"
+         style="stroke-width:0.20682"
+         x="1.3877788e-17"
+         y="6.7579813">victory</tspan></text>
+  </g>
+</svg>

@@ -26,6 +26,7 @@
 #include "Scenes/InGameScene.h"
 #include "Utils/Cocos2dCreator.h"
 #include "Scenes/IntroLevelScene.h"
+#include "ScreenLog/ScreenLog.h"
 
 // #define USE_AUDIO_ENGINE 1
 
@@ -42,6 +43,10 @@ static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
 AppDelegate::AppDelegate()
 {
+    gScreenLog = new ScreenLog();
+    gScreenLog->SetLevelMask(LL_DEBUG | LL_INFO | LL_WARNING | LL_ERROR | LL_FATAL);
+    gScreenLog->SetFontFile("fonts/Marker Felt.ttf");
+    gScreenLog->SetTimeoutSeconds(5);
 }
 
 AppDelegate::~AppDelegate() 
@@ -111,7 +116,15 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
     //auto scene = HelloWorld::createScene();
     //auto scene = InGameScene::CreateScene();
-    auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>(3);
+    auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>();
+
+    gScreenLog->AttachToScene(scene);
+    gScreenLog->Log(LL_DEBUG, "test debug");
+    gScreenLog->Log(LL_ERROR, "test error");
+    gScreenLog->Log(LL_FATAL, "test fatal");
+    gScreenLog->Log(LL_INFO, "test info");
+    gScreenLog->Log(LL_TRACE, "test trace");
+    gScreenLog->Log(LL_WARNING, "test warning");
 
     // run
     director->runWithScene(scene);

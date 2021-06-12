@@ -3,17 +3,21 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "003.tmx",
+    "activeFile": "001.tmx",
     "expandedProjectPaths": [
         "."
     ],
     "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "001.tmx": {
-            "scale": 1.5,
+            "scale": 0.33,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 640,
-                "y": 639.3333333333333
+                "x": 640.9090909090908,
+                "y": 642.4242424242425
             }
         },
         "001.tmx#background_brown": {
@@ -106,15 +110,85 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "UIpackSheet_transparent.tsx": {
+            "scaleInDock": 7.5387,
+            "scaleInEditor": 1
+        },
         "background_blue.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "background_brown.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "block_large.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "dialog-0.tmx": {
+            "scale": 2.2025297619047617,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 188.64671305992843,
+                "y": 160.27025200999933
+            }
+        },
+        "dialog-0.tmx#UIpackSheet_magenta": {
+            "scaleInDock": 3
+        },
+        "dialog-victory.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 160.33333333333331,
+                "y": 352
+            }
+        },
+        "dialog-victory.tmx#UIpackSheet_transparent": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
+        "dialog-victory.tmx#best-time": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "dialog-victory.tmx#bitmap": {
+            "dynamicWrapping": false
+        },
+        "dialog-victory.tmx#level": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "dialog-victory.tmx#texts": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "dialog-victory.tmx#time": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "dialog-victory.tmx#trophy": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "dialog-victory.tmx#ui-best-time": {
+            "dynamicWrapping": false
+        },
+        "dialog-victory.tmx#ui_tilesheet": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 8
+        },
+        "dialog-victory.tmx#victory": {
+            "dynamicWrapping": true,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -123,6 +197,7 @@
             "scaleInEditor": 1
         },
         "hole_start.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         }
@@ -132,33 +207,36 @@
     "map.lastUsedFormat": "tmx",
     "map.layerDataFormat": null,
     "map.renderOrder": null,
-    "map.tileHeight": 64,
-    "map.tileWidth": 64,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
     "map.width": 20,
     "openFiles": [
-        "002.tmx",
-        "003.tmx"
+        "001.tmx"
     ],
     "project": "levels.tiled-project",
-    "property.type": "float",
+    "property.type": "string",
     "recentFiles": [
+        "001.tmx",
+        "dialog-victory.tmx",
+        "UIpackSheet_transparent.tsx",
+        "dialog-0.tmx",
         "002.tmx",
         "003.tmx",
         "010.tmx",
-        "001.tmx",
         "hole_start.tsx",
         "hole_small_end_alt.tsx",
         "7.tsx",
         "8.tsx",
-        "6.tsx",
-        "4.tsx",
-        "9.tsx",
-        "5.tsx"
+        "6.tsx"
     ],
     "textEdit.monospace": true,
+    "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx",
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
     "tileset.tileSize": {
-        "height": 48,
-        "width": 48
-    }
+        "height": 16,
+        "width": 16
+    },
+    "tileset.type": 1
 }

@@ -6,6 +6,7 @@
 #include "2d/CCTransition.h"
 #include "InGameScene.h"
 #include "Dialogs/VictoryDialog.h"
+#include "Utils/StaticMethods.h"
 
 bool IntroLevelScene::init(int level)
 {
@@ -45,7 +46,8 @@ void IntroLevelScene::update(float dt)
 		unscheduleUpdate();
 		auto scene = InGameScene::CreateScene(_level);
 		auto sceneWithTransition = cocos2d::TransitionFadeDown::create(1, scene);
-		cocos2d::Director::getInstance()->replaceScene(sceneWithTransition);
+		//cocos2d::Director::getInstance()->replaceScene(sceneWithTransition);
+		StaticMethods::ReplaceScene(scene, sceneWithTransition);
 	}
 	_timer += dt;
 }

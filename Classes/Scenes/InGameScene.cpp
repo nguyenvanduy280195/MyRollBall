@@ -24,6 +24,11 @@
 
 #include "Dialogs/VictoryDialog.h"
 
+#include "2d/CCActionInstant.h"
+#include "2d/CCActionInterval.h"
+#include "2d/CCAction.h"
+#include "ScreenLog/ScreenLog.h"
+
 using Vec2 = cocos2d::Vec2;
 using KeyCode = cocos2d::EventKeyboard::KeyCode;
 
@@ -63,8 +68,8 @@ bool InGameScene::init(int level)
 	_gameInfo = new(std::nothrow) GameInfo();
 
 	// screen log
-	_screenLog = Cocos2dCreator::CreateNode<ScreenLog>(_gameInfo);
-	addChild(_screenLog, INT32_MAX);
+	//_screenLog = Cocos2dCreator::CreateNode<ScreenLog>(_gameInfo);
+	//addChild(_screenLog, INT32_MAX);
 
 	// level
 	const auto path = cocos2d::StringUtils::format(FORMAT_LEVEL.c_str(), _currentLevel);
@@ -77,85 +82,102 @@ bool InGameScene::init(int level)
 	_player = Cocos2dCreator::CreateNode<Player>(this, startPosition);
 	addChild(_player);
 
+	//ScreenLogMessage* slm = g_screenLog->Log(LL_INFO, "Hello world");
+	//gScreenLog->SetMessageText(slm, "(%d, %d)", _player->getContentSize().width, _player->getContentSize().height);
+	//gScreenLog->Log(LL_DEBUG, "(%d, %d)", _player->getContentSize().width, _player->getContentSize().height);
+
+	gScreenLog->Log(LL_DEBUG, "test debug");
+	gScreenLog->Log(LL_ERROR, "test error");
+	gScreenLog->Log(LL_FATAL, "test fatal");
+	gScreenLog->Log(LL_INFO, "test info");
+	gScreenLog->Log(LL_TRACE, "test trace");
+	gScreenLog->Log(LL_WARNING, "test warning");
+
 	return true;
 }
 
 void InGameScene::onEnterTransitionDidFinish()
 {
 	Super::onEnterTransitionDidFinish();
-	scheduleUpdate();
+
+	_eventDispatcher->pauseEventListenersForTarget(this);
+
+	auto targetPosition = GetVectorToPlayer();
+	auto movingCameraToPlayer = cocos2d::MoveTo::create(2, targetPosition);
+	auto startGame = cocos2d::CallFunc::create([this]()
+	{
+		_eventDispatcher->resumeEventListenersForTarget(this);
+		scheduleUpdate();
+
+		TakeCameraAfterPlayer();
+	});
+
+	auto sequence = cocos2d::Sequence::createWithTwoActions(movingCameraToPlayer, startGame);
+	runAction(sequence);
 }
 
 void InGameScene::update(float)
 {
-	UpdateCameraPosition();
 }
 
-void InGameScene::UpdateCameraPosition()
+void InGameScene::TakeCameraAfterPlayer()
 {
-//#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
-#if 1
-	const auto playerPosition = _player->getPosition();
-	const auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+	const auto levelPosition = _level->getPosition();
+	const auto levelContentSize = _level->getContentSize();
+	const auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
+	const auto rect = cocos2d::Rect(levelPosition - visibleOrigin, cocos2d::Size(levelContentSize.width + 2 * visibleOrigin.x, levelContentSize.height + 2 * visibleOrigin.y));
+	_followingPlayer = cocos2d::Follow::create(_player, rect);
+	runAction(_followingPlayer);
+}
+
+void InGameScene::Victory()
+{
+	StopGame();
+	ShowVictoryDialog();
+}
+
+cocos2d::Vec2 InGameScene::GetVectorToPlayer() const
+{
+	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	auto playerPosition = _player->getPosition();
+	Vec2 position = 0.5f * winSize - playerPosition;
+
+	const auto levelPosition = _level->getPosition();
 	const auto levelSize = _level->getContentSize();
 
-	const auto cameraXMin = 0.5f * visibleSize.width;
-	const auto cameraXMax = levelSize.width - 0.5f * visibleSize.width;
+	const auto cameraXMin = -((levelPosition.x + levelSize.width) - winSize.width);
+	const auto cameraXMax = -levelPosition.x;
+	const auto cameraYMin = -((levelPosition.y + levelSize.height) - winSize.height);
+	const auto cameraYMax = -levelPosition.y;
 
-	if (cameraXMin <= playerPosition.x && playerPosition.x <= cameraXMax)
-	{
-		cocos2d::Camera::getDefaultCamera()->setPositionX(playerPosition.x);
-	}
-	else if (playerPosition.x < cameraXMin)
-	{
-		cocos2d::Camera::getDefaultCamera()->setPositionX(cameraXMin);
-	}
-	else if (cameraXMax < playerPosition.x)
-	{
-		cocos2d::Camera::getDefaultCamera()->setPositionX(cameraXMax);
-	}
+	position.x = cocos2d::clampf(position.x, cameraXMin, cameraXMax);
+	position.y = cocos2d::clampf(position.y, cameraYMin, cameraYMax);
 
-
-	const auto cameraYMin = 0.5f * visibleSize.height;
-	const auto cameraYMax = levelSize.height - 0.5f * visibleSize.height;
-
-	if (cameraYMin <= playerPosition.y && playerPosition.y <= cameraYMax)
-	{
-		cocos2d::Camera::getDefaultCamera()->setPositionY(_player->getPositionY());
-	}
-	else if (playerPosition.y < cameraYMin)
-	{
-		cocos2d::Camera::getDefaultCamera()->setPositionY(cameraYMin);
-	}
-	else if (cameraYMax < playerPosition.y)
-	{
-		cocos2d::Camera::getDefaultCamera()->setPositionY(cameraYMax);
-	}
-#else
-	cocos2d::Camera::getDefaultCamera()->setPosition(_player->getPosition());
-#endif
-
-
-	
+	return position;
 }
 
-void InGameScene::NextLevel()
+void InGameScene::StopGame()
 {
+	_player->getPhysicsBody()->setVelocity(Vec2::ZERO);
+	stopAction(_followingPlayer);
 	unscheduleUpdate();
-
-	// TODO: This can cause bugs in the future
 	_eventDispatcher->pauseEventListenersForTarget(this);
+}
 
+void InGameScene::ShowVictoryDialog()
+{
 	auto dialog = Cocos2dCreator::CreateNode<VictoryDialog>();
-	dialog->OnHomeButtonPressed = [](cocos2d::Ref*)
+	dialog->SetLevelTextContent(std::to_string(_currentLevel));
+	dialog->SetTimeTextContent(time_temp);
+	dialog->SetBestTimeTextContent(bestTime_temp);
+	dialog->SetOnHomeButtonPressed([](cocos2d::Ref*)
 	{
-
-	};
-	dialog->OnNextButtonPressed = [this](cocos2d::Ref*)
+	});
+	dialog->SetOnNextButtonPressed([this](cocos2d::Ref*)
 	{
 		auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>(_currentLevel + 1);
 		auto sceneWithTransition = cocos2d::TransitionMoveInR::create(1, scene);
 		cocos2d::Director::getInstance()->replaceScene(sceneWithTransition);
-	};
-	getParent()->addChild(dialog);
+	});
+	getParent()->addChild(dialog, INT16_MAX);
 }

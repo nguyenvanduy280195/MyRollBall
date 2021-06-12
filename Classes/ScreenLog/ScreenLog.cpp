@@ -1,95 +1,170 @@
 #include "ScreenLog.h"
-#include "2d/CCDrawNode.h"
-#include "base/CCDirector.h"
-#include "2d/CCCamera.h"
-#include "ui/UIListView.h"
-#include "ui/UIText.h"
-#include "2d/CCLabel.h"
-#include "ui/UIVBox.h"
+#include "ScreenLogMessage.h"
+#include "ScopeLock.h"
 
-#include "Infos/GameInfo.h"
+#define SCREENLOG_PRINT_BUFFER_SIZE     8192                        // The maximum total length of one log message.
 
-using Vec2 = cocos2d::Vec2;
+ScreenLog* gScreenLog = nullptr;
+char g_screenLogPrintBuffer[SCREENLOG_PRINT_BUFFER_SIZE];
 
-bool ScreenLog::init(class GameInfo* gameInfo)
+ScreenLog::ScreenLog()
 {
-	if (!cocos2d::Node::init())
-	{
-		return false;
-	}
-	_gameInfo = gameInfo;
-	
+	_timeout = 5;//seconds
+	_level = 0;
 
-	_listView = MakeListView();
-	addChild(_listView);
-
-	
-	scheduleUpdate();
-	
-	return true;
+	cocos2d::Director::getInstance()->getScheduler()->scheduleUpdate(this, 10000, false);
 }
 
-cocos2d::ui::ListView* ScreenLog::MakeListView() const
+ScreenLog::~ScreenLog()
 {
-	auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	cocos2d::Director::getInstance()->getScheduler()->unscheduleUpdate(this);
 
-	auto listView = cocos2d::ui::ListView::create();
-	listView->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
-	listView->setContentSize(winSize);
-	listView->setDirection(cocos2d::ui::ListView::Direction::VERTICAL);
-	listView->setScrollBarEnabled(false);
-
-	return listView;
-}
-
-void ScreenLog::AddLog(const std::string& msg)
-{
-	auto text = MakeText(msg);
-	_listView->pushBackCustomItem(text);
-
-	if (_listView->getChildrenCount() >= _gameInfo->GetScreenLogInfo().logCountLimit)
 	{
-		_listView->removeItem(0);
+		ScopeLock lock(&_contentMutex);
+		for (unsigned int i = 0; i < _messages.size(); i++)
+			delete _messages[i];
 	}
 }
 
-cocos2d::ui::Text* ScreenLog::MakeText(const std::string& msg) const
+void ScreenLog::SetFontFile(std::string file)
 {
-	auto text = cocos2d::ui::Text::create(msg, _gameInfo->GetScreenLogInfo().fontFamily, _gameInfo->GetScreenLogInfo().fontSize);
-	text->setColor(_gameInfo->GetScreenLogInfo().textColor);
-	text->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
-	return text;
+	_fontFile = file;
+}
+
+void ScreenLog::SetLevelMask(int p_level)
+{
+	_level = p_level;
+}
+
+void ScreenLog::SetTimeoutSeconds(float t)
+{
+	_timeout = t;
+}
+
+void ScreenLog::AttachToScene(cocos2d::Scene* scene)
+{
+	if (getParent())
+		getParent()->removeChild(this, false);
+	if (scene)
+		scene->addChild(this, SCREENLOG_LAYER_LEVEL);
+}
+
+ScreenLogMessage* ScreenLog::Log(int p_level, const char* p_str, ...)
+{
+#if COCOS2D_DEBUG
+	ScopeLock lock(&_contentMutex);
+
+	if (!p_str)
+	{
+		return nullptr;
+	}
+
+	if (!(p_level & _level))
+	{
+		return nullptr;
+	}
+
+	va_list t_va;
+	va_start(t_va, p_str);
+	vsnprintf(g_screenLogPrintBuffer, SCREENLOG_PRINT_BUFFER_SIZE - 1, p_str, t_va);
+	va_end(t_va);
+
+	ScreenLogMessage* slm = new ScreenLogMessage(this);
+	slm->_level = p_level;
+	slm->_text = g_screenLogPrintBuffer;
+	slm->_timestamp = _timer;
+	_messages.push_back(slm);
+
+	return slm;
+#else
+	return nullptr;
+#endif
+	
+}
+
+void ScreenLog::SetMessageText(ScreenLogMessage* slm, const char* p_str, ...)
+{
+	ScopeLock lock(&_contentMutex);
+
+	//loop through to find matching message, in case it has already gone
+	bool messageStillExists = false;
+	for (int i = 0; i < _messages.size(); i++)
+	{
+		if (_messages[i] == slm)
+		{
+			messageStillExists = true;
+			break;
+		}
+	}
+	if (messageStillExists)
+	{
+		va_list t_va;
+		va_start(t_va, p_str);
+		vsnprintf(g_screenLogPrintBuffer, SCREENLOG_PRINT_BUFFER_SIZE - 1, p_str, t_va);
+		va_end(t_va);
+
+		slm->SetLabelText(g_screenLogPrintBuffer);
+		slm->_timestamp = _timer;
+	}
+
 }
 
 void ScreenLog::update(float dt)
 {
-	UpdatePosition();
-	RemoveFirstItemAfterTime(dt);
-}
+	ScopeLock lock(&_contentMutex);
 
-void ScreenLog::RemoveFirstItemAfterTime(float dt)
-{
-	_removingTimer += dt;
-	if (_removingTimer >= _gameInfo->GetScreenLogInfo().removingTimerLimit)
+	for (int i = 0; i < _messages.size(); i++)
 	{
-		_removingTimer = 0;
-
-		const auto childrenCount = _listView->getChildrenCount();
-		if (childrenCount > 0)
-		{
-			_listView->removeItem(0);
-		}
+		ScreenLogMessage* slm = _messages[i];
+		if (slm->CheckLabel())
+			MoveLabelsUp(i);
 	}
 
+	int c = 0;
+	for (int i = _messages.size() - 1; i >= 0; i--)
+	{
+		ScreenLogMessage* slm = _messages[i];
+		const auto delta = _timer - slm->_timestamp;
+		if (delta > _timeout || c > (2 * SCREENLOG_NUM_LINES))
+		{
+			removeChild(slm->_label, true);
+			delete slm;
+			_messages.erase(_messages.begin() + i);
+		}
+		c++;
+	}
+
+	_timer += dt;
 }
 
-void ScreenLog::UpdatePosition()
+void ScreenLog::MoveLabelsUp(int maxIndex)
 {
-	const auto cameraPosition = cocos2d::Camera::getDefaultCamera()->getPosition();
-	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	const auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
-	const auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
-	auto x = cameraPosition.x - 0.5f * winSize.width;
-	auto y = cameraPosition.y + 0.5f * winSize.height - 1.5f*visibleOrigin.y;
-	setPosition(x, y);
+	ScopeLock lock(&_contentMutex);
+
+	float screenHeightPixels = cocos2d::Director::getInstance()->getWinSize().height;
+	float fontSize = screenHeightPixels / (float)SCREENLOG_NUM_LINES - 1;
+
+	if (maxIndex >= _messages.size())
+	{
+		maxIndex = _messages.size();
+	}
+
+	for (int i = 0; i < maxIndex; i++)
+	{
+		ScreenLogMessage* slm = _messages[i];
+		cocos2d::Point p = slm->_label->getPosition();
+		p.y += fontSize;
+		slm->_label->setPosition(p);
+	}
+}
+
+void ScreenLog::ClearEntries()
+{
+	ScopeLock lock(&_contentMutex);
+
+	for (unsigned int i = 0; i < _messages.size(); i++)
+	{
+		delete _messages[i];
+	}
+	_messages.clear();
 }
