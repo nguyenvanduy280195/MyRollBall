@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="64" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="13">
+ <tileset firstgid="1" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
+  <image source="assets/ui_tilesheet.png" width="480" height="144"/>
+ </tileset>
+ <tileset firstgid="271" name="text_control_ball_felt" tilewidth="323" tileheight="64" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="323" height="64" source="assets/ui_control_ball_felt.png"/>
+  </tile>
+ </tileset>
+ <layer id="1" name="background" width="64" height="45">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMBKHr8v07LsdAwVVTVVVVVVVVVVVVVX3wAKfgidA=
+  </data>
+ </layer>
+ <group id="3" name="texts">
+  <layer id="4" name="game" width="64" height="45">
+   <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIA6CZwP5tzeDlISQgAQAA+KnregAAAAAAAAAAbA0sHQAR
+  </data>
+  </layer>
+  <layer id="2" name="main_menu" width="64" height="45" visible="0">
+   <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAAAAAD4MLQAAAQ==
+  </data>
+  </layer>
+ </group>
+ <objectgroup id="8" name="box">
+  <object id="11" name="box" x="672" y="416">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="buttons">
+  <object id="1" name="play" x="192" y="336">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
+    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
+    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
+    <property name="title" value="Play"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="2" name="options" x="192" y="400">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
+    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
+    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
+    <property name="title" value="Options"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="3" name="about" x="192" y="464">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
+    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
+    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
+    <property name="title" value="About"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="4" name="exit" x="192" y="528">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
+    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
+    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
+    <property name="title" value="Exit"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>

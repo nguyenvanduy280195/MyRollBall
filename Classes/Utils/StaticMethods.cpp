@@ -2,6 +2,8 @@
 #include "base/ccUTF8.h"
 #include "base/CCDirector.h"
 #include "ScreenLog/ScreenLog.h"
+#include "2d/CCTMXTiledMap.h"
+#include "ScreenLog/ScreenLog.h"
 
 cocos2d::Color3B StaticMethods::MakeColor3BFromHex(const std::string hex)
 {

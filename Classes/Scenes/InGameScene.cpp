@@ -67,10 +67,6 @@ bool InGameScene::init(int level)
 
 	_gameInfo = new(std::nothrow) GameInfo();
 
-	// screen log
-	//_screenLog = Cocos2dCreator::CreateNode<ScreenLog>(_gameInfo);
-	//addChild(_screenLog, INT32_MAX);
-
 	// level
 	const auto path = cocos2d::StringUtils::format(FORMAT_LEVEL.c_str(), _currentLevel);
 	_level = Cocos2dCreator::CreateNode<Level>(path);
@@ -82,17 +78,6 @@ bool InGameScene::init(int level)
 	_player = Cocos2dCreator::CreateNode<Player>(this, startPosition);
 	addChild(_player);
 
-	//ScreenLogMessage* slm = g_screenLog->Log(LL_INFO, "Hello world");
-	//gScreenLog->SetMessageText(slm, "(%d, %d)", _player->getContentSize().width, _player->getContentSize().height);
-	//gScreenLog->Log(LL_DEBUG, "(%d, %d)", _player->getContentSize().width, _player->getContentSize().height);
-
-	gScreenLog->Log(LL_DEBUG, "test debug");
-	gScreenLog->Log(LL_ERROR, "test error");
-	gScreenLog->Log(LL_FATAL, "test fatal");
-	gScreenLog->Log(LL_INFO, "test info");
-	gScreenLog->Log(LL_TRACE, "test trace");
-	gScreenLog->Log(LL_WARNING, "test warning");
-
 	return true;
 }
 
@@ -100,20 +85,20 @@ void InGameScene::onEnterTransitionDidFinish()
 {
 	Super::onEnterTransitionDidFinish();
 
-	_eventDispatcher->pauseEventListenersForTarget(this);
+	//_eventDispatcher->pauseEventListenersForTarget(this);
+	//auto targetPosition = GetVectorToPlayer();
+	//auto movingCameraToPlayer = cocos2d::MoveTo::create(2, targetPosition);
+	//auto startGame = cocos2d::CallFunc::create([this]()
+	//{
+	//	_eventDispatcher->resumeEventListenersForTarget(this);
+	//	scheduleUpdate();
+	//	TakeCameraAfterPlayer();
+	//});
+	//auto sequence = cocos2d::Sequence::createWithTwoActions(movingCameraToPlayer, startGame);
+	//runAction(sequence);
 
-	auto targetPosition = GetVectorToPlayer();
-	auto movingCameraToPlayer = cocos2d::MoveTo::create(2, targetPosition);
-	auto startGame = cocos2d::CallFunc::create([this]()
-	{
-		_eventDispatcher->resumeEventListenersForTarget(this);
-		scheduleUpdate();
-
-		TakeCameraAfterPlayer();
-	});
-
-	auto sequence = cocos2d::Sequence::createWithTwoActions(movingCameraToPlayer, startGame);
-	runAction(sequence);
+	//scheduleUpdate();
+	TakeCameraAfterPlayer();
 }
 
 void InGameScene::update(float)

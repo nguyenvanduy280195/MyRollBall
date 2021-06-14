@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="24" height="26" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="2">
+ <tileset firstgid="1" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
+  <image source="assets/ui_tilesheet.png" width="480" height="144"/>
+ </tileset>
+ <objectgroup id="2" name="buttons">
+  <object id="1" name="close" x="384" y="0">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/red_cross.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="3" name="background" width="24" height="26">
+  <data encoding="base64" compression="zlib">
+   eJztzDERACAQA8H4dwUIAYQ8EBOZobhi222SesiwaStk8/Pz8/Pz8/N/+JedkGsPQRgiHw==
+  </data>
+ </layer>
+</map>

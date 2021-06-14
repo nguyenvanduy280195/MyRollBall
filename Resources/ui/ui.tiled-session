@@ -1,0 +1,208 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "layer-about.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/OneDrive/Desktop/TileGameResources/TileMap.tmx": {
+            "scale": 0.17515625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 796.4317573595004,
+                "y": 802.1409455842997
+            }
+        },
+        "C:/Users/tensa/OneDrive/Desktop/TileGameResources/TileMap.tmx#tmw_desert_spacing": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#ConnerBlocks": {
+            "dynamicWrapping": true
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#background": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#background_blue": {
+            "dynamicWrapping": false
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#background_brown": {
+            "dynamicWrapping": false
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#backgrounds": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#balls": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#blocks": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#holes": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#keys": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#largeBalls": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#lasers": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/OneDrive/Desktop/test.tmx#smallBalls": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "dialog-0.tmx": {
+            "scale": 1.8673437499999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 160.38825202911886,
+                "y": 160.3882520291189
+            }
+        },
+        "dialog-0.tmx#UIpackSheet_magenta": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "dialog-victory.tmx": {
+            "scale": 1,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 160.5,
+                "y": 368
+            }
+        },
+        "dialog-victory.tmx#UIpackSheet_transparent": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "dialog-victory.tmx#best-time": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "dialog-victory.tmx#blueSheet": {
+            "dynamicWrapping": false
+        },
+        "dialog-victory.tmx#drawing": {
+            "dynamicWrapping": false
+        },
+        "dialog-victory.tmx#level": {
+            "scaleInDock": 1
+        },
+        "dialog-victory.tmx#time": {
+            "scaleInDock": 1
+        },
+        "dialog-victory.tmx#trophy": {
+            "scaleInDock": 1
+        },
+        "dialog-victory.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
+        "dialog-victory.tmx#victory": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "layer-about.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 256.33333333333326,
+                "y": 274
+            }
+        },
+        "layer-about.tmx#ui_tilesheet": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "layer-exit-game.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 301,
+                "y": -69.33333333333334
+            }
+        },
+        "layer-exit-game.tmx#text-exit-game-text": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "layer-exit-game.tmx#text-exit-game-title": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "layer-exit-game.tmx#ui_tilesheet": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "layer-exiting-game.tmx#ui_tilesheet": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "scene-main-menu.tmx": {
+            "scale": 0.836222005842259,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 502.8568933395435,
+                "y": 206.8828598043782
+            }
+        },
+        "scene-main-menu.tmx#text_control_ball_felt": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "scene-main-menu.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        }
+    },
+    "last.imagePath": "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/assets",
+    "map.height": 5,
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": null,
+    "map.renderOrder": null,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 16,
+    "openFiles": [
+        "layer-about.tmx",
+        "layer-exit-game.tmx"
+    ],
+    "project": "ui.tiled-project",
+    "recentFiles": [
+        "layer-exit-game.tmx",
+        "layer-about.tmx",
+        "scene-main-menu.tmx",
+        "layer-exiting-game.tmx",
+        "dialog-victory.tmx",
+        "dialog-0.tmx",
+        "C:/Users/tensa/OneDrive/Desktop/TileGameResources/TileMap.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.type": 0
+}
