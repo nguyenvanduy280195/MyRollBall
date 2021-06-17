@@ -2,6 +2,8 @@
 #include "2d/CCSprite.h"
 #include "Bitmask.h"
 #include "2d/CCActionInterval.h"
+#include "2d/CCActionInstant.h"
+#include "ScreenLog/ScreenLog.h"
 
 using Super = cocos2d::TMXTiledMap;
 using Vec2 = cocos2d::Vec2;
@@ -42,10 +44,9 @@ bool Level::init(const std::string& filename)
 		else if (name.compare("laser-shooter") == 0)
 		{
 			auto laserShooter = MakeLaserShooter(valueMap);
-			addChild(laserShooter);
+			addChild(laserShooter, 100);
 		}
 	}
-
 
 	return true;
 }
@@ -184,6 +185,7 @@ cocos2d::Sprite* Level::MakeLaserShooter(cocos2d::ValueMap& value)
 	auto laserShooter = cocos2d::Sprite::create(src);
 	laserShooter->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	laserShooter->setPosition(x, y);
+	laserShooter->setName("laser-shooter");
 	if (direction.compare("right") == 0)
 	{
 		laserShooter->setRotation(90);
@@ -195,19 +197,48 @@ cocos2d::Sprite* Level::MakeLaserShooter(cocos2d::ValueMap& value)
 	laser->setScaleY(laserScaleFactorY);
 	laser->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	laser->setPosition(0.5f * laserShooter->getContentSize());
+	laser->setName("laser");
 
 	auto body = cocos2d::PhysicsBody::createBox(laser->getContentSize());
 	body->setDynamic(false);
-	body->setCategoryBitmask(0);
-	body->setCollisionBitmask(0);
-	body->setContactTestBitmask(0);
+	body->setCategoryBitmask(LASER_CATEGORY_BITMASK);
+	body->setCollisionBitmask(LASER_COLLISION_BITMASK);
+	body->setContactTestBitmask(LASER_CONTACT_TEST_BITMASK);
 
 	laser->setPhysicsBody(body);
 
-	auto fadeIn = cocos2d::FadeIn::create(2);
-	auto delay = cocos2d::DelayTime::create(2);
-	auto fadeOut = cocos2d::FadeOut::create(2);
-	auto sequence = cocos2d::Sequence::create(fadeIn, delay, fadeOut, delay, nullptr);
+
+
+	auto fadeIn = cocos2d::FadeIn::create(1);
+	auto onBodyEnabled = cocos2d::CallFunc::create([this]()
+	{
+		if (auto laserShooter = getChildByName("laser-shooter"))
+		{
+			if (auto laser = laserShooter->getChildByName("laser"))
+			{
+				if (auto laserBody = laser->getPhysicsBody())
+				{
+					laserBody->setEnabled(true);
+				}
+			}
+		}
+	});
+	auto delay = [](float seconds) { return cocos2d::DelayTime::create(seconds); };
+	auto onBodyDisabled = cocos2d::CallFunc::create([this]()
+	{
+		if (auto laserShooter = getChildByName("laser-shooter"))
+		{
+			if (auto laser = laserShooter->getChildByName("laser"))
+			{
+				if (auto laserBody = laser->getPhysicsBody())
+				{
+					laserBody->setEnabled(false);
+				}
+			}
+		}
+	});
+	auto fadeOut = cocos2d::FadeOut::create(1);
+	auto sequence = cocos2d::Sequence::create(onBodyEnabled, fadeIn, delay(1), fadeOut, onBodyDisabled, delay(3), nullptr);
 	auto action = cocos2d::RepeatForever::create(sequence);
 
 	laser->runAction(action);
@@ -215,7 +246,6 @@ cocos2d::Sprite* Level::MakeLaserShooter(cocos2d::ValueMap& value)
 	return laserShooter;
 }
 
-// TODO please check here
 cocos2d::Vec2 Level::GetStartPosition() const
 {
 	if (auto start = getChildByName("start"))

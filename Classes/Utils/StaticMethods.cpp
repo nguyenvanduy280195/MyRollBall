@@ -22,18 +22,18 @@ cocos2d::Color3B StaticMethods::MakeColor3BFromHex(const std::string hex)
 void StaticMethods::ReplaceScene(cocos2d::Scene* scene, cocos2d::Scene* sceneWithTransition)
 {
 	cocos2d::Director::getInstance()->replaceScene(sceneWithTransition);
-	gScreenLog->AttachToScene(scene);
+	//gScreenLog->AttachToScene(scene);
 }
 
 void StaticMethods::ReplaceScene(cocos2d::Scene* scene)
 {
 	cocos2d::Director::getInstance()->replaceScene(scene);
-	gScreenLog->AttachToScene(scene);
+	//gScreenLog->AttachToScene(scene);
 }
 
 void StaticMethods::PopScene()
 {
 	cocos2d::Director::getInstance()->popScene();
 	auto scene = cocos2d::Director::getInstance()->getRunningScene();
-	gScreenLog->AttachToScene(scene);
+	//gScreenLog->AttachToScene(scene);
 }

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "2d/CCLayer.h"
-#include "../MyCustomGUI.h"
 #include "base/CCValue.h"
+#include "MyDialog.h"
 
 namespace cocos2d
 {
@@ -14,7 +14,7 @@ class Text;
 }
 }
 
-class VictoryDialog : public MyCustomLayer
+class VictoryDialog : public MyDialog
 {
 public:
 	bool init();

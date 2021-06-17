@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "layer-about.tmx",
+    "activeFile": "dialog-victory.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -81,12 +81,23 @@
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
-        "dialog-victory.tmx": {
-            "scale": 1,
-            "selectedLayer": 5,
+        "dialog-victory-0.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 160.5,
-                "y": 368
+                "x": 160.33333333333334,
+                "y": 112
+            }
+        },
+        "dialog-victory-0.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
+        "dialog-victory.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 160.33333333333334,
+                "y": 96
             }
         },
         "dialog-victory.tmx#UIpackSheet_transparent": {
@@ -105,6 +116,7 @@
             "dynamicWrapping": false
         },
         "dialog-victory.tmx#level": {
+            "dynamicWrapping": true,
             "scaleInDock": 1
         },
         "dialog-victory.tmx#time": {
@@ -114,6 +126,7 @@
             "scaleInDock": 1
         },
         "dialog-victory.tmx#ui_tilesheet": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "dialog-victory.tmx#victory": {
@@ -176,24 +189,26 @@
         }
     },
     "last.imagePath": "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/assets",
-    "map.height": 5,
+    "map.height": 30,
     "map.lastUsedFormat": "tmx",
     "map.layerDataFormat": null,
     "map.renderOrder": null,
     "map.tileHeight": 16,
     "map.tileWidth": 16,
-    "map.width": 16,
+    "map.width": 20,
     "openFiles": [
-        "layer-about.tmx",
-        "layer-exit-game.tmx"
+        "dialog-victory.tmx",
+        "dialog-victory-0.tmx"
     ],
     "project": "ui.tiled-project",
+    "property.type": "float",
     "recentFiles": [
-        "layer-exit-game.tmx",
+        "dialog-victory-0.tmx",
+        "dialog-victory.tmx",
         "layer-about.tmx",
+        "layer-exit-game.tmx",
         "scene-main-menu.tmx",
         "layer-exiting-game.tmx",
-        "dialog-victory.tmx",
         "dialog-0.tmx",
         "C:/Users/tensa/OneDrive/Desktop/TileGameResources/TileMap.tmx"
     ],

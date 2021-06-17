@@ -7,6 +7,11 @@
 #include "InGameScene.h"
 #include "Dialogs/VictoryDialog.h"
 #include "Utils/StaticMethods.h"
+#include "ScreenLog/ScreenLog.h"
+
+#include "MyCustomGUI.inl"
+
+bool IntroLevelScene::init() { return init(1); }
 
 bool IntroLevelScene::init(int level)
 {
@@ -28,6 +33,8 @@ bool IntroLevelScene::init(int level)
 										  50);
 	text->setPosition(0.5f * winSize);
 	addChild(text);
+	ScreenLog::GetInstance()->AttachToScene(this);
+	ScreenLog::GetInstance()->Debug(__FUNCTION__);
 
 	return true;
 }
@@ -46,8 +53,12 @@ void IntroLevelScene::update(float dt)
 		unscheduleUpdate();
 		auto scene = InGameScene::CreateScene(_level);
 		auto sceneWithTransition = cocos2d::TransitionFadeDown::create(1, scene);
-		//cocos2d::Director::getInstance()->replaceScene(sceneWithTransition);
-		StaticMethods::ReplaceScene(scene, sceneWithTransition);
+		
+		cocos2d::Director::getInstance()->replaceScene(sceneWithTransition);
+
+		auto inGameScene = scene->getChildByName("InGameScene");
+		//gScreenLog->AttachToScene(inGameScene);
+		//StaticMethods::ReplaceScene(inGameScene, sceneWithTransition);
 	}
 	_timer += dt;
 }

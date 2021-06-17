@@ -1,11 +1,12 @@
 #pragma once
 
 #include "2d/CCScene.h"
+#include "MyCustomGUI.h"
 
-class IntroLevelScene : public cocos2d::Scene
+class IntroLevelScene : public MyCustomGUI<cocos2d::Scene>
 {
 public:
-	bool init() override { return init(1); }
+	bool init();
 	bool init(int level);
 	void onEnterTransitionDidFinish() override;
 private:

@@ -20,11 +20,14 @@
 #include "Bitmask.h"
 #include "Infos/PlayerInfo.h"
 
+#include "ScreenLog/ScreenLog.h"
+
 using Super = cocos2d::Sprite;
 using KeyCode = cocos2d::EventKeyboard::KeyCode;
 
 bool Player::init(IScene* owner, const Vec2& position)
 {
+	//ScopeLog scopeLog("Player::init(...)");
 	if (!Super::initWithFile("levels/assets/ball_blue_large.png"))
 	{
 		return false;
@@ -32,7 +35,7 @@ bool Player::init(IScene* owner, const Vec2& position)
 	_owner = owner;
 	_owner->GetHandlerManager()->accelerationHandler->onAcceleration = [this](cocos2d::Acceleration* acceleration)
 	{
-		const auto accelerationVec2 = Vec2(acceleration->x, acceleration->y);
+		const auto accelerationVec2 = Vec2((float)acceleration->x, (float)acceleration->y);
 		MoveByAcceleration(accelerationVec2);
 	};
 
@@ -48,6 +51,10 @@ bool Player::init(IScene* owner, const Vec2& position)
 void Player::update(float deltaTime)
 {
 	MoveByKeyboard(deltaTime);
+}
+
+void Player::Break()
+{
 }
 
 void Player::MoveByAcceleration(const Vec2& accelerationVec2)

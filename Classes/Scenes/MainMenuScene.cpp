@@ -11,9 +11,13 @@
 
 #include "MyCustomGUI.inl"
 
-#include "Layers/AboutLayer.h"
-#include "Layers/ExitGameLayer.h"
-#include "Layers/OptionsLayer.h"
+#include "Dialogs/AboutDialog.h"
+#include "Dialogs/ExitGameDialog.h"
+#include "Dialogs/OptionsDialog.h"
+#include "Dialogs/LevelDialog.h"
+
+#include "ScreenLog/ScreenLog.h"
+#include "Dialogs/MyDialog.h"
 
 using Vec2 = cocos2d::Vec2;
 
@@ -31,18 +35,20 @@ bool MainMenuScene::init()
 	AddCallbackToButton("about", MakeAboutButtonClicked());
 	AddCallbackToButton("exit", MakeExitButtonClicked());
 
+	ScreenLog::GetInstance()->Debug(__FUNCTION__);
+
 	return true;
 }
 
-void MainMenuScene::TakeLayerToBoxPosition(MyCustomLayer* layer)
+void MainMenuScene::TakeLayerToBoxPosition(MyDialog* dialog)
 {
-	TMXUtil::RequireTMXObjectGroupNotFound(_tiledMap, "box", [layer](cocos2d::TMXObjectGroup* objGroup)
+	TMXUtil::RequireTMXObjectGroupNotFound(_tiledMap, "box", [dialog](cocos2d::TMXObjectGroup* objGroup)
 	{
-		TMXUtil::RequireTMXObjectNotFound(objGroup, "box", [layer](cocos2d::ValueMap& value)
+		TMXUtil::RequireTMXObjectNotFound(objGroup, "box", [dialog](cocos2d::ValueMap& value)
 		{
 			const auto x = value["x"].asFloat();
 			const auto y = value["y"].asFloat();
-			layer->GetTiledMap()->setPosition(x, y);
+			dialog->GetTiledMap()->setPosition(x, y);
 		});
 	});
 }
@@ -67,7 +73,7 @@ void MainMenuScene::SetAllLayersVisible(bool visible)
 
 std::function<void(cocos2d::Ref*)> MainMenuScene::MakePlayButtonClicked()
 {
-	return [](cocos2d::Ref*)
+	return [this](cocos2d::Ref*)
 	{
 		auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>();
 		auto sceneWithTransition = cocos2d::TransitionZoomFlipAngular::create(1, scene);
@@ -87,12 +93,12 @@ std::function<void(cocos2d::Ref*)> MainMenuScene::MakeOptionsButtonClicked()
 		}
 		else
 		{
-            _optionsLayer = Cocos2dCreator::CreateNode<OptionsLayer>();
-            if(_optionsLayer)
-            {
-                TakeLayerToBoxPosition(_optionsLayer);
-                addChild(_optionsLayer);
-            }
+			//_optionsLayer = Cocos2dCreator::CreateNode<LevelDialog>();
+			//if (_optionsLayer)
+			//{
+			//	TakeLayerToBoxPosition(_optionsLayer);
+			//	addChild(_optionsLayer);
+			//}
 		}
 	};
 }
@@ -110,12 +116,12 @@ std::function<void(cocos2d::Ref*)> MainMenuScene::MakeAboutButtonClicked()
 		}
 		else
 		{
-            _aboutLayer = Cocos2dCreator::CreateNode<AboutLayer>();
-            if(_aboutLayer)
-            {
-                TakeLayerToBoxPosition(_aboutLayer);
-                addChild(_aboutLayer);
-            }
+			//_aboutLayer = Cocos2dCreator::CreateNode<AboutDialog>();
+			//if (_aboutLayer)
+			//{
+			//	TakeLayerToBoxPosition(_aboutLayer);
+			//	addChild(_aboutLayer);
+			//}
 		};
 	};
 }
@@ -133,12 +139,12 @@ std::function<void(cocos2d::Ref*)> MainMenuScene::MakeExitButtonClicked()
 		}
 		else
 		{
-            _exitGameLayer = Cocos2dCreator::CreateNode<ExitGameLayer>();
-            if (_exitGameLayer)
-            {
-                TakeLayerToBoxPosition(_exitGameLayer);
-                addChild(_exitGameLayer);
-            }
+			_exitGameLayer = Cocos2dCreator::CreateNode<ExitGameDialog>();
+			if (_exitGameLayer)
+			{
+				TakeLayerToBoxPosition(_exitGameLayer);
+				addChild(_exitGameLayer);
+			}
 		}
 	};
 }

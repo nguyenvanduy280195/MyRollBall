@@ -13,7 +13,7 @@ void TMXUtil::RequireTMXObjectGroupNotFound(cocos2d::TMXTiledMap* tiledMap, cons
 	}
 	else
 	{
-		gScreenLog->Log(LL_WARNING, "`%s` object group not found", name.c_str());
+		//gScreenLog->Log(LL_WARNING, "`%s` object group not found", name.c_str());
 	}
 }
 
@@ -26,7 +26,7 @@ void TMXUtil::RequireTMXObjectNotFound(cocos2d::TMXObjectGroup* objectGroup, con
 	}
 	else
 	{
-		gScreenLog->Log(LL_WARNING, "`%s` object not found", name.c_str());
+		//gScreenLog->Log(LL_WARNING, "`%s` object not found", name.c_str());
 	}
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="8">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="9">
  <tileset firstgid="1" name="victory" tilewidth="164" tileheight="20" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
@@ -32,12 +32,7 @@
  </tileset>
  <layer id="1" name="background" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJztzDEVwCAQRMEzEhAC+AGEkAgh6MwXsVXeFtNOj4ghMrFwizzYeEUOLiSRjIIq0vz58+fPnz9/v/g+QzSb3Q==
-  </data>
- </layer>
- <layer id="8" name="trophy" width="20" height="30">
-  <data encoding="base64" compression="zlib">
-   eJztzFOORFEARdFXM2jbRrVt27ZtzT/pNYS+Sf31Pcn6O9lJEpfpZaWSJJsccskjnwIKKaI49fdeiW8pZZRTQSVVVFNDbUCvzreeBhppopkWWknTFtBr9+2gky666aGXPvoZCOgN+g4xzAijjDHOBJNMBfSmfWeYZY55FlhkiWVWAnqrvmuss8EmW2yzwy57Ab193wMOOeKYE04545yLgN6l7xXX3HDLHfc88MhTQO/Z94VX3njng0+++OYnoBcXFxf3H/YLn+wZ+w==
+   eJyTYmBgkKYSlgFiCyC2pBK2GjVv1LxR80bNGzVv1LxR80bNo4N5YUAcTiUcAcQAKiqFmQ==
   </data>
  </layer>
  <group id="13" name="info">
@@ -57,11 +52,6 @@
   </data>
   </layer>
  </group>
- <layer id="10" name="title" width="20" height="30">
-  <data encoding="base64" compression="zlib">
-   eJxjYKA9YKSDHaNgFIyCUTAKRsEoGAWDBQAAElwAAg==
-  </data>
- </layer>
  <objectgroup id="4" name="buttons">
   <object id="1" name="home" x="160" y="368">
    <properties>
@@ -105,6 +95,17 @@
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="14" name="positions">
+  <object id="8" name="victory" x="160" y="96">
+   <properties>
+    <property name="duration" type="float" value="0.5"/>
+    <property name="scale-factor-0" type="float" value="10"/>
+    <property name="scale-factor-1" type="float" value="2"/>
+    <property name="src" value="ui/assets/text_victory_0.png"/>
    </properties>
    <point/>
   </object>

@@ -14,6 +14,7 @@ class Player : public cocos2d::Sprite
 public:
 	bool init(class IScene* owner, const Vec2& position);
 	void update(float) override;
+	void Break();
 
 private:
 	cocos2d::PhysicsBody* MakeBody();

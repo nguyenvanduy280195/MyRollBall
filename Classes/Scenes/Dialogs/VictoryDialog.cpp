@@ -10,23 +10,46 @@
 #include "2d/CCTMXObjectGroup.h"
 #include "Utils/TMXUtil.h"
 #include "Utils/StaticMethods.h"
-
-
+#include "2d/CCSprite.h"
+#include "2d/CCActionInterval.h"
 #include "../MyCustomGUI.inl"
-
 
 using Size = cocos2d::Size;
 using Vec2 = cocos2d::Vec2;
 
 bool VictoryDialog::init()
 {
-	if (!MyCustomLayer::init("ui/dialog-victory.tmx"))
+	if (!MyDialog::init("ui/dialog-victory.tmx"))
 	{
 		return false;
 	}
 
 	auto cameraPosition = cocos2d::Camera::getDefaultCamera()->getPosition();
 	setPosition(cameraPosition);
+
+
+	TMXUtil::RequireTMXObjectGroupNotFound(_tiledMap, "positions", [this](cocos2d::TMXObjectGroup* objectGroup)
+	{
+		TMXUtil::RequireTMXObjectNotFound(objectGroup, "victory", [this](cocos2d::ValueMap& value)
+		{
+			auto x = value["x"].asFloat();
+			auto y = value["y"].asFloat();
+			auto src = value["src"].asString();
+			auto scaleFactor0 = value["scale-factor-0"].asFloat();
+			auto scaleFactor1 = value["scale-factor-1"].asFloat();
+			auto duration = value["duration"].asFloat();
+
+			auto sprite = cocos2d::Sprite::create(src);
+			sprite->setPosition(x, y);
+			sprite->setScale(scaleFactor0);
+
+			auto action = cocos2d::ScaleTo::create(duration, scaleFactor1);
+			sprite->runAction(action);
+
+			_tiledMap->addChild(sprite);
+		});
+	});
+
 	return true;
 }
 

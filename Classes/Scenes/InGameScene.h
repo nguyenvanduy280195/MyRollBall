@@ -27,12 +27,12 @@ public:
 	void update(float) override;
 	void onEnterTransitionDidFinish() override;
 
+	void Victory();
+
 	// Inherited via IScene
 	virtual ScreenLog* GetScreenLog() const override { return _screenLog; }
 	virtual HandlerManager* GetHandlerManager() const override { return _handlerManager; }
 	virtual GameInfo* GetGameInfo() const override { return _gameInfo; }
-
-	void Victory();
 
 private: 
 	void TakeCameraAfterPlayer();
@@ -46,6 +46,7 @@ private:
 	class HandlerManager* _handlerManager;
 	class GameInfo* _gameInfo;
 	class ScreenLog* _screenLog;
+
 
 	int _currentLevel;
 

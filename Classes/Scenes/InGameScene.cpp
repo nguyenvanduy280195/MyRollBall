@@ -17,7 +17,6 @@
 #include "2d/CCFastTMXTiledMap.h"
 #include "platform/CCDevice.h"
 #include "Infos/GameInfo.h"
-#include "ScreenLog/ScreenLog.h"
 #include "IntroLevelScene.h"
 #include "base/ccUTF8.h"
 #include "2d/CCTransition.h"
@@ -29,25 +28,26 @@
 #include "2d/CCAction.h"
 #include "ScreenLog/ScreenLog.h"
 
+#include "MyCustomGUI.inl"
+
 using Vec2 = cocos2d::Vec2;
 using KeyCode = cocos2d::EventKeyboard::KeyCode;
 
-
-cocos2d::Scene* InGameScene::CreateScene()
+cocos2d::Scene *InGameScene::CreateScene()
 {
 	return CreateScene(1);
 }
 
-cocos2d::Scene* InGameScene::CreateScene(int level)
+cocos2d::Scene *InGameScene::CreateScene(int level)
 {
 	auto scene = cocos2d::Scene::createWithPhysics();
 	scene->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
 	scene->getPhysicsWorld()->setGravity(cocos2d::Vec2(0, 0));
 	auto inGame = Cocos2dCreator::CreateNode<InGameScene>(level);
+	inGame->setName("InGameScene");
 	scene->addChild(inGame);
 	return scene;
 }
-
 
 InGameScene::~InGameScene()
 {
@@ -63,9 +63,9 @@ bool InGameScene::init(int level)
 	}
 	_currentLevel = level;
 
-	_handlerManager = new(std::nothrow) HandlerManager(this);
+	_handlerManager = new (std::nothrow) HandlerManager(this);
 
-	_gameInfo = new(std::nothrow) GameInfo();
+	_gameInfo = new (std::nothrow) GameInfo();
 
 	// level
 	const auto path = cocos2d::StringUtils::format(FORMAT_LEVEL.c_str(), _currentLevel);
@@ -77,6 +77,9 @@ bool InGameScene::init(int level)
 	// player
 	_player = Cocos2dCreator::CreateNode<Player>(this, startPosition);
 	addChild(_player);
+
+	ScreenLog::GetInstance()->AttachToScene(this);
+	ScreenLog::GetInstance()->Debug(__FUNCTION__);
 
 	return true;
 }
@@ -97,18 +100,21 @@ void InGameScene::onEnterTransitionDidFinish()
 	//auto sequence = cocos2d::Sequence::createWithTwoActions(movingCameraToPlayer, startGame);
 	//runAction(sequence);
 
-	//scheduleUpdate();
+	scheduleUpdate();
 	TakeCameraAfterPlayer();
 }
 
 void InGameScene::update(float)
 {
+	auto originalTargetPosition = _followingPlayer->getOriginalTarget()->getPosition();
+	ScreenLog::GetInstance()->Debug("%f %f", originalTargetPosition.x, originalTargetPosition.y);
+	//ScreenLog::GetInstance()->SetPosition(originalTargetPosition);
 }
 
 void InGameScene::TakeCameraAfterPlayer()
 {
-	const auto levelPosition = _level->getPosition();
-	const auto levelContentSize = _level->getContentSize();
+	const auto &levelPosition = _level->getPosition();
+	const auto &levelContentSize = _level->getContentSize();
 	const auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
 	const auto rect = cocos2d::Rect(levelPosition - visibleOrigin, cocos2d::Size(levelContentSize.width + 2 * visibleOrigin.x, levelContentSize.height + 2 * visibleOrigin.y));
 	_followingPlayer = cocos2d::Follow::create(_player, rect);
@@ -117,18 +123,22 @@ void InGameScene::TakeCameraAfterPlayer()
 
 void InGameScene::Victory()
 {
+
+	ScreenLog::GetInstance()->AttachToScene(this);
+	ScreenLog::GetInstance()->Debug(__FUNCTION__);
+
 	StopGame();
 	ShowVictoryDialog();
 }
 
 cocos2d::Vec2 InGameScene::GetVectorToPlayer() const
 {
-	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	auto playerPosition = _player->getPosition();
+	const auto &winSize = cocos2d::Director::getInstance()->getWinSize();
+	auto &playerPosition = _player->getPosition();
 	Vec2 position = 0.5f * winSize - playerPosition;
 
-	const auto levelPosition = _level->getPosition();
-	const auto levelSize = _level->getContentSize();
+	const auto &levelPosition = _level->getPosition();
+	const auto &levelSize = _level->getContentSize();
 
 	const auto cameraXMin = -((levelPosition.x + levelSize.width) - winSize.width);
 	const auto cameraXMax = -levelPosition.x;
@@ -155,14 +165,12 @@ void InGameScene::ShowVictoryDialog()
 	dialog->SetLevelTextContent(std::to_string(_currentLevel));
 	dialog->SetTimeTextContent(time_temp);
 	dialog->SetBestTimeTextContent(bestTime_temp);
-	dialog->SetOnHomeButtonPressed([](cocos2d::Ref*)
-	{
-	});
-	dialog->SetOnNextButtonPressed([this](cocos2d::Ref*)
-	{
-		auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>(_currentLevel + 1);
-		auto sceneWithTransition = cocos2d::TransitionMoveInR::create(1, scene);
-		cocos2d::Director::getInstance()->replaceScene(sceneWithTransition);
-	});
+	dialog->SetOnHomeButtonPressed([](cocos2d::Ref *) {});
+	dialog->SetOnNextButtonPressed([this](cocos2d::Ref *)
+								   {
+									   auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>(_currentLevel + 1);
+									   auto sceneWithTransition = cocos2d::TransitionMoveInR::create(1, scene);
+									   cocos2d::Director::getInstance()->replaceScene(sceneWithTransition);
+								   });
 	getParent()->addChild(dialog, INT16_MAX);
 }

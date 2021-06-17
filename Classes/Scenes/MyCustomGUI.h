@@ -2,7 +2,6 @@
 #include "base/CCValue.h"
 #include "2d/CCNode.h"
 #include "2d/CCLayer.h"
-#include "ui/UILayout.h"
 #include "base/CCDirector.h"
 #include "2d/CCTMXTiledMap.h"
 
@@ -35,21 +34,3 @@ protected:
 	cocos2d::TMXTiledMap* _tiledMap;
 };
 
-class MyCustomLayer : public MyCustomGUI<cocos2d::ui::Layout>
-{
-public:
-	cocos2d::TMXTiledMap* GetTiledMap() { return _tiledMap; }
-
-protected:
-	bool init(const std::string& tmxPath) override
-	{
-		if (!MyCustomGUI::init(tmxPath))
-		{
-			return false;
-		}
-
-		_tiledMap->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-		
-		return true;
-	}
-};

@@ -44,10 +44,9 @@ static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
 AppDelegate::AppDelegate()
 {
-    gScreenLog = new ScreenLog();
-    gScreenLog->SetLevelMask(LL_DEBUG | LL_INFO | LL_WARNING | LL_ERROR | LL_FATAL);
-    gScreenLog->SetFontFile("fonts/Marker Felt.ttf");
-    gScreenLog->SetTimeoutSeconds(5);
+    ScreenLog::GetInstance()->SetLevelMask(LL_DEBUG | LL_INFO | LL_WARNING | LL_ERROR | LL_FATAL);
+    ScreenLog::GetInstance()->SetFontFile("fonts/MonospaceBold.ttf");
+    ScreenLog::GetInstance()->SetTimeoutSeconds(5);
 }
 
 AppDelegate::~AppDelegate() 
@@ -55,8 +54,6 @@ AppDelegate::~AppDelegate()
 #if USE_AUDIO_ENGINE
     AudioEngine::end();
 #endif
-
-    delete gScreenLog;
 }
 
 // if you want a different context, modify the value of glContextAttrs
@@ -117,12 +114,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    //auto scene = HelloWorld::createScene();
-    //auto scene = InGameScene::CreateScene();
+    //auto scene = InGameScene::CreateScene(3);
     //auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>();
     auto scene = Cocos2dCreator::CreateNode<MainMenuScene>();
 
-    gScreenLog->AttachToScene(scene);
+
+    ScreenLog::GetInstance()->AttachToScene(scene);
+
 
     // run
     director->runWithScene(scene);

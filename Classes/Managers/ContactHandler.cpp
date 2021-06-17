@@ -49,11 +49,19 @@ bool ContactHandler::OnContactBegan(cocos2d::PhysicsContact& contact)
 		_inGameScene->_level->Locked = false;
 		nodeA->removeFromParent();
 	}
-	else if(categoryB == KEY_CATEGORY_BITMASK)
+	else if (categoryB == KEY_CATEGORY_BITMASK)
 	{
 		//_inGameScene->GetScreenLog()->AddLog("Congratulations!!! You found the key. Please go to the door");
 		_inGameScene->_level->Locked = false;
 		nodeB->removeFromParent();
+	}
+
+	if (categoryA == LASER_CATEGORY_BITMASK || categoryB == LASER_CATEGORY_BITMASK)
+	{
+		if (_inGameScene->_player)
+		{
+			_inGameScene->_player->Break();
+		}
 	}
 
 	return true;

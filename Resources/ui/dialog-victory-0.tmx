@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="2">
+ <tileset firstgid="1" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
+  <image source="assets/ui_tilesheet.png" width="480" height="144"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="20" height="30">
+  <data encoding="base64" compression="zlib">
+   eJyTZGBgkKISlgZicyC2oBK2HDVv1LxR80bNGzVv1LxR80bNo4N5oUAcRiUcDsQAKFWDQQ==
+  </data>
+ </layer>
+ <objectgroup id="2" name="positions">
+  <object id="1" name="victory" x="160" y="112">
+   <properties>
+    <property name="src" value="ui/assets/text_victory_0.png"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>

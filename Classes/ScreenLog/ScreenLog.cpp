@@ -1,15 +1,24 @@
 #include "ScreenLog.h"
 #include "ScreenLogMessage.h"
 #include "ScopeLock.h"
+#include "base/CCDirector.h"
+#include "2d/CCCamera.h"
+#include "Scenes/InGameScene.h"
 
-#define SCREENLOG_PRINT_BUFFER_SIZE     8192                        // The maximum total length of one log message.
+#define SCREENLOG_PRINT_BUFFER_SIZE 8192 // The maximum total length of one log message.
 
-ScreenLog* gScreenLog = nullptr;
+ScreenLog *gScreenLog = nullptr;
 char g_screenLogPrintBuffer[SCREENLOG_PRINT_BUFFER_SIZE];
+
+ScreenLog *ScreenLog::GetInstance()
+{
+	static ScreenLog instance;
+	return &instance;
+}
 
 ScreenLog::ScreenLog()
 {
-	_timeout = 5;//seconds
+	_timeout = 5; //seconds
 	_level = 0;
 
 	cocos2d::Director::getInstance()->getScheduler()->scheduleUpdate(this, 10000, false);
@@ -18,7 +27,10 @@ ScreenLog::ScreenLog()
 ScreenLog::~ScreenLog()
 {
 	cocos2d::Director::getInstance()->getScheduler()->unscheduleUpdate(this);
-
+	if (getParent())
+	{
+		getParent()->removeChild(this, false);
+	}
 	{
 		ScopeLock lock(&_contentMutex);
 		for (unsigned int i = 0; i < _messages.size(); i++)
@@ -41,36 +53,48 @@ void ScreenLog::SetTimeoutSeconds(float t)
 	_timeout = t;
 }
 
-void ScreenLog::AttachToScene(cocos2d::Scene* scene)
+void ScreenLog::AttachToScene(cocos2d::Node *scene)
 {
+	if (dynamic_cast<InGameScene *>(scene))
+	{
+		CCLOGWARN("This can be wrong when the camera moves");
+	}
+
 	if (getParent())
+	{
 		getParent()->removeChild(this, false);
+	}
+
 	if (scene)
+	{
 		scene->addChild(this, SCREENLOG_LAYER_LEVEL);
+	}
 }
 
-ScreenLogMessage* ScreenLog::Log(int p_level, const char* p_str, ...)
+ScreenLogMessage *ScreenLog::Log(int level, const std::string &msg, ...)
+{
+	va_list args;
+	auto temp = msg.c_str();
+	va_start(args, temp);
+	auto slm = Log(level, msg, args);
+	va_end(args);
+	return slm;
+}
+
+ScreenLogMessage *ScreenLog::Log(int level, const std::string &msg, va_list args)
 {
 #if COCOS2D_DEBUG
-	ScopeLock lock(&_contentMutex);
+	//ScopeLock lock(&_contentMutex);
 
-	if (!p_str)
+	if (!msg.c_str())
 	{
 		return nullptr;
 	}
 
-	if (!(p_level & _level))
-	{
-		return nullptr;
-	}
+	vsnprintf(g_screenLogPrintBuffer, SCREENLOG_PRINT_BUFFER_SIZE - 1, msg.c_str(), args);
 
-	va_list t_va;
-	va_start(t_va, p_str);
-	vsnprintf(g_screenLogPrintBuffer, SCREENLOG_PRINT_BUFFER_SIZE - 1, p_str, t_va);
-	va_end(t_va);
-
-	ScreenLogMessage* slm = new ScreenLogMessage(this);
-	slm->_level = p_level;
+	ScreenLogMessage *slm = new ScreenLogMessage(this);
+	slm->_level = level;
 	slm->_text = g_screenLogPrintBuffer;
 	slm->_timestamp = _timer;
 	_messages.push_back(slm);
@@ -79,10 +103,69 @@ ScreenLogMessage* ScreenLog::Log(int p_level, const char* p_str, ...)
 #else
 	return nullptr;
 #endif
-	
 }
 
-void ScreenLog::SetMessageText(ScreenLogMessage* slm, const char* p_str, ...)
+ScreenLogMessage *ScreenLog::Info(const std::string &msg, ...)
+{
+	va_list args;
+	auto temp = msg.c_str();
+	va_start(args, temp);
+	auto slm = Log(LL_INFO, msg, args);
+	va_end(args);
+	return slm;
+}
+
+ScreenLogMessage *ScreenLog::Debug(const std::string &msg, ...)
+{
+	va_list args;
+	auto temp = msg.c_str();
+	va_start(args, temp);
+	auto slm = Log(LL_DEBUG, msg, args);
+	va_end(args);
+	return slm;
+}
+
+ScreenLogMessage *ScreenLog::Warning(const std::string &msg, ...)
+{
+	va_list args;
+	auto temp = msg.c_str();
+	va_start(args, temp);
+	auto slm = Log(LL_WARNING, msg, args);
+	va_end(args);
+	return slm;
+}
+
+ScreenLogMessage *ScreenLog::Error(const std::string &msg, ...)
+{
+	va_list args;
+	auto temp = msg.c_str();
+	va_start(args, temp);
+	auto slm = Log(LL_ERROR, msg, args);
+	va_end(args);
+	return slm;
+}
+
+ScreenLogMessage *ScreenLog::Trace(const std::string &msg, ...)
+{
+	va_list args;
+	auto temp = msg.c_str();
+	va_start(args, temp);
+	auto slm = Log(LL_TRACE, msg, args);
+	va_end(args);
+	return slm;
+}
+
+ScreenLogMessage *ScreenLog::Fatal(const std::string &msg, ...)
+{
+	va_list args;
+	auto temp = msg.c_str();
+	va_start(args, temp);
+	auto slm = Log(LL_FATAL, msg, args);
+	va_end(args);
+	return slm;
+}
+
+void ScreenLog::SetMessageText(ScreenLogMessage *slm, const char *p_str, ...)
 {
 	ScopeLock lock(&_contentMutex);
 
@@ -106,7 +189,6 @@ void ScreenLog::SetMessageText(ScreenLogMessage* slm, const char* p_str, ...)
 		slm->SetLabelText(g_screenLogPrintBuffer);
 		slm->_timestamp = _timer;
 	}
-
 }
 
 void ScreenLog::update(float dt)
@@ -115,7 +197,7 @@ void ScreenLog::update(float dt)
 
 	for (int i = 0; i < _messages.size(); i++)
 	{
-		ScreenLogMessage* slm = _messages[i];
+		ScreenLogMessage *slm = _messages[i];
 		if (slm->CheckLabel())
 			MoveLabelsUp(i);
 	}
@@ -123,7 +205,7 @@ void ScreenLog::update(float dt)
 	int c = 0;
 	for (int i = _messages.size() - 1; i >= 0; i--)
 	{
-		ScreenLogMessage* slm = _messages[i];
+		ScreenLogMessage *slm = _messages[i];
 		const auto delta = _timer - slm->_timestamp;
 		if (delta > _timeout || c > (2 * SCREENLOG_NUM_LINES))
 		{
@@ -151,7 +233,7 @@ void ScreenLog::MoveLabelsUp(int maxIndex)
 
 	for (int i = 0; i < maxIndex; i++)
 	{
-		ScreenLogMessage* slm = _messages[i];
+		ScreenLogMessage *slm = _messages[i];
 		cocos2d::Point p = slm->_label->getPosition();
 		p.y += fontSize;
 		slm->_label->setPosition(p);

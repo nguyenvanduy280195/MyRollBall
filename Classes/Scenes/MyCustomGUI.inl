@@ -18,6 +18,7 @@ inline bool MyCustomGUI<TGUI>::init(const std::string& tmxPath)
 		return false;
 	}
 
+	ScreenLog::GetInstance()->AttachToScene(this);
 	
 	if (_tiledMap = cocos2d::TMXTiledMap::create(tmxPath))
 	{
@@ -25,7 +26,7 @@ inline bool MyCustomGUI<TGUI>::init(const std::string& tmxPath)
 	}
 	else
 	{
-		gScreenLog->Log(LL_WARNING, "Loading `%s` file failed. Please check the path again", tmxPath.c_str());
+		//_screenLog->Log(LL_WARNING, "Loading `%s` file failed. Please check the path again", tmxPath.c_str());
 		return false;
 	}
 
@@ -56,7 +57,7 @@ inline bool MyCustomGUI<TGUI>::init(const std::string& tmxPath)
 			}
 		});
 	});
-	
+
 
 	return true;
 }
@@ -74,12 +75,12 @@ inline void MyCustomGUI<TGUI>::AddCallbackToButton(const std::string& name, cons
 			}
 			else
 			{
-				gScreenLog->Log(LL_WARNING, "%s is not Button type", name.c_str());
+				ScreenLog::GetInstance()->Warning("%s is not Button type", name.c_str());
 			}
 		}
 		else
 		{
-			gScreenLog->Log(LL_WARNING, "%s not found", name.c_str());
+			ScreenLog::GetInstance()->Warning("%s not found", name.c_str());
 		}
 	}
 }
@@ -95,12 +96,12 @@ inline void MyCustomGUI<TGUI>::SetTextContent(const std::string& name, const std
 		}
 		else
 		{
-			gScreenLog->Log(LL_WARNING, "%s is not Text type", name.c_str());
+			ScreenLog::GetInstance()->Warning("%s is not Text type", name.c_str());
 		}
 	}
 	else
 	{
-		gScreenLog->Log(LL_WARNING, "%s not found", name.c_str());
+		ScreenLog::GetInstance()->Warning("%s not found", name.c_str());
 	}
 }
 

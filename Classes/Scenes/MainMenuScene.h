@@ -21,7 +21,7 @@ public:
 	bool init();
 
 private:
-	void TakeLayerToBoxPosition(MyCustomLayer* layer);
+	void TakeLayerToBoxPosition(class MyDialog* dialog);
 	void SetAllLayersVisible(bool visible);
 
 	std::function<void(cocos2d::Ref*)> MakePlayButtonClicked();
@@ -29,9 +29,7 @@ private:
 	std::function<void(cocos2d::Ref*)> MakeAboutButtonClicked();
 	std::function<void(cocos2d::Ref*)> MakeExitButtonClicked();
 
-	
-	
-	class MyCustomLayer* _optionsLayer;
-	class MyCustomLayer* _aboutLayer;
-	class MyCustomLayer* _exitGameLayer;
+	class MyDialog* _optionsLayer;
+	class MyDialog* _aboutLayer;
+	class MyDialog* _exitGameLayer;
 };
