@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="left-down" width="20" height="20" tilewidth="64" tileheight="64" infinite="0" nextlayerid="6" nextobjectid="29">
+ <tileset firstgid="1" source="background_brown.tsx"/>
+ <tileset firstgid="2" source="block_large.tsx"/>
+ <layer id="1" name="background" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3gUj+JRPIpJxADrnAGR
+  </data>
+ </layer>
+ <layer id="2" name="ground" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzFlNEKwCAIRcV+dJ/ap60eArnoTYewAyMWNzsom4qIijxjPQ2rrNVFg33GIOeiexjoF9XWROY4KLxHOTiT6h/LZWD9i/wYbL6Yi9w9v1u2w2/tT5vLwPqnpp6dKWRu8231g9rT22dU/Crz/cMvw1e/wvfr0uGHuQzHr+t/v2u9eUkkxw==
+  </data>
+ </layer>
+ <objectgroup id="3" name="positions">
+  <object id="11" name="key" x="128" y="1152">
+   <properties>
+    <property name="src" value="levels/assets/key.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="12" name="start" x="1152" y="128">
+   <properties>
+    <property name="src" value="levels/assets/hole_start.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="13" name="goal" x="1152" y="1152">
+   <properties>
+    <property name="locked" type="bool" value="true"/>
+    <property name="src" value="levels/assets/hole_large_end_alt_locked.png"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="lasers">
+  <object id="17" x="64" y="768">
+   <properties>
+    <property name="direction" value="right"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="18" x="384" y="768">
+   <properties>
+    <property name="direction" value="left"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="19" x="576" y="576">
+   <properties>
+    <property name="direction" value="left"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="20" x="960" y="1024">
+   <properties>
+    <property name="direction" value="up"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="21" x="960" y="320">
+   <properties>
+    <property name="direction" value="bottom"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="22" x="320" y="384">
+   <properties>
+    <property name="direction" value="bottom"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="23" x="768" y="256">
+   <properties>
+    <property name="direction" value="left"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="24" x="192" y="256">
+   <properties>
+    <property name="direction" value="left"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="25" x="384" y="960">
+   <properties>
+    <property name="direction" value="left"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="26" x="1024" y="704">
+   <properties>
+    <property name="direction" value="bottom"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="27" x="192" y="896">
+   <properties>
+    <property name="direction" value="left"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="28" x="64" y="1024">
+   <properties>
+    <property name="direction" value="right"/>
+    <property name="duration-of-fade-in" type="float" value="1"/>
+    <property name="duration-of-fade-in-delay" type="float" value="1"/>
+    <property name="duration-of-fade-out" type="float" value="0.5"/>
+    <property name="duration-of-fade-out-delay" type="float" value="1"/>
+    <property name="laser-scale-factor-y" type="float" value="1"/>
+    <property name="src" value="levels/assets/laser_shooter.png"/>
+    <property name="src-laser" value="levels/assets/laser.png"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="walls">
+  <object id="6" x="0" y="0" width="64" height="1280"/>
+  <object id="7" x="1216" y="0" width="64" height="1280"/>
+  <object id="8" x="64" y="1216" width="1152" height="64"/>
+  <object id="9" x="192" y="704" width="64" height="512"/>
+  <object id="10" x="64" y="0" width="1152" height="64"/>
+ </objectgroup>
+</map>
