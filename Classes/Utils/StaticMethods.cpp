@@ -37,3 +37,17 @@ void StaticMethods::PopScene()
 	auto scene = cocos2d::Director::getInstance()->getRunningScene();
 	//gScreenLog->AttachToScene(scene);
 }
+
+rapidjson::Document StaticMethods::GetJSONFromFile(const std::string filePath)
+{
+	auto json = cocos2d::FileUtils::getInstance()->getStringFromFile(filePath);
+
+	rapidjson::Document document;
+	document.Parse(json.c_str());
+	if (document.HasParseError())
+	{
+		CCLOG("[StaticMethods::GetJSONFromFile(...)][RapidJSON] - Error Code: %d", (int)document.GetParseError());
+	}
+
+	return document;
+}

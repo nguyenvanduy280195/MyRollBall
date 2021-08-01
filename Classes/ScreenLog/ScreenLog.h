@@ -14,7 +14,8 @@
 #define LL_DEBUG    0x10
 #define LL_TRACE    0x20
 
-
+namespace another_author
+{
 class ScreenLog : public cocos2d::Layer
 {
 	friend class ScreenLogMessage;
@@ -65,3 +66,53 @@ private:
 	// Zero will make the first log line appear at the bottom of the screen. A value of about 0.2 will place it above the fps counter.
 	const float SCREENLOG_START_HEIGHT_PERCENT = 0.2f;
 };
+}
+
+namespace duy
+{
+class ScreenLog : public cocos2d::Layer
+{
+public:
+	
+	virtual ~ScreenLog();
+	static ScreenLog* GetInstance();
+
+	void Info(const std::string& msg, ...);
+	void Debug(const std::string& msg, ...);
+	void Warning(const std::string& msg, ...);
+	void Error(const std::string& msg, ...);
+	void Trace(const std::string& msg, ...);
+	void Fatal(const std::string& msg, ...);
+	void Log(int level, const std::string& msg, va_list args);
+	void Log(int level, const std::string& msg, ...);
+
+	void SetOwner(cocos2d::Node*);
+	void SetTimeout(float timeout) { _timeout = timeout; }
+	void SetFontFamily(const std::string& fontFamily) { _fontFamily = fontFamily; }
+	void SetFontSize(float fontSize) { _fontSize = fontSize; }
+	void Rerange();
+	void Foreach(const std::function<void(class Message*)>& action) const;
+
+	void update(float) override;
+private:
+	ScreenLog() = default;
+
+	float _timeout;
+	std::string _fontFamily;
+	float _fontSize;
+
+	const int TAG_MESSAGE = 123;
+};
+
+class Message : public cocos2d::Label
+{
+public:
+	bool init(int level, const std::string& text, const std::string& fontFamily, float fontSize, float timeout);
+	void update(float);
+
+private:
+	float _timer;
+	float _timeout;
+};
+}
+

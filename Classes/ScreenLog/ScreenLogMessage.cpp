@@ -2,7 +2,8 @@
 #include "ScopeLock.h"
 #include "ScreenLog.h"
 #include "2d/CCLabel.h"
-
+namespace another_author
+{
 void ScreenLogMessage::SetLabelText(const std::string& msg)
 {
 	// can be called from other threads, delay label creation to main thread to make sure OpenGL works
@@ -61,4 +62,5 @@ bool ScreenLogMessage::CheckLabel()
 	}
 
 	return false;
+}
 }

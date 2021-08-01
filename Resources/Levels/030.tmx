@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="64" tileheight="64" infinite="0" nextlayerid="12" nextobjectid="72">
- <tileset firstgid="1" source="background_blue.tsx"/>
- <tileset firstgid="2" source="block_large.tsx"/>
- <tileset firstgid="4" source="background_brown.tsx"/>
- <tileset firstgid="5" source="hole_small_end_alt.tsx"/>
- <tileset firstgid="6" source="hole_start.tsx"/>
+ <tileset firstgid="1" source="block_large.tsx"/>
+ <tileset firstgid="3" source="grass.tsx"/>
  <layer id="1" name="background" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYWBgYBnFo3gUj+JRPIpJxACb3QZB
+   eJxjZmBgYB7Fo3gUj+JRPIpJxAC2cgSx
   </data>
  </layer>
  <layer id="2" name="ground" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYmBgYGJgSGAGYirQDECaaoAZ4jaqgVH3UQZG3UcZGHUfZWDUfZQBmPuoVd6DzAIAe0wOPw==
+   eJxjZGBgYGRgSGACYirQDECaaoAJ4jaqgVH3UQZG3UcZGHUfZWDUfZQBmPuoVd6DzAIAjSUN8w==
   </data>
  </layer>
  <objectgroup id="11" name="rotating-blocks">
@@ -257,7 +254,7 @@
   <object id="11" name="goal" x="1152" y="128">
    <properties>
     <property name="locked" type="bool" value="false"/>
-    <property name="src" value="levels/assets/hole_large_end_alt.png"/>
+    <property name="src" value="levels/assets/hole.png"/>
    </properties>
    <point/>
   </object>

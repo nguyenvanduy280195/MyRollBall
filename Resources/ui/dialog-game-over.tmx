@@ -13,21 +13,21 @@
    <properties>
     <property name="duration" type="float" value="0.5"/>
     <property name="scale-factor-0" type="float" value="10"/>
-    <property name="scale-factor-1" type="float" value="2"/>
+    <property name="scale-factor-1" type="float" value="1"/>
     <property name="src" value="ui/assets/text-game-over.png"/>
    </properties>
    <point/>
   </object>
  </objectgroup>
  <objectgroup id="4" name="buttons">
-  <object id="2" name="home" x="160" y="352">
+  <object id="2" name="main-menu" x="160" y="352">
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
     <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
     <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
     <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
-    <property name="title" value="Home"/>
+    <property name="title" value="Main Menu"/>
    </properties>
    <point/>
   </object>

@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/scene-main-menu.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
         "."
     ],
@@ -12,16 +12,28 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "000.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 680,
+                "y": 836
+            }
+        },
+        "000.tmx#grass": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "000.tmx#wood": {
+            "scaleInDock": 1
+        },
         "001.tmx": {
             "scale": 0.33,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 637.8787878787879,
+                "x": 639.3939393939393,
                 "y": 639.3939393939394
             }
-        },
-        "001.tmx#background_brown": {
-            "scaleInDock": 1
         },
         "001.tmx#block_corner": {
             "scaleInDock": 1
@@ -32,6 +44,9 @@
         "001.tmx#block_large": {
             "scaleInDock": 1
         },
+        "001.tmx#grass": {
+            "scaleInDock": 1
+        },
         "001.tmx#meta-64x64": {
             "scaleInDock": 1
         },
@@ -39,28 +54,78 @@
             "scale": 0.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 639,
-                "y": 638
+                "x": 1122,
+                "y": 154
             }
         },
         "003.tmx": {
-            "scale": 1,
-            "selectedLayer": 1,
+            "scale": 0.5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 402.5,
-                "y": 915
+                "x": 126,
+                "y": 886
+            }
+        },
+        "004.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 136.3636363636365,
+                "y": 1154.5454545454545
+            }
+        },
+        "005.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 133.33333333333348,
+                "y": 1154.5454545454545
+            }
+        },
+        "006.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 606,
+                "y": 654
+            }
+        },
+        "006.tmx#spikes": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "007.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 1150.6287843502562,
+                "y": 129.66930600838384
+            }
+        },
+        "008.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1126.7815556590594,
+                "y": 150.53563111318124
+            }
+        },
+        "009.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 640.89427107592,
+                "y": 640.89427107592
             }
         },
         "010.tmx": {
-            "scale": 0.1341875,
-            "selectedLayer": 0,
+            "scale": 0.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 3204.471355379599,
-                "y": 3204.4713553795996
+                "x": 896,
+                "y": 128
             }
-        },
-        "010.tmx#background_brown": {
-            "scaleInDock": 1
         },
         "010.tmx#block_corner": {
             "scaleInDock": 1
@@ -71,8 +136,115 @@
         "010.tmx#block_large": {
             "scaleInDock": 1
         },
+        "010.tmx#grass": {
+            "scaleInDock": 1
+        },
         "010.tmx#meta-64x64": {
             "scaleInDock": 1
+        },
+        "011.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1126.7815556590594,
+                "y": 150.53563111318124
+            }
+        },
+        "012.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1150.6287843502562,
+                "y": 1150.6287843502564
+            }
+        },
+        "013.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 643.8751746623195,
+                "y": 952.398695854681
+            }
+        },
+        "014.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 696.040987424313,
+                "y": 755.6590591523056
+            }
+        },
+        "015.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 726,
+                "y": 622
+            }
+        },
+        "016.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 605.1234280391244,
+                "y": 558.9194224499302
+            }
+        },
+        "017.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 526.6666666666666,
+                "y": 570.6666666666665
+            }
+        },
+        "018.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 444,
+                "y": 616
+            }
+        },
+        "019.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 488,
+                "y": 708
+            }
+        },
+        "020.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 792,
+                "y": 548
+            }
+        },
+        "021.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 480,
+                "y": 342
+            }
+        },
+        "022.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 752,
+                "y": 420
+            }
+        },
+        "030.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 640.89427107592,
+                "y": 845.0861667442945
+            }
         },
         "1.tsx": {
             "scaleInDock": 1,
@@ -110,12 +282,101 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/dialog-game-over.tmx": {
+            "scale": 1.7891666666666666,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 160.40987424313,
+                "y": 351.5603167210061
+            }
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/dialog-game-over.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/dialog-victory.tmx": {
+            "scale": 1.52,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 160.5263157894737,
+                "y": 367.7631578947369
+            }
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/dialog-victory.tmx#best-time": {
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/dialog-victory.tmx#level": {
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/dialog-victory.tmx#time": {
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/dialog-victory.tmx#trophy": {
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/dialog-victory.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/dialog-victory.tmx#victory": {
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/layer-about.tmx": {
+            "scale": 2.0644230769230765,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 192.30554261760602,
+                "y": 287.7317186772241
+            }
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/layer-about.tmx#nguyen-van-duy": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/layer-about.tmx#text-artist": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/layer-about.tmx#text-credits": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/layer-about.tmx#text-nguyen-van-duy": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/layer-about.tmx#text-programmer": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/layer-about.tmx#ui_tilesheet": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/layer-exit-game.tmx": {
+            "scale": 1.5473873873873873,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 301.7990218910107,
+                "y": -69.14881229622728
+            }
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/layer-exit-game.tmx#text-exit-game-text": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/layer-exit-game.tmx#text-exit-game-title": {
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/layer-exit-game.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
         "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/scene-main-menu.tmx": {
             "scale": 0.75,
-            "selectedLayer": 0,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 511.33333333333337,
-                "y": 496
+                "x": 672,
+                "y": 416
             }
         },
         "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/scene-main-menu.tmx#text_control_ball_felt": {
@@ -129,11 +390,6 @@
             "scaleInEditor": 1
         },
         "background_blue.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "background_brown.tsx": {
-            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -207,12 +463,18 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "grass.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "hole_small_end_alt.tsx": {
+            "dynamicWrapping": true,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "hole_start.tsx": {
-            "dynamicWrapping": false,
+            "dynamicWrapping": true,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -254,44 +516,48 @@
         "scene-main-menu.tmx#ui_tilesheet": {
             "dynamicWrapping": false,
             "scaleInDock": 1
+        },
+        "spikes.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
-    "last.imagePath": "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/assets",
-    "map.height": 27,
+    "last.imagePath": "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/assets",
+    "map.height": 20,
     "map.lastUsedFormat": "tmx",
     "map.layerDataFormat": null,
     "map.renderOrder": null,
-    "map.tileHeight": 16,
-    "map.tileWidth": 16,
-    "map.width": 24,
+    "map.tileHeight": 64,
+    "map.tileWidth": 64,
+    "map.width": 20,
     "openFiles": [
-        "001.tmx",
-        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/scene-main-menu.tmx"
     ],
     "project": "levels.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "016.tmx",
+        "017.tmx",
+        "019.tmx",
+        "020.tmx",
+        "021.tmx",
+        "022.tmx",
+        "015.tmx",
+        "013.tmx",
+        "014.tmx",
+        "018.tmx",
         "001.tmx",
-        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/scene-main-menu.tmx",
-        "scene-main-menu.tmx",
-        "layer-about.tmx",
-        "dialog-victory.tmx",
-        "UIpackSheet_transparent.tsx",
-        "dialog-0.tmx",
-        "002.tmx",
-        "003.tmx",
-        "010.tmx",
-        "hole_start.tsx",
-        "hole_small_end_alt.tsx"
+        "002.tmx"
     ],
+    "resizeMap.removeObjects": true,
     "textEdit.monospace": true,
     "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx",
     "tileset.margin": 0,
     "tileset.spacing": 0,
     "tileset.tileSize": {
-        "height": 16,
-        "width": 16
+        "height": 64,
+        "width": 64
     },
     "tileset.type": 1
 }

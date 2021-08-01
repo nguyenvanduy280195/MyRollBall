@@ -26,10 +26,10 @@ private:
 
 	std::function<void(cocos2d::Ref*)> MakePlayButtonClicked();
 	std::function<void(cocos2d::Ref*)> MakeOptionsButtonClicked();
-	std::function<void(cocos2d::Ref*)> MakeAboutButtonClicked();
+	std::function<void(cocos2d::Ref*)> MakeCreditsButtonClicked();
 	std::function<void(cocos2d::Ref*)> MakeExitButtonClicked();
 
-	class MyDialog* _optionsLayer;
-	class MyDialog* _aboutLayer;
-	class MyDialog* _exitGameLayer;
+	class MyDialog* _optionsDialog;
+	class MyDialog* _creditsDialog;
+	class MyDialog* _exitGameDialog;
 };

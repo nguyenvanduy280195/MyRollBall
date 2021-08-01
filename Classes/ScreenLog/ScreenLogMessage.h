@@ -6,7 +6,8 @@ namespace cocos2d
 {
 class Label;
 }
-
+namespace another_author
+{
 class ScreenLogMessage
 {
 	friend class ScreenLog;
@@ -31,3 +32,5 @@ class ScreenLogMessage
 	void CreateLabel();
 	bool CheckLabel();
 };
+
+}

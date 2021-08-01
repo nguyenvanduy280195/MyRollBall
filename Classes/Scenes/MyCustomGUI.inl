@@ -4,7 +4,6 @@
 #include "ui/UIText.h"
 #include "Utils/StaticMethods.h"
 #include "Utils/TMXUtil.h"
-#include "ScreenLog/ScreenLog.h"
 #include "2d/CCTMXTiledMap.h"
 
 
@@ -18,15 +17,14 @@ inline bool MyCustomGUI<TGUI>::init(const std::string& tmxPath)
 		return false;
 	}
 
-	ScreenLog::GetInstance()->AttachToScene(this);
-	
+	//ScreenLog::GetInstance()->AttachToScene(this);
+
 	if (_tiledMap = cocos2d::TMXTiledMap::create(tmxPath))
 	{
 		TGUI::addChild(_tiledMap);
 	}
 	else
 	{
-		//_screenLog->Log(LL_WARNING, "Loading `%s` file failed. Please check the path again", tmxPath.c_str());
 		return false;
 	}
 
@@ -75,12 +73,12 @@ inline void MyCustomGUI<TGUI>::AddCallbackToButton(const std::string& name, cons
 			}
 			else
 			{
-				ScreenLog::GetInstance()->Warning("%s is not Button type", name.c_str());
+				//ScreenLog::GetInstance()->Warning("%s is not Button type", name.c_str());
 			}
 		}
 		else
 		{
-			ScreenLog::GetInstance()->Warning("%s not found", name.c_str());
+			//ScreenLog::GetInstance()->Warning("%s not found", name.c_str());
 		}
 	}
 }
@@ -96,12 +94,12 @@ inline void MyCustomGUI<TGUI>::SetTextContent(const std::string& name, const std
 		}
 		else
 		{
-			ScreenLog::GetInstance()->Warning("%s is not Text type", name.c_str());
+			//ScreenLog::GetInstance()->Warning("%s is not Text type", name.c_str());
 		}
 	}
 	else
 	{
-		ScreenLog::GetInstance()->Warning("%s not found", name.c_str());
+		//ScreenLog::GetInstance()->Warning("%s not found", name.c_str());
 	}
 }
 
@@ -136,10 +134,18 @@ inline cocos2d::ui::Text* MyCustomGUI<TGUI>::MakeText(cocos2d::ValueMap& value)
 	const auto fontSize = value["font-size"].asFloat();
 	const auto x = value["x"].asFloat();
 	const auto y = value["y"].asFloat();
+	const auto anchorPointX = value["anchor-point-x"].asFloat();
+	const auto anchorPointY = value["anchor-point-y"].asFloat();
+	auto str = value["text"].asString();
 
-	auto text = cocos2d::ui::Text::create("<text>", fontName, fontSize);
+	if (str.empty())
+	{
+		str = "<text>";
+	}
+
+	auto text = cocos2d::ui::Text::create(str, fontName, fontSize);
+	text->setAnchorPoint(Vec2(anchorPointX, anchorPointY));
 	text->setName(name);
-	text->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
 	text->setColor(cocos2d::Color3B::BLACK);
 	text->setPosition(Vec2(x, y));
 

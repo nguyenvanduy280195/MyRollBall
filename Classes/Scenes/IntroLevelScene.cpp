@@ -24,8 +24,8 @@ bool IntroLevelScene::init(int level)
 
 	auto background = cocos2d::ui::Layout::create();
 	background->setContentSize(winSize);
-	background->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
-	background->setBackGroundColor(cocos2d::Color3B::GREEN);
+	//background->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
+	//background->setBackGroundColor(cocos2d::Color3B::GREEN);
 	addChild(background);
 	
 	auto text = cocos2d::ui::Text::create(cocos2d::StringUtils::format("Level %d", _level),
@@ -33,8 +33,8 @@ bool IntroLevelScene::init(int level)
 										  50);
 	text->setPosition(0.5f * winSize);
 	addChild(text);
-	ScreenLog::GetInstance()->AttachToScene(this);
-	ScreenLog::GetInstance()->Debug(__FUNCTION__);
+	//ScreenLog::GetInstance()->AttachToScene(this);
+	//ScreenLog::GetInstance()->Debug(__FUNCTION__);
 
 	return true;
 }
@@ -48,15 +48,16 @@ void IntroLevelScene::onEnterTransitionDidFinish()
 
 void IntroLevelScene::update(float dt)
 {
-	if (_timer > _timerLimit)
+	if (_timer > _timeout)
 	{
 		unscheduleUpdate();
 		auto scene = InGameScene::CreateScene(_level);
-		auto sceneWithTransition = cocos2d::TransitionFadeDown::create(1, scene);
-		
-		cocos2d::Director::getInstance()->replaceScene(sceneWithTransition);
+		//auto sceneWithTransition = cocos2d::TransitionFadeDown::create(1, scene);
+		//cocos2d::Director::getInstance()->popScene();
+		//cocos2d::Director::getInstance()->pushScene(scene);
+		cocos2d::Director::getInstance()->replaceScene(scene);
 
-		auto inGameScene = scene->getChildByName("InGameScene");
+		//auto inGameScene = scene->getChildByName("InGameScene");
 		//gScreenLog->AttachToScene(inGameScene);
 		//StaticMethods::ReplaceScene(inGameScene, sceneWithTransition);
 	}

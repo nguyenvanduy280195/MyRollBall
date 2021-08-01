@@ -12,7 +12,7 @@ public:
 private:
 	void update(float) override;
 
-	float _timerLimit = 2.f;
+	float _timeout = 2.f;
 	float _timer = 0;
 	int _level = 1;
 };

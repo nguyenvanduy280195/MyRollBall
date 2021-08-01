@@ -10,6 +10,8 @@
 #include "Player.h"
 #include "Bitmask.h"
 
+#include "2d/CCActionInterval.h"
+
 ContactHandler::ContactHandler(InGameScene* owner)
 {
 	_inGameScene = owner;
@@ -24,60 +26,21 @@ ContactHandler::ContactHandler(InGameScene* owner)
 
 bool ContactHandler::OnContactBegan(cocos2d::PhysicsContact& contact)
 {
-	const auto categoryA = contact.getShapeA()->getCategoryBitmask();
-	const auto categoryB = contact.getShapeB()->getCategoryBitmask();
-
-	const auto nodeA = contact.getShapeA()->getBody()->getNode();
-	const auto nodeB = contact.getShapeB()->getBody()->getNode();
-
-	if (categoryA == GOAL_CATEGORY_BITMASK || categoryB == GOAL_CATEGORY_BITMASK)
+	CCASSERT(_inGameScene != nullptr, "Please assign InGameScene");
+	if(_inGameScene == nullptr)
 	{
-		if (!_inGameScene->_level->Locked)
-		{
-			//_inGameScene->GetScreenLog()->AddLog("Win");
-			_inGameScene->Victory();
-		}
-		else
-		{
-			//_inGameScene->GetScreenLog()->AddLog("The door is locked. Please find the key");
-		}
+		return false;
 	}
-
-	if (categoryA == KEY_CATEGORY_BITMASK)
-	{
-		//_inGameScene->GetScreenLog()->AddLog("Congratulations!!! You found the key. Please go to the door");
-		_inGameScene->_level->Locked = false;
-		nodeA->removeFromParent();
-	}
-	else if (categoryB == KEY_CATEGORY_BITMASK)
-	{
-		//_inGameScene->GetScreenLog()->AddLog("Congratulations!!! You found the key. Please go to the door");
-		_inGameScene->_level->Locked = false;
-		nodeB->removeFromParent();
-	}
-
-	if (categoryA == LASER_CATEGORY_BITMASK || categoryB == LASER_CATEGORY_BITMASK)
-	{
-		if (_inGameScene->_player)
-		{
-			_inGameScene->_player->Break();
-		}
-	}
+	
+	CheckVictory(contact);
+	CheckGameOver(contact);
+	CheckToGetKey(contact);
 
 	return true;
 }
 
 bool ContactHandler::OnContactPreSolve(cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve)
 {
-	//auto tagA = contact.getShapeA()->getTag();
-	//auto tagB = contact.getShapeB()->getTag();
-	//if (tagA == _inGameScene->_level->nameTagMap["goal"] && tagB == _inGameScene->_level->nameTagMap["player"] ||
-	//	tagB == _inGameScene->_level->nameTagMap["goal"] && tagA == _inGameScene->_level->nameTagMap["player"])
-	//{
-	//	return false;
-	//}
-
-
 	return true;
 }
 
@@ -87,4 +50,55 @@ void ContactHandler::OnContactPostSolve(cocos2d::PhysicsContact& contact, const 
 
 void ContactHandler::OnContactSeparate(cocos2d::PhysicsContact& contact)
 {
+}
+
+void ContactHandler::CheckVictory(cocos2d::PhysicsContact& contact)
+{
+	const auto categoryA = contact.getShapeA()->getCategoryBitmask();
+	const auto categoryB = contact.getShapeB()->getCategoryBitmask();
+
+	if (categoryA == GOAL_CATEGORY_BITMASK || categoryB == GOAL_CATEGORY_BITMASK)
+	{
+		if (!_inGameScene->_level->Locked)
+		{
+			_inGameScene->ShowVictory();
+		}
+	}
+}
+
+void ContactHandler::CheckGameOver(cocos2d::PhysicsContact& contact)
+{
+	const auto categoryA = contact.getShapeA()->getCategoryBitmask();
+	const auto categoryB = contact.getShapeB()->getCategoryBitmask();
+
+	if ((categoryA == LASER_CATEGORY_BITMASK && categoryB == PLAYER_CATEGORY_BITMASK)
+		|| (categoryB == LASER_CATEGORY_BITMASK && categoryA == PLAYER_CATEGORY_BITMASK))
+	{
+		_inGameScene->ShowGameOver();
+	}
+	else if ((categoryA == SPIKE_CATEGORY_BITMASK && categoryB == PLAYER_CATEGORY_BITMASK) 
+			 || (categoryB == SPIKE_CATEGORY_BITMASK && categoryA == PLAYER_CATEGORY_BITMASK))
+	{
+		_inGameScene->ShowGameOver();
+	}
+}
+
+void ContactHandler::CheckToGetKey(cocos2d::PhysicsContact& contact)
+{
+	const auto categoryA = contact.getShapeA()->getCategoryBitmask();
+	const auto categoryB = contact.getShapeB()->getCategoryBitmask();
+
+	const auto nodeA = contact.getShapeA()->getBody()->getNode();
+	const auto nodeB = contact.getShapeB()->getBody()->getNode();
+
+	if (categoryA == KEY_CATEGORY_BITMASK)
+	{
+		_inGameScene->_level->Locked = false;
+		nodeA->removeFromParent();
+	}
+	else if (categoryB == KEY_CATEGORY_BITMASK)
+	{
+		_inGameScene->_level->Locked = false;
+		nodeB->removeFromParent();
+	}
 }

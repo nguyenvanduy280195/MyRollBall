@@ -3,6 +3,7 @@
 #include "2d/CCActionInterval.h"
 #include "Utils/TMXUtil.h"
 #include "../MyCustomGUI.inl"
+
 bool LevelDialog::init()
 {
 	if (!MyDialog::init("ui/dialog-victory-0.tmx"))

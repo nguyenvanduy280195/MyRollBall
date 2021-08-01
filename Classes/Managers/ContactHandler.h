@@ -15,9 +15,16 @@ public:
 
 
 private:
+	void CheckVictory(cocos2d::PhysicsContact& contact);
+	void CheckGameOver(cocos2d::PhysicsContact& contact);
+	void CheckToGetKey(cocos2d::PhysicsContact& contact);
+
+
+
 	bool OnContactBegan(cocos2d::PhysicsContact& contact);
 	bool OnContactPreSolve(cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve);
 	void OnContactPostSolve(cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve);
 	void OnContactSeparate(cocos2d::PhysicsContact& contact);
+
 	class InGameScene* _inGameScene;
 };

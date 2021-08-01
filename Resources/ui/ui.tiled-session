@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "dialog-victory.tmx",
+    "activeFile": "scene-main-menu.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -81,23 +81,63 @@
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
+        "dialog-about.tmx": {
+            "scale": 2.0644230769230765,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 192.30554261760602,
+                "y": 48.439683278993954
+            }
+        },
+        "dialog-about.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
+        "dialog-exit-game.tmx": {
+            "scale": 1.5473873873873873,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 248.16022356776898,
+                "y": 104.0463437354448
+            }
+        },
+        "dialog-exit-game.tmx#text-exit-game-text": {
+            "scaleInDock": 1
+        },
+        "dialog-exit-game.tmx#text-exit-game-title": {
+            "scaleInDock": 1
+        },
+        "dialog-exit-game.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
+        "dialog-game-over.tmx": {
+            "scale": 1.7891666666666666,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 240.33535165346998,
+                "y": 309.64136003726134
+            }
+        },
+        "dialog-game-over.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
         "dialog-victory-0.tmx": {
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 160.33333333333334,
-                "y": 112
+                "x": 160,
+                "y": 22.666666666666686
             }
         },
         "dialog-victory-0.tmx#ui_tilesheet": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "dialog-victory.tmx": {
             "scale": 1.5,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 160.33333333333334,
-                "y": 96
+                "x": 202.66666666666666,
+                "y": 198
             }
         },
         "dialog-victory.tmx#UIpackSheet_transparent": {
@@ -138,7 +178,7 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 256.33333333333326,
+                "x": 256.66666666666663,
                 "y": 274
             }
         },
@@ -150,8 +190,8 @@
             "scale": 1.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 301,
-                "y": -69.33333333333334
+                "x": 301.3333333333333,
+                "y": -69.33333333333331
             }
         },
         "layer-exit-game.tmx#text-exit-game-text": {
@@ -173,11 +213,11 @@
             "scaleInDock": 1
         },
         "scene-main-menu.tmx": {
-            "scale": 0.836222005842259,
-            "selectedLayer": 5,
+            "scale": 0.75,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 502.8568933395435,
-                "y": 206.8828598043782
+                "x": 544,
+                "y": 512
             }
         },
         "scene-main-menu.tmx#text_control_ball_felt": {
@@ -197,17 +237,20 @@
     "map.tileWidth": 16,
     "map.width": 20,
     "openFiles": [
-        "dialog-victory.tmx",
+        "scene-main-menu.tmx",
         "dialog-victory-0.tmx"
     ],
     "project": "ui.tiled-project",
-    "property.type": "float",
+    "property.type": "string",
     "recentFiles": [
         "dialog-victory-0.tmx",
-        "dialog-victory.tmx",
-        "layer-about.tmx",
-        "layer-exit-game.tmx",
         "scene-main-menu.tmx",
+        "dialog-exit-game.tmx",
+        "dialog-victory.tmx",
+        "dialog-game-over.tmx",
+        "dialog-about.tmx",
+        "layer-exit-game.tmx",
+        "layer-about.tmx",
         "layer-exiting-game.tmx",
         "dialog-0.tmx",
         "C:/Users/tensa/OneDrive/Desktop/TileGameResources/TileMap.tmx"

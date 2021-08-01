@@ -2,6 +2,7 @@
 
 #include "base/ccTypes.h"
 #include "base/CCValue.h"
+#include "json/document.h"
 
 
 namespace cocos2d
@@ -18,6 +19,8 @@ public:
 	static void ReplaceScene(cocos2d::Scene* scene, cocos2d::Scene* sceneWithTransition);
 	static void ReplaceScene(cocos2d::Scene*);
 	static void PopScene();
+
+	static rapidjson::Document GetJSONFromFile(const std::string filePath);
 
 	template<class TObj>
 	static void RequireObjectNotNull(TObj* obj, const std::function<void(TObj*)>& action)

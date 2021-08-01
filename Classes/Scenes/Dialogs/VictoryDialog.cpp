@@ -73,7 +73,7 @@ void VictoryDialog::SetOnNextButtonPressed(const std::function<void(cocos2d::Ref
 	AddCallbackToButton("next", onButtonPressed);
 }
 
-void VictoryDialog::SetOnHomeButtonPressed(const std::function<void(cocos2d::Ref*)>& onButtonPressed)
+void VictoryDialog::SetOnMainMenuButtonPressed(const std::function<void(cocos2d::Ref*)>& onButtonPressed)
 {
-	AddCallbackToButton("home", onButtonPressed);
+	AddCallbackToButton("main-menu", onButtonPressed);
 }

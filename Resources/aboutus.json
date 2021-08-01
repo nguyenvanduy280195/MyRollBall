@@ -1,0 +1,64 @@
+{
+  "type": "LinearLayout",
+  "orientation":  "vertical",
+  "children": [
+    {
+      "type": "LinearLayout",
+      "children": [
+        {
+          "type": "Text",
+          "text": "Credits",
+          "font-size": 30.0,
+          "alignment": "center"
+        }
+      ]
+    },
+    {
+      "type": "RelativeLayout",
+      "children": [
+        {
+          "type": "Text",
+          "text": "Programmer",
+          "font-size": 20.0,
+          "relative-to-left-parent": true,
+          "relative-to-right-parent": false,
+          "relative-to-top-parent": true,
+          "relative-to-bottom-parent": true
+        },
+        {
+          "type": "Text",
+          "text": "Nguyen Van Duy",
+          "font-size": 20.0,
+          "relative-to-left-parent": false,
+          "relative-to-right-parent": true,
+          "relative-to-top-parent": true,
+          "relative-to-bottom-parent": true
+        }
+      ]
+    },
+    {
+      "type": "RelativeLayout",
+      "children": [
+        {
+          "type": "Text",
+          "text": "Artist",
+          "font-size": 20.0,
+          "relative-to-left-parent": true,
+          "relative-to-right-parent": false,
+          "relative-to-top-parent": true,
+          "relative-to-bottom-parent": true
+        },
+        {
+          "type": "Text",
+          "text": "Nguyen Van Duy",
+          "font-size": 20.0,
+          "relative-to-left-parent": false,
+          "relative-to-right-parent": true,
+          "relative-to-top-parent": true,
+          "relative-to-bottom-parent": true
+        }
+      ]
+    }
+  ]
+
+}

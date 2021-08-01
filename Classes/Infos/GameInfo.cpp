@@ -18,9 +18,12 @@ GameInfo::GameInfo()
 		return;
 	}
 	
-	
+	_playerInfo.imagePath = document["player"]["imagePath"].GetString();
+	_playerInfo.anchorPointX = document["player"]["anchorPointX"].GetFloat();
+	_playerInfo.anchorPointY = document["player"]["anchorPointY"].GetFloat();
 	_playerInfo.moveSpeed = document["player"]["moveSpeed"].GetFloat();
 	_playerInfo.maxMoveSpeed = document["player"]["maxMoveSpeed"].GetFloat();
+	_playerInfo.dashPower = document["player"]["dashPower"].GetFloat();
 	_playerInfo.destiny = document["player"]["destiny"].GetFloat();
 	_playerInfo.restitution = document["player"]["restitution"].GetFloat();
 	_playerInfo.friction = document["player"]["friction"].GetFloat();

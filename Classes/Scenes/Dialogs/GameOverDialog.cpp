@@ -1,5 +1,8 @@
 #include "GameOverDialog.h"
 #include "../MyCustomGUI.inl"
+#include "2d/CCSprite.h"
+#include "2d/CCActionInterval.h"
+#include "2d/CCCamera.h"
 
 bool GameOverDialog::init()
 {
@@ -35,4 +38,12 @@ bool GameOverDialog::init()
 
 
     return true;
+}
+
+void GameOverDialog::SetOnMainMenuButtonPressed(const std::function<void(cocos2d::Ref*)> & callback) {
+	AddCallbackToButton("main-menu", callback);
+}
+
+void GameOverDialog::SetOnReplayButtonPressed(const std::function<void(cocos2d::Ref*)> & callback) {
+	AddCallbackToButton("replay", callback);
 }

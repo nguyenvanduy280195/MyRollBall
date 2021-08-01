@@ -1,10 +1,14 @@
 {
   "player": {
-    "moveSpeed": 3000.0,
+    "imagePath": "levels/assets/player.png",
+    "anchorPointX": 0.5,
+    "anchorPointY": 0.2857142857142857,
+    "moveSpeed": 1000.0,
     "maxMoveSpeed": 300.0,
-    "destiny": 0.1,
+    "dashPower": 0.5,
+    "destiny": 0.01,
     "restitution": 0.5,
-    "friction": 0.5
+    "friction": 1.0
   },
   "screen-log": {
     "font-family": "fonts/Marker Felt.ttf",

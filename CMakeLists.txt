@@ -69,8 +69,9 @@ Classes/Scenes/InGameScene.cpp
 Classes/Scenes/IntroLevelScene.cpp
 Classes/Scenes/MainMenuScene.cpp
 Classes/Scenes/MyCustomGUI.inl
-Classes/Scenes/Dialogs/AboutDialog.cpp
+Classes/Scenes/Dialogs/CreditsDialog.cpp
 Classes/Scenes/Dialogs/ExitGameDialog.cpp
+Classes/Scenes/Dialogs/GameOverDialog.cpp
 Classes/Scenes/Dialogs/LevelDialog.cpp
 Classes/Scenes/Dialogs/MyDialog.cpp
 Classes/Scenes/Dialogs/OptionsDialog.cpp
@@ -82,11 +83,16 @@ Classes/ScreenLog/ScreenLogMessage.cpp
 Classes/Utils/StaticMethods.cpp
 Classes/Utils/TMXUtil.cpp
 Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
 )
 
 list(APPEND GAME_HEADER
 Classes/AppDelegate.h
 Classes/Bitmask.h
+Classes/ILevel.h
+Classes/IPlayer.h
 Classes/Level.h
 Classes/Player.h
 Classes/Infos/GameInfo.h
@@ -101,8 +107,9 @@ Classes/Scenes/IntroLevelScene.h
 Classes/Scenes/IScene.h
 Classes/Scenes/MainMenuScene.h
 Classes/Scenes/MyCustomGUI.h
-Classes/Scenes/Dialogs/AboutDialog.h
+Classes/Scenes/Dialogs/CreditsDialog.h
 Classes/Scenes/Dialogs/ExitGameDialog.h
+Classes/Scenes/Dialogs/GameOverDialog.h
 Classes/Scenes/Dialogs/LevelDialog.h
 Classes/Scenes/Dialogs/MyDialog.h
 Classes/Scenes/Dialogs/OptionsDialog.h

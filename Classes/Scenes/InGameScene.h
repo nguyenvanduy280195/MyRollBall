@@ -11,6 +11,11 @@ class Sprite;
 class Follow;
 }
 
+namespace cocos2d::ui
+{
+class Button;
+}
+
 class InGameScene : public cocos2d::Layer, public IScene
 {
 	using Super = cocos2d::Layer;
@@ -27,7 +32,12 @@ public:
 	void update(float) override;
 	void onEnterTransitionDidFinish() override;
 
-	void Victory();
+	void ShowVictory();
+	void ShowGameOver();
+
+	void ShowVictoryDialog();
+	void ShowGameOverDialog();
+	void StopGame();
 
 	// Inherited via IScene
 	virtual ScreenLog* GetScreenLog() const override { return _screenLog; }
@@ -37,16 +47,17 @@ public:
 private: 
 	void TakeCameraAfterPlayer();
 	cocos2d::Vec2 GetVectorToPlayer() const;
-	void StopGame();
-	void ShowVictoryDialog();
+	
+	
 
 	class Level* _level;
-	class Player* _player;
+	class IPlayer* _player;
 	
 	class HandlerManager* _handlerManager;
 	class GameInfo* _gameInfo;
 	class ScreenLog* _screenLog;
 
+	cocos2d::ui::Button* _dashButton;
 
 	int _currentLevel;
 
@@ -55,5 +66,5 @@ private:
 	const std::string time_temp = "5:43";
 	const std::string bestTime_temp = "1:23";
 
-	cocos2d::Follow* _followingPlayer;
+	cocos2d::Follow* _followingPlayerAction;
 };

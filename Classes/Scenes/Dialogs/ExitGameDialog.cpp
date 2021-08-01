@@ -4,7 +4,7 @@
 
 bool ExitGameDialog::init()
 {
-	if (!MyDialog::init("ui/layer-exit-game.tmx"))
+	if (!MyDialog::init("ui/dialog-exit-game.tmx"))
 	{
 		return false;
 	}

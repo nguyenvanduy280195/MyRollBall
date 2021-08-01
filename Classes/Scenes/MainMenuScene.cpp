@@ -11,7 +11,7 @@
 
 #include "MyCustomGUI.inl"
 
-#include "Dialogs/AboutDialog.h"
+#include "Dialogs/CreditsDialog.h"
 #include "Dialogs/ExitGameDialog.h"
 #include "Dialogs/OptionsDialog.h"
 #include "Dialogs/LevelDialog.h"
@@ -32,10 +32,12 @@ bool MainMenuScene::init()
 
 	AddCallbackToButton("play", MakePlayButtonClicked());
 	AddCallbackToButton("options", MakeOptionsButtonClicked());
-	AddCallbackToButton("about", MakeAboutButtonClicked());
+	AddCallbackToButton("credits", MakeCreditsButtonClicked());
 	AddCallbackToButton("exit", MakeExitButtonClicked());
 
-	ScreenLog::GetInstance()->Debug(__FUNCTION__);
+	//ScreenLog::GetInstance()->Debug(__FUNCTION__);
+	//duy::ScreenLog::GetInstance()->SetOwner(this);
+	//duy::ScreenLog::GetInstance()->Info("test1");
 
 	return true;
 }
@@ -56,17 +58,17 @@ void MainMenuScene::TakeLayerToBoxPosition(MyDialog* dialog)
 
 void MainMenuScene::SetAllLayersVisible(bool visible)
 {
-	if (_optionsLayer)
+	if (_optionsDialog)
 	{
-		_optionsLayer->setVisible(visible);
+		_optionsDialog->setVisible(visible);
 	}
-	if (_aboutLayer)
+	if (_creditsDialog)
 	{
-		_aboutLayer->setVisible(visible);
+		_creditsDialog->setVisible(visible);
 	}
-	if (_exitGameLayer)
+	if (_exitGameDialog)
 	{
-		_exitGameLayer->setVisible(visible);
+		_exitGameDialog->setVisible(visible);
 	}
 }
 
@@ -76,8 +78,8 @@ std::function<void(cocos2d::Ref*)> MainMenuScene::MakePlayButtonClicked()
 	return [this](cocos2d::Ref*)
 	{
 		auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>();
-		auto sceneWithTransition = cocos2d::TransitionZoomFlipAngular::create(1, scene);
-		StaticMethods::ReplaceScene(scene, sceneWithTransition);
+		//auto sceneWithTransition = cocos2d::TransitionZoomFlipAngular::create(1, scene);
+		cocos2d::Director::getInstance()->pushScene(scene);
 	};
 }
 
@@ -87,9 +89,9 @@ std::function<void(cocos2d::Ref*)> MainMenuScene::MakeOptionsButtonClicked()
 	{
 		SetAllLayersVisible(false);
 
-		if (_optionsLayer)
+		if (_optionsDialog)
 		{
-			_optionsLayer->setVisible(true);
+			_optionsDialog->setVisible(true);
 		}
 		else
 		{
@@ -103,25 +105,25 @@ std::function<void(cocos2d::Ref*)> MainMenuScene::MakeOptionsButtonClicked()
 	};
 }
 
-std::function<void(cocos2d::Ref*)> MainMenuScene::MakeAboutButtonClicked()
+std::function<void(cocos2d::Ref*)> MainMenuScene::MakeCreditsButtonClicked()
 {
 	return [this](cocos2d::Ref*)
 	{
 		SetAllLayersVisible(false);
 
 
-		if (_aboutLayer)
+		if (_creditsDialog)
 		{
-			_aboutLayer->setVisible(true);
+			_creditsDialog->setVisible(true);
 		}
 		else
 		{
-			//_aboutLayer = Cocos2dCreator::CreateNode<AboutDialog>();
-			//if (_aboutLayer)
-			//{
-			//	TakeLayerToBoxPosition(_aboutLayer);
-			//	addChild(_aboutLayer);
-			//}
+			_creditsDialog = Cocos2dCreator::CreateNode<CreditsDialog>();
+			if (_creditsDialog)
+			{
+				TakeLayerToBoxPosition(_creditsDialog);
+				addChild(_creditsDialog);
+			}
 		};
 	};
 }
@@ -133,17 +135,17 @@ std::function<void(cocos2d::Ref*)> MainMenuScene::MakeExitButtonClicked()
 		SetAllLayersVisible(false);
 
 
-		if (_exitGameLayer)
+		if (_exitGameDialog)
 		{
-			_exitGameLayer->setVisible(true);
+			_exitGameDialog->setVisible(true);
 		}
 		else
 		{
-			_exitGameLayer = Cocos2dCreator::CreateNode<ExitGameDialog>();
-			if (_exitGameLayer)
+			_exitGameDialog = Cocos2dCreator::CreateNode<ExitGameDialog>();
+			if (_exitGameDialog)
 			{
-				TakeLayerToBoxPosition(_exitGameLayer);
-				addChild(_exitGameLayer);
+				TakeLayerToBoxPosition(_exitGameDialog);
+				addChild(_exitGameDialog);
 			}
 		}
 	};
