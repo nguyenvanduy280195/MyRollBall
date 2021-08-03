@@ -50,10 +50,15 @@ cocos2d::Scene* InGameScene::CreateScene(int level)
 #endif
 	scene->getPhysicsWorld()->setGravity(cocos2d::Vec2(0, 0.0f));
 
-	auto inGame = Cocos2dCreator::CreateNode<InGameScene>(level);
-	inGame->setName("InGameScene");
-	scene->addChild(inGame);
-	return scene;
+	if (auto inGame = Cocos2dCreator::CreateNode<InGameScene>(level))
+	{
+		scene->addChild(inGame);
+		return scene;
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 InGameScene::~InGameScene()
@@ -71,31 +76,31 @@ bool InGameScene::init(int level)
 	_currentLevel = level;
 	_handlerManager = new (std::nothrow) HandlerManager(this);
 	_gameInfo = new (std::nothrow) GameInfo();
+
 	// level
 	const auto path = cocos2d::StringUtils::format(FORMAT_LEVEL.c_str(), _currentLevel);
-	_level = Cocos2dCreator::CreateNode<Level>(path);
-	addChild(_level);
+	if (_level = Cocos2dCreator::CreateNode<Level>(path))
+	{
+		addChild(_level);
+	}
+	else
+	{
+		CCLOG("Creating Level Object fails");
+		return false;
+	}
+	
 
 	// player
-	_player = Cocos2dCreator::CreateNode<Player>(this, _level->GetStartPosition());
-	addChild(_player->AsNode());
+	if (_player = Cocos2dCreator::CreateNode<Player>(this, _level->GetStartPosition()))
+	{
+		addChild(_player->AsNode());
+	}
+	else
+	{
+		CCLOG("Creating Player Object fails");
+		return false;
+	}
 	
-	//_dashButton = cocos2d::ui::Button::create("levels/assets/dash.png");
-	//_dashButton->setLocalZOrder(INT_MAX);
-	//_dashButton->setScale(0.5f);
-	//_dashButton->addClickEventListener([this](cocos2d::Ref*)
-	//{
-	//	_player->Dash();
-	//});
-	//addChild(_dashButton);
-
-	//ScreenLog::GetInstance()->AttachToScene(this);
-	//ScreenLog::GetInstance()->Info(__FUNCTION__);
-	//ScreenLog::GetInstance()->Info(__FUNCTION__);
-	//ScreenLog::GetInstance()->Info("test");
-
-	//duy::ScreenLog::GetInstance()->SetOwner(this);
-	//duy::ScreenLog::GetInstance()->Debug("testa");
 
 	return true;
 }
@@ -184,11 +189,10 @@ void InGameScene::ShowVictoryDialog()
 	dialog->SetOnNextButtonPressed([this](cocos2d::Ref*)
 	{
 		auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>(_currentLevel + 1);
-		//cocos2d::Director::getInstance()->popScene();
-		//cocos2d::Director::getInstance()->pushScene(scene);
 		cocos2d::Director::getInstance()->replaceScene(scene);
 	});
 	getParent()->addChild(dialog, INT16_MAX);
+	dialog->Show();
 }
 
 void InGameScene::ShowGameOverDialog()
@@ -201,9 +205,8 @@ void InGameScene::ShowGameOverDialog()
 	dialog->SetOnReplayButtonPressed([this](cocos2d::Ref*)
 	{
 		auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>(_currentLevel);
-		//cocos2d::Director::getInstance()->popScene();
-		//cocos2d::Director::getInstance()->pushScene(scene);
 		cocos2d::Director::getInstance()->replaceScene(scene);
 	});
 	getParent()->addChild(dialog, INT16_MAX);
+	dialog->Show();
 }

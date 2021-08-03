@@ -5,8 +5,12 @@
 #include "2d/CCTMXTiledMap.h"
 #include "ScreenLog/ScreenLog.h"
 
-cocos2d::Color3B StaticMethods::MakeColor3BFromHex(const std::string hex)
+cocos2d::Color3B StaticMethods::MakeColor3BFromHex(const std::string& hex)
 {
+	if (hex.empty())
+	{
+		return cocos2d::Color3B::BLACK;
+	}
 	const auto r = hex.substr(1, 2);
 	const auto rr = std::stoi(r, 0, 16);
 

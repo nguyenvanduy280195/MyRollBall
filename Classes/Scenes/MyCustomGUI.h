@@ -19,7 +19,6 @@ class Text;
 template<class TGUI>
 class MyCustomGUI : public TGUI
 {
-	//static_assert(std::is_base_of<cocos2d::Node, TGUI>::value, "T must inherit from SomeBase");
 protected:
 	virtual bool init(const std::string& tmxPath);
 
@@ -29,8 +28,6 @@ protected:
 	cocos2d::ui::Button* MakeButton(cocos2d::ValueMap& value);
 	cocos2d::ui::Text* MakeText(cocos2d::ValueMap& value);
 
-	cocos2d::ui::Button* MakeButtonFromTiledMap(const std::string& objectGroupName, const std::string& objectName);
-
 	cocos2d::TMXTiledMap* _tiledMap;
-};
 
+};

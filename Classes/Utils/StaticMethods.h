@@ -15,7 +15,7 @@ class TMXObjectGroup;
 class StaticMethods
 {
 public:
-	static cocos2d::Color3B MakeColor3BFromHex(const std::string hex);
+	static cocos2d::Color3B MakeColor3BFromHex(const std::string& hex);
 	static void ReplaceScene(cocos2d::Scene* scene, cocos2d::Scene* sceneWithTransition);
 	static void ReplaceScene(cocos2d::Scene*);
 	static void PopScene();
@@ -29,9 +29,6 @@ public:
 		{
 			action(obj);
 		}
-		else
-		{
-			CCLOG("obj is nullptr");
-		}
 	}
+
 };

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="64" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="22">
+ <tileset firstgid="1" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
+  <image source="assets/ui_tilesheet.png" width="480" height="144"/>
+ </tileset>
+ <layer id="1" name="background" width="64" height="45">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMBKFL/7mXY6DgqqmqqqqqqqqqqqqqPnh4juPM
+  </data>
+ </layer>
+ <layer id="12" name="box" width="64" height="45" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztz0EJAAAIBEH7F7SOGXzIIczCBpgqSZIkSZJ29ZOvSrv4+fn5+fn5+fn5+fn5+fn5+fn570q7+Pn5+VN+SfrUAGzklUo=
+  </data>
+ </layer>
+ <objectgroup id="7" name="buttons">
+  <object id="20" name="back" x="0" y="0">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value=""/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value="Back"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="10" name="texts">
+  <object id="21" x="496" y="368">
+   <properties>
+    <property name="anchor-point-x" type="float" value="0.5"/>
+    <property name="anchor-point-y" type="float" value="0.5"/>
+    <property name="color" value="#ffffff"/>
+    <property name="enableShadow" type="bool" value="true"/>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="80"/>
+    <property name="text" value="Coming Soon"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>

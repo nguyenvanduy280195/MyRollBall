@@ -15,7 +15,7 @@ class Sprite;
 class CreditsDialog : public MyDialog
 {
 public:
-	bool init();
+	bool init(const cocos2d::Vec2& boxPosition);
 private:
 	void AddSpriteFromTMXObject(const std::string& objectGroupName, const std::string& objectName);
 };

@@ -2,12 +2,14 @@
 #include "../MyCustomGUI.inl"
 #include "base/CCDirector.h"
 
-bool ExitGameDialog::init()
+bool ExitGameDialog::init(const cocos2d::Vec2& boxPosition)
 {
 	if (!MyDialog::init("ui/dialog-exit-game.tmx"))
 	{
 		return false;
 	}
+
+	_tiledMap->setPosition(boxPosition);
 
 	AddCallbackToButton("yes", [this](cocos2d::Ref*)
 	{
@@ -17,7 +19,7 @@ bool ExitGameDialog::init()
 
 	AddCallbackToButton("no", [this](cocos2d::Ref*)
 	{
-		setVisible(false);
+		Hide();
 	});
 
 

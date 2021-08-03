@@ -6,17 +6,16 @@
 #include "2d/CCSprite.h"
 #include "../MyCustomGUI.inl"
 
-bool CreditsDialog::init()
+bool CreditsDialog::init(const cocos2d::Vec2& boxPosition)
 {
-	if (!MyDialog::init("ui/dialog-about.tmx"))
+	if (!MyDialog::init("ui/dialog-credits.tmx"))
 	{
 		return false;
 	}
 
-	AddCallbackToButton("close", [this](cocos2d::Ref*)
-	{
-		setVisible(false);
-	});
+	_tiledMap->setPosition(boxPosition);
+
+	AddCallbackToButton("close", [this](cocos2d::Ref*){ setVisible(false); });
 
 	AddSpriteFromTMXObject("image-texts", "credits");
 	AddSpriteFromTMXObject("image-texts", "programmer");

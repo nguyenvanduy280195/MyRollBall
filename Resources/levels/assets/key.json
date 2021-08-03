@@ -2,8 +2,8 @@
   "path": "levels/assets/key.png",
   "anchor.point.x": 0.5,
   "anchor.point.y": 0.5,
-  "body.size.width": 12,
-  "body.size.height": 32,
+  "body.size.width": 64,
+  "body.size.height": 24,
   "body.radius": 0.0,
   "body.offset.x": 0.0,
   "body.offset.y": 0.0

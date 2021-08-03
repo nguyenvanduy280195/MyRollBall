@@ -70,7 +70,7 @@ void Player::MoveByAcceleration(const Vec2& accelerationVec2)
 {
 	auto f = [this](float t)
 	{
-		auto x = _owner->GetGameInfo()->GetPlayerInfo().moveSpeed * t;
+		auto x = _owner->GetGameInfo()->GetPlayerInfo().moveSpeed * t * 2;
 		return x;
 	};
 	const auto deltaX = (int)(accelerationVec2.x * 100);

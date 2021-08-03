@@ -8,6 +8,7 @@
 #include "Dialogs/VictoryDialog.h"
 #include "Utils/StaticMethods.h"
 #include "ScreenLog/ScreenLog.h"
+#include "ComingSoonScene.h"
 
 #include "MyCustomGUI.inl"
 
@@ -51,15 +52,17 @@ void IntroLevelScene::update(float dt)
 	if (_timer > _timeout)
 	{
 		unscheduleUpdate();
-		auto scene = InGameScene::CreateScene(_level);
-		//auto sceneWithTransition = cocos2d::TransitionFadeDown::create(1, scene);
-		//cocos2d::Director::getInstance()->popScene();
-		//cocos2d::Director::getInstance()->pushScene(scene);
-		cocos2d::Director::getInstance()->replaceScene(scene);
+		if (auto scene = InGameScene::CreateScene(_level))
+		{
+			cocos2d::Director::getInstance()->replaceScene(scene);
+		}
+		else
+		{
+			auto comingSoonScene = Cocos2dCreator::CreateNode<ComingSoonScene>();
+			cocos2d::Director::getInstance()->replaceScene(comingSoonScene);
+		}
 
-		//auto inGameScene = scene->getChildByName("InGameScene");
-		//gScreenLog->AttachToScene(inGameScene);
-		//StaticMethods::ReplaceScene(inGameScene, sceneWithTransition);
+		
 	}
 	_timer += dt;
 }

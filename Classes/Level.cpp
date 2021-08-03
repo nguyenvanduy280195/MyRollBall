@@ -16,6 +16,7 @@ bool Level::init(const std::string& filename)
 {
 	if (!Super::initWithTMXFile(filename))
 	{
+		CCLOG("Loading %s fails", filename.c_str());
 		return false;
 	}
 

@@ -17,8 +17,6 @@ inline bool MyCustomGUI<TGUI>::init(const std::string& tmxPath)
 		return false;
 	}
 
-	//ScreenLog::GetInstance()->AttachToScene(this);
-
 	if (_tiledMap = cocos2d::TMXTiledMap::create(tmxPath))
 	{
 		TGUI::addChild(_tiledMap);
@@ -28,34 +26,20 @@ inline bool MyCustomGUI<TGUI>::init(const std::string& tmxPath)
 		return false;
 	}
 
-	StaticMethods::RequireObjectNotNull<cocos2d::TMXTiledMap>(_tiledMap, [this](cocos2d::TMXTiledMap* tiledMap)
+	if (_tiledMap)
 	{
-		TMXUtil::RequireTMXObjectGroupNotFound(tiledMap, "buttons", [this](cocos2d::TMXObjectGroup* objGroup)
+		TMXUtil::ForeachAllObjectsInObjectGroup(_tiledMap, "buttons", [this](cocos2d::ValueMap& value)
 		{
-			auto objects = objGroup->getObjects();
-			for (auto& object : objects)
-			{
-				auto value = object.asValueMap();
-				auto button = MakeButton(value);
-				_tiledMap->addChild(button);
-			}
+			auto button = MakeButton(value);
+			_tiledMap->addChild(button);
 		});
-	});
 
-	StaticMethods::RequireObjectNotNull<cocos2d::TMXTiledMap>(_tiledMap, [this](cocos2d::TMXTiledMap* tiledMap)
-	{
-		TMXUtil::RequireTMXObjectGroupNotFound(tiledMap, "texts", [this](cocos2d::TMXObjectGroup* objGroup)
+		TMXUtil::ForeachAllObjectsInObjectGroup(_tiledMap, "texts", [this](cocos2d::ValueMap& value)
 		{
-			auto objects = objGroup->getObjects();
-			for (auto& object : objects)
-			{
-				auto value = object.asValueMap();
-				auto text = MakeText(value);
-				_tiledMap->addChild(text);
-			}
+			auto text = MakeText(value);
+			_tiledMap->addChild(text);
 		});
-	});
-
+	}
 
 	return true;
 }
@@ -65,20 +49,12 @@ inline void MyCustomGUI<TGUI>::AddCallbackToButton(const std::string& name, cons
 {
 	if (callback)
 	{
-		if (auto node = _tiledMap->getChildByName(name))
+		if (auto child = _tiledMap->getChildByName(name))
 		{
-			if (auto button = dynamic_cast<cocos2d::ui::Button*>(node))
+			if (auto button = dynamic_cast<cocos2d::ui::Button*>(child))
 			{
 				button->addClickEventListener(callback);
 			}
-			else
-			{
-				//ScreenLog::GetInstance()->Warning("%s is not Button type", name.c_str());
-			}
-		}
-		else
-		{
-			//ScreenLog::GetInstance()->Warning("%s not found", name.c_str());
 		}
 	}
 }
@@ -86,20 +62,12 @@ inline void MyCustomGUI<TGUI>::AddCallbackToButton(const std::string& name, cons
 template<class TGUI>
 inline void MyCustomGUI<TGUI>::SetTextContent(const std::string& name, const std::string& content)
 {
-	if (auto node = _tiledMap->getChildByName(name))
+	if (auto child = _tiledMap->getChildByName(name))
 	{
-		if (auto text = dynamic_cast<cocos2d::ui::Text*>(node))
+		if (auto text = dynamic_cast<cocos2d::ui::Text*>(child))
 		{
 			text->setString(content);
 		}
-		else
-		{
-			//ScreenLog::GetInstance()->Warning("%s is not Text type", name.c_str());
-		}
-	}
-	else
-	{
-		//ScreenLog::GetInstance()->Warning("%s not found", name.c_str());
 	}
 }
 
@@ -136,6 +104,7 @@ inline cocos2d::ui::Text* MyCustomGUI<TGUI>::MakeText(cocos2d::ValueMap& value)
 	const auto y = value["y"].asFloat();
 	const auto anchorPointX = value["anchor-point-x"].asFloat();
 	const auto anchorPointY = value["anchor-point-y"].asFloat();
+	const auto color = StaticMethods::MakeColor3BFromHex(value["color"].asString());
 	auto str = value["text"].asString();
 
 	if (str.empty())
@@ -144,28 +113,16 @@ inline cocos2d::ui::Text* MyCustomGUI<TGUI>::MakeText(cocos2d::ValueMap& value)
 	}
 
 	auto text = cocos2d::ui::Text::create(str, fontName, fontSize);
+	
 	text->setAnchorPoint(Vec2(anchorPointX, anchorPointY));
 	text->setName(name);
-	text->setColor(cocos2d::Color3B::BLACK);
+	text->setColor(color);
 	text->setPosition(Vec2(x, y));
 
-	return text;
-}
-
-template<class TGUI>
-inline cocos2d::ui::Button* MyCustomGUI<TGUI>::MakeButtonFromTiledMap(const std::string& objectGroupName, const std::string& objectName)
-{
-	cocos2d::ui::Button* button = nullptr;
-	StaticMethods::RequireObjectNotNull<cocos2d::TMXTiledMap>(_tiledMap, [this, objectGroupName, objectName, &button](cocos2d::TMXTiledMap* tiledMap)
+	if (value["enableShadow"].asBool())
 	{
-		TMXUtil::RequireTMXObjectGroupNotFound(tiledMap, objectGroupName, [this, objectName, &button](cocos2d::TMXObjectGroup* objGroup)
-		{
-			TMXUtil::RequireTMXObjectNotFound(objGroup, objectName, [this, &button](cocos2d::ValueMap& value)
-			{
-				button = MakeButton(value);
-			});
-		});
-	});
+		text->enableShadow();
+	}
 
-	return button;
+	return text;
 }

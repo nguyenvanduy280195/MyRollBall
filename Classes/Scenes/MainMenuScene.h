@@ -21,14 +21,14 @@ public:
 	bool init();
 
 private:
-	void TakeLayerToBoxPosition(class MyDialog* dialog);
-	void SetAllLayersVisible(bool visible);
+	const cocos2d::Vec2 GetBoxPosition() const;
 
-	std::function<void(cocos2d::Ref*)> MakePlayButtonClicked();
-	std::function<void(cocos2d::Ref*)> MakeOptionsButtonClicked();
-	std::function<void(cocos2d::Ref*)> MakeCreditsButtonClicked();
-	std::function<void(cocos2d::Ref*)> MakeExitButtonClicked();
+	void HideAllDialogs();
 
+
+	std::function<void(cocos2d::Ref*)> MakeMenuButtonClicked(class MyDialog* dialog);
+
+	class MyDialog* _choosingLevelDialog;
 	class MyDialog* _optionsDialog;
 	class MyDialog* _creditsDialog;
 	class MyDialog* _exitGameDialog;
