@@ -34,7 +34,8 @@ bool ContactHandler::OnContactBegan(cocos2d::PhysicsContact& contact)
 	
 	CheckVictory(contact);
 	CheckGameOver(contact);
-	CheckToGetKey(contact);
+	CheckGettingKey(contact);
+	CheckGettingCarrot(contact);
 
 	return true;
 }
@@ -71,34 +72,55 @@ void ContactHandler::CheckGameOver(cocos2d::PhysicsContact& contact)
 	const auto categoryA = contact.getShapeA()->getCategoryBitmask();
 	const auto categoryB = contact.getShapeB()->getCategoryBitmask();
 
-	if ((categoryA == LASER_CATEGORY_BITMASK && categoryB == PLAYER_CATEGORY_BITMASK)
-		|| (categoryB == LASER_CATEGORY_BITMASK && categoryA == PLAYER_CATEGORY_BITMASK))
-	{
-		_inGameScene->ShowGameOver();
-	}
-	else if ((categoryA == SPIKE_CATEGORY_BITMASK && categoryB == PLAYER_CATEGORY_BITMASK) 
-			 || (categoryB == SPIKE_CATEGORY_BITMASK && categoryA == PLAYER_CATEGORY_BITMASK))
+	if ((categoryA == OBSTACLE_DANGER && categoryB == PLAYER_CATEGORY_BITMASK)
+		|| (categoryB == OBSTACLE_DANGER && categoryA == PLAYER_CATEGORY_BITMASK))
 	{
 		_inGameScene->ShowGameOver();
 	}
 }
 
-void ContactHandler::CheckToGetKey(cocos2d::PhysicsContact& contact)
+void ContactHandler::CheckGettingKey(cocos2d::PhysicsContact& contact)
 {
-	const auto categoryA = contact.getShapeA()->getCategoryBitmask();
-	const auto categoryB = contact.getShapeB()->getCategoryBitmask();
-
 	const auto nodeA = contact.getShapeA()->getBody()->getNode();
 	const auto nodeB = contact.getShapeB()->getBody()->getNode();
 
-	if (categoryA == KEY_CATEGORY_BITMASK)
+	if (nodeA == nullptr || nodeB == nullptr)
+	{
+		return;
+	}
+
+	if (nodeA->getName().compare("key") == 0)
 	{
 		_inGameScene->_level->Locked = false;
+		_inGameScene->ShowKeyInScreenInfo();
 		nodeA->removeFromParent();
 	}
-	else if (categoryB == KEY_CATEGORY_BITMASK)
+	else if (nodeB->getName().compare("key") == 0)
 	{
 		_inGameScene->_level->Locked = false;
+		_inGameScene->ShowKeyInScreenInfo();
+		nodeB->removeFromParent();
+	}
+}
+
+void ContactHandler::CheckGettingCarrot(cocos2d::PhysicsContact& contact)
+{
+	const auto nodeA = contact.getShapeA()->getBody()->getNode();
+	const auto nodeB = contact.getShapeB()->getBody()->getNode();
+
+	if (nodeA == nullptr || nodeB == nullptr)
+	{
+		return;
+	}
+
+	if (nodeA->getName().compare("carrot") == 0)
+	{
+		_inGameScene->IncreaseNumberOfCarrots();
+		nodeA->removeFromParent();
+	}
+	else if (nodeB->getName().compare("carrot") == 0)
+	{
+		_inGameScene->IncreaseNumberOfCarrots();
 		nodeB->removeFromParent();
 	}
 }

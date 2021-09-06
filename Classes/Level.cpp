@@ -28,8 +28,6 @@ bool Level::init(const std::string& filename)
 		const auto name = value["name"].asString();
 		if (name.compare("start") == 0)
 		{
-			//auto start = MakeStart(value);
-			//addChild(start);
 			auto x = value["x"].asFloat();
 			auto y = value["y"].asFloat();
 			_startPosition = Vec2(x, y);
@@ -44,6 +42,12 @@ bool Level::init(const std::string& filename)
 			auto key = MakeKey(value);
 			addChild(key);
 		}
+	});
+
+	TMXUtil::ForeachAllObjectsInObjectGroup(this, "carrots", [this](cocos2d::ValueMap& value)
+	{
+		auto carrot = MakeCarrot(value);
+		addChild(carrot);
 	});
 
 	TMXUtil::ForeachAllObjectsInObjectGroup(this, "lasers", [this](cocos2d::ValueMap& value)
@@ -75,7 +79,7 @@ bool Level::init(const std::string& filename)
 		spikesBody->setCollisionBitmask(SPIKE_COLLISION_BITMASK);
 		spikesBody->setContactTestBitmask(SPIKE_CONTACT_TEST_BITMASK);
 
-
+		// just a sprite stores all spikes' collision
 		auto spikes = cocos2d::Sprite::create();
 		spikes->setPhysicsBody(spikesBody);
 		addChild(spikes);
@@ -164,6 +168,61 @@ std::vector<cocos2d::PhysicsShape*> Level::MakeWalls()
 	return shapes;
 }
 
+cocos2d::Sprite* Level::MakeSpriteWithBoxBodyShape(cocos2d::ValueMap& value)
+{
+	auto name = value["name"].asString();
+	auto x = value["x"].asFloat();
+	auto y = value["y"].asFloat();
+	auto src = value["src"].asString();
+
+	auto document = StaticMethods::GetJSONFromFile(src);
+	auto srcImage = document["path"].GetString();
+	auto anchorPointX = document["anchor.point.x"].GetFloat();
+	auto anchorPointY = document["anchor.point.y"].GetFloat();
+	auto bodyWidth = document["body.size.width"].GetFloat();
+	auto bodyHeight = document["body.size.height"].GetFloat();
+	auto bodyOffsetX = document["body.offset.x"].GetFloat();
+	auto bodyOffsetY = document["body.offset.y"].GetFloat();
+
+	auto body = cocos2d::PhysicsBody::createBox(Size(bodyWidth, bodyHeight), cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, Vec2(bodyOffsetX, bodyOffsetY));
+	body->setDynamic(false);
+
+	auto sprite = cocos2d::Sprite::create(srcImage);
+	sprite->setName(name);
+	sprite->setAnchorPoint(Vec2(anchorPointX, anchorPointY));
+	sprite->setPosition(x, y);
+	sprite->setPhysicsBody(body);
+
+	return sprite;
+}
+
+cocos2d::Sprite* Level::MakeSpriteWithCircleBodyShape(cocos2d::ValueMap& value)
+{
+	auto name = value["name"].asString();
+	auto x = value["x"].asFloat();
+	auto y = value["y"].asFloat();
+	auto src = value["src"].asString();
+
+	auto document = StaticMethods::GetJSONFromFile(src);
+	auto srcImage = document["path"].GetString();
+	auto anchorPointX = document["anchor.point.x"].GetFloat();
+	auto anchorPointY = document["anchor.point.y"].GetFloat();
+	auto radius = document["body.radius"].GetFloat();
+	auto bodyOffsetX = document["body.offset.x"].GetFloat();
+	auto bodyOffsetY = document["body.offset.y"].GetFloat();
+
+	auto body = cocos2d::PhysicsBody::createCircle(radius, cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, Vec2(bodyOffsetX, bodyOffsetY));
+	body->setDynamic(false);
+
+	auto sprite = cocos2d::Sprite::create(srcImage);
+	sprite->setName(name);
+	sprite->setAnchorPoint(Vec2(anchorPointX, anchorPointY));
+	sprite->setPosition(x, y);
+	sprite->setPhysicsBody(body);
+
+	return sprite;
+}
+
 cocos2d::Sprite* Level::MakeStart(cocos2d::ValueMap& value)
 {
 	auto name = value["name"].asString();
@@ -180,59 +239,25 @@ cocos2d::Sprite* Level::MakeStart(cocos2d::ValueMap& value)
 
 cocos2d::Sprite* Level::MakeGoal(cocos2d::ValueMap& value)
 {
-	auto name = value["name"].asString();
-	auto x = value["x"].asFloat();
-	auto y = value["y"].asFloat();
-	auto src = value["src"].asString();// hole.json
+	auto goal = MakeSpriteWithCircleBodyShape(value);
 	Locked = value["locked"].asBool();
 
-	auto document = StaticMethods::GetJSONFromFile(src);
-	auto srcImage = document["path"].GetString();
-	auto anchorPointX = document["anchor.point.x"].GetFloat();
-	auto anchorPointY = document["anchor.point.y"].GetFloat();
-	auto radius = document["body.radius"].GetFloat();
-	auto bodyOffsetX = document["body.offset.x"].GetFloat();
-	auto bodyOffsetY = document["body.offset.y"].GetFloat();
-
-	auto body = cocos2d::PhysicsBody::createCircle(radius, cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, Vec2(bodyOffsetX, bodyOffsetY));
-	body->setDynamic(false);
+	auto body = goal->getPhysicsBody();
 	body->setCategoryBitmask(GOAL_CATEGORY_BITMASK);
 	body->setCollisionBitmask(GOAL_COLLISION_BITMASK);
 	body->setContactTestBitmask(GOAL_CONTACT_TEST_BITMASK);
 
-	auto sprite = cocos2d::Sprite::create(srcImage);
-	sprite->setName(name);
-	sprite->setAnchorPoint(Vec2(anchorPointX, anchorPointY));
-	sprite->setPosition(x, y);
-	sprite->setPhysicsBody(body);
-
-	return sprite;
+	return goal;
 }
 
 cocos2d::Sprite* Level::MakeKey(cocos2d::ValueMap& value)
 {
-	auto x = value["x"].asFloat();
-	auto y = value["y"].asFloat();
-	auto src = value["src"].asString();// hole.json
+	auto key = MakeSpriteWithBoxBodyShape(value);
 
-	auto document = StaticMethods::GetJSONFromFile(src);
-	auto srcImage = document["path"].GetString();
-	auto anchorPointX = document["anchor.point.x"].GetFloat();
-	auto anchorPointY = document["anchor.point.y"].GetFloat();
-	auto bodyWidth = document["body.size.width"].GetFloat();
-	auto bodyHeight = document["body.size.height"].GetFloat();
-	auto bodyOffsetX = document["body.offset.x"].GetFloat();
-	auto bodyOffsetY = document["body.offset.y"].GetFloat();
-
-	auto body = cocos2d::PhysicsBody::createBox(Size(bodyWidth, bodyHeight), cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, Vec2(bodyOffsetX, bodyOffsetY));
-	body->setDynamic(false);
+	auto body = key->getPhysicsBody();
 	body->setCategoryBitmask(KEY_CATEGORY_BITMASK);
 	body->setCollisionBitmask(KEY_COLLISION_BITMASK);
 	body->setContactTestBitmask(KEY_CONTACT_TEST_BITMASK);
-
-	auto key = cocos2d::Sprite::create(srcImage);
-	key->setPosition(x, y);
-	key->setPhysicsBody(body);
 
 	return key;
 }
@@ -293,6 +318,18 @@ cocos2d::Sprite* Level::MakeRotatingBlock(cocos2d::ValueMap& value)
 	rotatingBlock->setPhysicsBody(body);
 
 	return rotatingBlock;
+}
+
+cocos2d::Sprite* Level::MakeCarrot(cocos2d::ValueMap& value)
+{
+	auto carrot = MakeSpriteWithBoxBodyShape(value);
+	carrot->setName("carrot");
+	auto body = carrot->getPhysicsBody();
+	body->setCategoryBitmask(CARROT_CATEGORY_BITMASK);
+	body->setCollisionBitmask(CARROT_COLLISION_BITMASK);
+	body->setContactTestBitmask(CARROT_CONTACT_TEST_BITMASK);
+
+	return carrot;
 }
 
 cocos2d::PhysicsShape* Level::MakeSpikeBodyShape(cocos2d::ValueMap& value)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="left-down" width="20" height="20" tilewidth="64" tileheight="64" infinite="0" nextlayerid="8" nextobjectid="45">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="left-down" width="20" height="20" tilewidth="64" tileheight="64" infinite="0" nextlayerid="9" nextobjectid="57">
  <tileset firstgid="1" source="grass.tsx"/>
  <tileset firstgid="2" source="block_large.tsx"/>
  <tileset firstgid="4" source="spikes.tsx"/>
@@ -40,7 +40,7 @@
   </object>
  </objectgroup>
  <objectgroup id="5" name="lasers">
-  <object id="17" x="64" y="768">
+  <object id="17" name="laser" x="64" y="768">
    <properties>
     <property name="direction" value="right"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
@@ -53,7 +53,7 @@
    </properties>
    <point/>
   </object>
-  <object id="18" x="384" y="768">
+  <object id="18" name="laser" x="384" y="768">
    <properties>
     <property name="direction" value="left"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
@@ -66,7 +66,7 @@
    </properties>
    <point/>
   </object>
-  <object id="19" x="576" y="576">
+  <object id="19" name="laser" x="576" y="576">
    <properties>
     <property name="direction" value="left"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
@@ -79,7 +79,7 @@
    </properties>
    <point/>
   </object>
-  <object id="20" x="960" y="1024">
+  <object id="20" name="laser" x="960" y="1024">
    <properties>
     <property name="direction" value="up"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
@@ -92,7 +92,7 @@
    </properties>
    <point/>
   </object>
-  <object id="21" x="960" y="320">
+  <object id="21" name="laser" x="960" y="320">
    <properties>
     <property name="direction" value="bottom"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
@@ -105,7 +105,7 @@
    </properties>
    <point/>
   </object>
-  <object id="22" x="320" y="384">
+  <object id="22" name="laser" x="320" y="384">
    <properties>
     <property name="direction" value="bottom"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
@@ -146,5 +146,37 @@
   <object id="42" x="448" y="384" width="128" height="15"/>
   <object id="43" x="64" y="384" width="15" height="128"/>
   <object id="44" x="64" y="576" width="128" height="15"/>
+ </objectgroup>
+ <objectgroup id="8" name="carrots">
+  <object id="51" name="carrot" x="1152" y="384">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="52" name="carrot" x="704" y="960">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="53" name="carrot" x="128" y="640">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="54" name="carrot" x="128" y="448">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="55" name="carrot" x="512" y="448">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
  </objectgroup>
 </map>

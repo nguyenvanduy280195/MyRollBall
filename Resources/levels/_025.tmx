@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="left-down" width="20" height="20" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="53">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="left-down" width="20" height="20" tilewidth="64" tileheight="64" infinite="0" nextlayerid="9" nextobjectid="57">
  <tileset firstgid="1" source="grass.tsx"/>
  <tileset firstgid="2" source="block_large.tsx"/>
+ <tileset firstgid="4" source="spikes.tsx"/>
  <layer id="1" name="background" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eJxjZGBgYBzFo3gUj+JRPIpJxADrnAGR
@@ -12,14 +13,19 @@
    eJzFlNEKwCAIRcV+dJ/ap60eArnoTYewAyMWNzsom4qIijxjPQ2rrNVFg33GIOeiexjoF9XWROY4KLxHOTiT6h/LZWD9i/wYbL6Yi9w9v1u2w2/tT5vLwPqnpp6dKWRu8231g9rT22dU/Crz/cMvw1e/wvfr0uGHuQzHr+t/v2u9eUkkxw==
   </data>
  </layer>
+ <layer id="7" name="spikes" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBicgH2EmUdtgOw+NhxqWKCYWuYNFkCKv0bB4ADUTlODPY0OFwAANJcATA==
+  </data>
+ </layer>
  <objectgroup id="3" name="positions">
-  <object id="11" name="key" x="128" y="1152">
+  <object id="11" name="key" x="1152" y="128">
    <properties>
     <property name="src" value="levels/assets/key.json"/>
    </properties>
    <point/>
   </object>
-  <object id="12" name="start" x="1152" y="128">
+  <object id="12" name="start" x="128" y="1152">
    <properties>
     <property name="src" value="levels/assets/hole_start.png"/>
    </properties>
@@ -34,7 +40,7 @@
   </object>
  </objectgroup>
  <objectgroup id="5" name="lasers">
-  <object id="17" x="64" y="768">
+  <object id="17" name="laser" x="64" y="768">
    <properties>
     <property name="direction" value="right"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
@@ -47,7 +53,7 @@
    </properties>
    <point/>
   </object>
-  <object id="18" x="384" y="768">
+  <object id="18" name="laser" x="384" y="768">
    <properties>
     <property name="direction" value="left"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
@@ -60,7 +66,7 @@
    </properties>
    <point/>
   </object>
-  <object id="19" x="576" y="576">
+  <object id="19" name="laser" x="576" y="576">
    <properties>
     <property name="direction" value="left"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
@@ -73,7 +79,7 @@
    </properties>
    <point/>
   </object>
-  <object id="20" x="960" y="1024">
+  <object id="20" name="laser" x="960" y="1024">
    <properties>
     <property name="direction" value="up"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
@@ -86,7 +92,7 @@
    </properties>
    <point/>
   </object>
-  <object id="21" x="960" y="320">
+  <object id="21" name="laser" x="960" y="320">
    <properties>
     <property name="direction" value="bottom"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
@@ -99,87 +105,9 @@
    </properties>
    <point/>
   </object>
-  <object id="22" x="320" y="384">
+  <object id="22" name="laser" x="320" y="384">
    <properties>
     <property name="direction" value="bottom"/>
-    <property name="duration-of-fade-in" type="float" value="1"/>
-    <property name="duration-of-fade-in-delay" type="float" value="1"/>
-    <property name="duration-of-fade-out" type="float" value="0.5"/>
-    <property name="duration-of-fade-out-delay" type="float" value="1"/>
-    <property name="laser-scale-factor-y" type="float" value="1"/>
-    <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="23" x="768" y="256">
-   <properties>
-    <property name="direction" value="left"/>
-    <property name="duration-of-fade-in" type="float" value="1"/>
-    <property name="duration-of-fade-in-delay" type="float" value="1"/>
-    <property name="duration-of-fade-out" type="float" value="0.5"/>
-    <property name="duration-of-fade-out-delay" type="float" value="1"/>
-    <property name="laser-scale-factor-y" type="float" value="1"/>
-    <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="24" x="192" y="256">
-   <properties>
-    <property name="direction" value="left"/>
-    <property name="duration-of-fade-in" type="float" value="1"/>
-    <property name="duration-of-fade-in-delay" type="float" value="1"/>
-    <property name="duration-of-fade-out" type="float" value="0.5"/>
-    <property name="duration-of-fade-out-delay" type="float" value="1"/>
-    <property name="laser-scale-factor-y" type="float" value="1"/>
-    <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="25" x="384" y="960">
-   <properties>
-    <property name="direction" value="left"/>
-    <property name="duration-of-fade-in" type="float" value="1"/>
-    <property name="duration-of-fade-in-delay" type="float" value="1"/>
-    <property name="duration-of-fade-out" type="float" value="0.5"/>
-    <property name="duration-of-fade-out-delay" type="float" value="1"/>
-    <property name="laser-scale-factor-y" type="float" value="1"/>
-    <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="26" x="1024" y="704">
-   <properties>
-    <property name="direction" value="bottom"/>
-    <property name="duration-of-fade-in" type="float" value="1"/>
-    <property name="duration-of-fade-in-delay" type="float" value="1"/>
-    <property name="duration-of-fade-out" type="float" value="0.5"/>
-    <property name="duration-of-fade-out-delay" type="float" value="1"/>
-    <property name="laser-scale-factor-y" type="float" value="1"/>
-    <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="27" x="192" y="896">
-   <properties>
-    <property name="direction" value="left"/>
-    <property name="duration-of-fade-in" type="float" value="1"/>
-    <property name="duration-of-fade-in-delay" type="float" value="1"/>
-    <property name="duration-of-fade-out" type="float" value="0.5"/>
-    <property name="duration-of-fade-out-delay" type="float" value="1"/>
-    <property name="laser-scale-factor-y" type="float" value="1"/>
-    <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="28" x="64" y="1024">
-   <properties>
-    <property name="direction" value="right"/>
     <property name="duration-of-fade-in" type="float" value="1"/>
     <property name="duration-of-fade-in-delay" type="float" value="1"/>
     <property name="duration-of-fade-out" type="float" value="0.5"/>
@@ -197,34 +125,54 @@
   <object id="8" x="64" y="1216" width="1152" height="64"/>
   <object id="9" x="192" y="704" width="64" height="512"/>
   <object id="10" x="64" y="0" width="1152" height="64"/>
-  <object id="37" x="64" y="512" width="384" height="64"/>
-  <object id="38" x="384" y="576" width="64" height="512"/>
-  <object id="39" x="576" y="192" width="64" height="1024"/>
-  <object id="40" x="832" y="1024" width="384" height="64"/>
-  <object id="41" x="640" y="832" width="384" height="64"/>
-  <object id="42" x="640" y="640" width="128" height="64"/>
-  <object id="43" x="960" y="640" width="256" height="64"/>
-  <object id="44" x="640" y="448" width="384" height="64"/>
-  <object id="45" x="768" y="192" width="64" height="128"/>
-  <object id="46" x="832" y="256" width="384" height="64"/>
-  <object id="47" x="192" y="192" width="64" height="128"/>
-  <object id="48" x="192" y="320" width="384" height="64"/>
-  <object id="49" x="384" y="64" width="64" height="128"/>
+  <object id="23" x="64" y="512" width="384" height="64"/>
+  <object id="24" x="384" y="576" width="64" height="512"/>
+  <object id="25" x="576" y="192" width="64" height="1024"/>
+  <object id="26" x="640" y="832" width="384" height="64"/>
+  <object id="30" x="832" y="1024" width="384" height="64"/>
+  <object id="31" x="960" y="640" width="256" height="64"/>
+  <object id="32" x="640" y="640" width="128" height="64"/>
+  <object id="33" x="640" y="448" width="384" height="64"/>
+  <object id="34" x="832" y="256" width="384" height="64"/>
+  <object id="35" x="768" y="192" width="64" height="128"/>
+  <object id="36" x="384" y="64" width="64" height="128"/>
+  <object id="37" x="192" y="192" width="64" height="128"/>
+  <object id="38" x="192" y="320" width="384" height="64"/>
  </objectgroup>
- <objectgroup id="6" name="carrots">
-  <object id="50" x="320" y="640">
+ <objectgroup id="6" name="spikes_collision">
+  <object id="39" x="1201" y="64" width="15" height="192"/>
+  <object id="40" x="1201" y="320" width="15" height="128"/>
+  <object id="41" x="640" y="896" width="15" height="128"/>
+  <object id="42" x="448" y="384" width="128" height="15"/>
+  <object id="43" x="64" y="384" width="15" height="128"/>
+  <object id="44" x="64" y="576" width="128" height="15"/>
+ </objectgroup>
+ <objectgroup id="8" name="carrots">
+  <object id="51" name="carrot" x="1152" y="384">
    <properties>
     <property name="src" value="levels/assets/carrot.json"/>
    </properties>
    <point/>
   </object>
-  <object id="51" x="128" y="448">
+  <object id="52" name="carrot" x="704" y="960">
    <properties>
     <property name="src" value="levels/assets/carrot.json"/>
    </properties>
    <point/>
   </object>
-  <object id="52" x="704" y="1152">
+  <object id="53" name="carrot" x="128" y="640">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="54" name="carrot" x="128" y="448">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="55" name="carrot" x="512" y="448">
    <properties>
     <property name="src" value="levels/assets/carrot.json"/>
    </properties>

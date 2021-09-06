@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "scene-coming-soon.tmx",
+    "activeFile": "dialog-choosing-level.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -94,11 +94,11 @@
             "scaleInDock": 1
         },
         "dialog-choosing-level.tmx": {
-            "scale": 0.75,
+            "scale": 1.5,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 336,
-                "y": 208
+                "x": 307.3333333333333,
+                "y": 260
             }
         },
         "dialog-choosing-level.tmx#ui_tilesheet": {
@@ -198,6 +198,28 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "ingamescene-screen-info-horizontal.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 32,
+                "y": 32
+            }
+        },
+        "ingamescene-screen-info-horizontal.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
+        "ingamescene-screen-info.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 445.3333333333333,
+                "y": 270.6666666666667
+            }
+        },
+        "ingamescene-screen-info.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
         "layer-about.tmx": {
             "scale": 1.5,
             "selectedLayer": 1,
@@ -240,8 +262,8 @@
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 104.66666666666666,
-                "y": 230.66666666666669
+                "x": 511.99999999999994,
+                "y": 360
             }
         },
         "scene-coming-soon.tmx#ui_tilesheet": {
@@ -249,10 +271,10 @@
         },
         "scene-main-menu.tmx": {
             "scale": 2,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 512,
-                "y": 360
+                "x": 48,
+                "y": 274
             }
         },
         "scene-main-menu.tmx#text_control_ball_felt": {
@@ -273,25 +295,24 @@
     "map.tileWidth": 16,
     "map.width": 20,
     "openFiles": [
-        "dialog-choosing-level.tmx",
-        "scene-coming-soon.tmx",
-        "scene-main-menu.tmx"
+        "scene-main-menu.tmx",
+        "dialog-choosing-level.tmx"
     ],
     "project": "ui.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "dialog-choosing-level.tmx",
         "scene-main-menu.tmx",
+        "dialog-choosing-level.tmx",
         "scene-coming-soon.tmx",
+        "ingamescene-screen-info-horizontal.tmx",
+        "ingamescene-screen-info.tmx",
         "dialog-credits.tmx",
         "dialog-exit-game.tmx",
         "dialog-victory.tmx",
         "dialog-game-over.tmx",
         "dialog-victory-0.tmx",
         "dialog-about.tmx",
-        "layer-exit-game.tmx",
-        "layer-about.tmx",
-        "layer-exiting-game.tmx"
+        "layer-exit-game.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.margin": 0,

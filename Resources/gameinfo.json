@@ -2,7 +2,7 @@
   "player": {
     "imagePath": "levels/assets/player.png",
     "anchorPointX": 0.5,
-    "anchorPointY": 0.2857142857142857,
+    "anchorPointY": 0.5,
     "moveSpeed": 1000.0,
     "maxMoveSpeed": 300.0,
     "dashPower": 0.5,

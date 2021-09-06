@@ -5,6 +5,7 @@
 #include "Utils/StaticMethods.h"
 #include "Utils/TMXUtil.h"
 #include "2d/CCTMXTiledMap.h"
+#include "ui/UIImageView.h"
 
 
 using Vec2 = cocos2d::Vec2;
@@ -39,6 +40,22 @@ inline bool MyCustomGUI<TGUI>::init(const std::string& tmxPath)
 			auto text = MakeText(value);
 			_tiledMap->addChild(text);
 		});
+
+		TMXUtil::ForeachAllObjectsInObjectGroup(_tiledMap, "images", [this](cocos2d::ValueMap& value)
+		{
+			const auto name = value["name"].asString();
+			const auto x = value["x"].asFloat();
+			const auto y = value["y"].asFloat();
+			const auto src = value["src"].asString();
+			const auto invisible = value["invisible"].asBool();
+
+			auto image = cocos2d::ui::ImageView::create(src);
+			image->setVisible(!invisible);
+			image->setName(name);
+			image->setPosition(Vec2(x, y));
+			_tiledMap->addChild(image);
+		});
+
 	}
 
 	return true;

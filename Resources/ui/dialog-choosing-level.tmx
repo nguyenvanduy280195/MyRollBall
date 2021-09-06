@@ -145,7 +145,7 @@
    </properties>
    <point/>
   </object>
-  <object id="21" name="page#0" x="112" y="352">
+  <object id="21" name="page#0" x="272" y="352">
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
@@ -156,7 +156,7 @@
    </properties>
    <point/>
   </object>
-  <object id="22" name="page#1" x="224" y="352">
+  <object id="22" name="page#1" x="400" y="352">
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
@@ -164,39 +164,6 @@
     <property name="src-normal" value="ui/assets/button_page.png"/>
     <property name="src-pressed" value=""/>
     <property name="title" value="2"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="23" name="page#2" x="336" y="352">
-   <properties>
-    <property name="font-name" value="fonts/Marker Felt.ttf"/>
-    <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value=""/>
-    <property name="src-normal" value="ui/assets/button_page.png"/>
-    <property name="src-pressed" value=""/>
-    <property name="title" value="3"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="24" name="page#3" x="448" y="352">
-   <properties>
-    <property name="font-name" value="fonts/Marker Felt.ttf"/>
-    <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value=""/>
-    <property name="src-normal" value="ui/assets/button_page.png"/>
-    <property name="src-pressed" value=""/>
-    <property name="title" value="4"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="25" name="page#4" x="560" y="352">
-   <properties>
-    <property name="font-name" value="fonts/Marker Felt.ttf"/>
-    <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value=""/>
-    <property name="src-normal" value="ui/assets/button_page.png"/>
-    <property name="src-pressed" value=""/>
-    <property name="title" value="5"/>
    </properties>
    <point/>
   </object>

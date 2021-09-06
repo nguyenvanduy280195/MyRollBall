@@ -26,11 +26,14 @@ private:
 
 	std::vector<cocos2d::PhysicsShape*> MakeWalls();
 
+	cocos2d::Sprite* MakeSpriteWithBoxBodyShape(cocos2d::ValueMap&);
+	cocos2d::Sprite* MakeSpriteWithCircleBodyShape(cocos2d::ValueMap&);
 	cocos2d::Sprite* MakeStart(cocos2d::ValueMap& value);
 	cocos2d::Sprite* MakeGoal(cocos2d::ValueMap& value);
 	cocos2d::Sprite* MakeKey(cocos2d::ValueMap& value);
 	cocos2d::Sprite* MakeLaserShooter(cocos2d::ValueMap& value);
 	cocos2d::Sprite* MakeRotatingBlock(cocos2d::ValueMap& value);
+	cocos2d::Sprite* MakeCarrot(cocos2d::ValueMap& value);
 
 	cocos2d::PhysicsShape* MakeSpikeBodyShape(cocos2d::ValueMap& value);
 
@@ -41,6 +44,8 @@ private:
 										 float durationOfDelay,
 										 float durationOfFadeOut,
 										 float durationOfDelayFadeOut);
+
+	
 
 	
 	int _currentLevel = 1;

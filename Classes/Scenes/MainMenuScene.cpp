@@ -49,6 +49,11 @@ bool MainMenuScene::init()
 	AddCallbackToButton("exit", MakeMenuButtonClicked(_exitGameDialog));
 	addChild(_exitGameDialog);
 
+	if(auto child= _tiledMap->getChildByName("version"))
+	{
+		child->setPosition(cocos2d::Director::getInstance()->getVisibleOrigin());
+	}
+
 	return true;
 }
 

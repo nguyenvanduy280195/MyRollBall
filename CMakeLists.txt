@@ -89,6 +89,7 @@ Classes/Scenes/MyCustomGUI.inl
 Classes/Scenes/MyCustomGUI.inl
 Classes/Scenes/MyCustomGUI.inl
 Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
 )
 
 list(APPEND GAME_HEADER

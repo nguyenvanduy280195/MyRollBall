@@ -34,6 +34,7 @@
 #include "Player.h"
 
 using Vec2 = cocos2d::Vec2;
+using Size = cocos2d::Size;
 using KeyCode = cocos2d::EventKeyboard::KeyCode;
 
 cocos2d::Scene* InGameScene::CreateScene()
@@ -77,6 +78,9 @@ bool InGameScene::init(int level)
 	_handlerManager = new (std::nothrow) HandlerManager(this);
 	_gameInfo = new (std::nothrow) GameInfo();
 
+	_screenInfo = Cocos2dCreator::CreateNode<ScreenInfo>();
+	addChild(_screenInfo, 1000000);
+
 	// level
 	const auto path = cocos2d::StringUtils::format(FORMAT_LEVEL.c_str(), _currentLevel);
 	if (_level = Cocos2dCreator::CreateNode<Level>(path))
@@ -88,7 +92,7 @@ bool InGameScene::init(int level)
 		CCLOG("Creating Level Object fails");
 		return false;
 	}
-	
+
 
 	// player
 	if (_player = Cocos2dCreator::CreateNode<Player>(this, _level->GetStartPosition()))
@@ -100,7 +104,7 @@ bool InGameScene::init(int level)
 		CCLOG("Creating Player Object fails");
 		return false;
 	}
-	
+
 
 	return true;
 }
@@ -114,23 +118,25 @@ void InGameScene::onEnterTransitionDidFinish()
 
 void InGameScene::update(float)
 {
-	if (_dashButton)
+	if (_screenInfo)
 	{
-		const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-		const auto dashButtonSize = _dashButton->getContentSize();
-		const float x = winSize.width - 0.5f * dashButtonSize.width - _position.x;
-		const float y = 0.5f * dashButtonSize.height - _position.y;
-		_dashButton->setPosition(Vec2(x, y));
+		const auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
+		_screenInfo->setPosition(visibleOrigin - _position);
 	}
-
 }
 
 void InGameScene::TakeCameraAfterPlayer()
 {
+	auto screenInfoHeight = 0.0f;
+	if (_screenInfo)
+	{
+		screenInfoHeight = _screenInfo->GetHeight();
+	}
+
 	const auto& levelPosition = _level->getPosition();
 	const auto& levelContentSize = _level->getContentSize();
 	const auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
-	const auto rect = cocos2d::Rect(levelPosition - visibleOrigin, cocos2d::Size(levelContentSize.width + 2 * visibleOrigin.x, levelContentSize.height + 2 * visibleOrigin.y));
+	const auto rect = cocos2d::Rect(-visibleOrigin - Vec2(0, screenInfoHeight), Size(levelContentSize.width + 2 * visibleOrigin.x, levelContentSize.height + 2 * visibleOrigin.y + screenInfoHeight));
 	_followingPlayerAction = cocos2d::Follow::create(_player->AsNode(), rect);
 	runAction(_followingPlayerAction);
 }
@@ -153,6 +159,20 @@ cocos2d::Vec2 InGameScene::GetVectorToPlayer() const
 	position.y = cocos2d::clampf(position.y, cameraYMin, cameraYMax);
 
 	return position;
+}
+
+void InGameScene::IncreaseNumberOfCarrots()
+{
+	_nCarrots++;
+	if (_screenInfo)
+	{
+		_screenInfo->SetCarrotText(std::to_string(_nCarrots));
+	}
+}
+
+void InGameScene::ShowKeyInScreenInfo()
+{
+	_screenInfo->ShowKey();
 }
 
 void InGameScene::StopGame()
@@ -209,4 +229,32 @@ void InGameScene::ShowGameOverDialog()
 	});
 	getParent()->addChild(dialog, INT16_MAX);
 	dialog->Show();
+}
+
+
+//////////////////////
+
+bool ScreenInfo::init()
+{
+	if (!MyCustomGUI<cocos2d::Layer>::init("ui/ingamescene-screen-info-horizontal.tmx"))
+	{
+		return false;
+	}
+
+	//setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+
+	return true;
+}
+
+void ScreenInfo::SetCarrotText(const std::string& text)
+{
+	SetTextContent("carrot", text);
+}
+
+void ScreenInfo::ShowKey()
+{
+	if (auto child = _tiledMap->getChildByName("key"))
+	{
+		child->setVisible(true);
+	}
 }

@@ -3,6 +3,8 @@
 #include "2d/CCLayer.h"
 #include "Utils/Cocos2dCreator.h"
 #include "IScene.h"
+#include "2d/CCTMXTiledMap.h"
+#include "MyCustomGUI.h"
 
 namespace cocos2d
 {
@@ -39,8 +41,10 @@ public:
 	void ShowGameOverDialog();
 	void StopGame();
 
+	void IncreaseNumberOfCarrots();
+	void ShowKeyInScreenInfo();
+
 	// Inherited via IScene
-	virtual ScreenLog* GetScreenLog() const override { return _screenLog; }
 	virtual HandlerManager* GetHandlerManager() const override { return _handlerManager; }
 	virtual GameInfo* GetGameInfo() const override { return _gameInfo; }
 
@@ -55,11 +59,12 @@ private:
 	
 	class HandlerManager* _handlerManager;
 	class GameInfo* _gameInfo;
-	class ScreenLog* _screenLog;
+	class ScreenInfo* _screenInfo;
 
 	cocos2d::ui::Button* _dashButton;
 
 	int _currentLevel;
+	int _nCarrots;
 
 	const std::string FORMAT_LEVEL = "levels/%03d.tmx";
 
@@ -67,4 +72,15 @@ private:
 	const std::string bestTime_temp = "1:23";
 
 	cocos2d::Follow* _followingPlayerAction;
+
+	
+};
+
+class ScreenInfo : public MyCustomGUI<cocos2d::Layer>
+{
+public:
+	bool init();
+	float GetHeight() const { return _tiledMap->getContentSize().height; }
+	void SetCarrotText(const std::string& text);
+	void ShowKey();
 };

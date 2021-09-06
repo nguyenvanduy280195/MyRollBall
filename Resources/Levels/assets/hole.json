@@ -1,11 +1,11 @@
 {
   "path": "levels/assets/hole.png",
-  "anchor.point.x": 0.4551083591331269,
+  "anchor.point.x": 0.5,
   "anchor.point.y": 0.5,
   "body.size.width": 0,
   "body.size.height": 0,
   "body.radius": 32.0,
-  "body.offset.x": -4.0,
+  "body.offset.x": 0.0,
   "body.offset.y": 0.0
 
 }

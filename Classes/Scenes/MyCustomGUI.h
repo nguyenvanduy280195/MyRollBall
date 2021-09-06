@@ -27,6 +27,7 @@ protected:
 
 	cocos2d::ui::Button* MakeButton(cocos2d::ValueMap& value);
 	cocos2d::ui::Text* MakeText(cocos2d::ValueMap& value);
+	
 
 	cocos2d::TMXTiledMap* _tiledMap;
 

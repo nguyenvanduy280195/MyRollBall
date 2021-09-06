@@ -13,11 +13,11 @@
             "scaleInEditor": 1
         },
         "000.tmx": {
-            "scale": 0.75,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 680,
-                "y": 836
+                "x": 672,
+                "y": 572
             }
         },
         "000.tmx#grass": {
@@ -29,10 +29,10 @@
         },
         "001.tmx": {
             "scale": 0.33,
-            "selectedLayer": 3,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 639.3939393939393,
-                "y": 639.3939393939394
+                "x": 672.7272727272726,
+                "y": 575.7575757575758
             }
         },
         "001.tmx#block_corner": {
@@ -52,42 +52,42 @@
         },
         "002.tmx": {
             "scale": 0.5,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 1122,
-                "y": 154
+                "x": 640,
+                "y": 640
             }
         },
         "003.tmx": {
             "scale": 0.5,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 126,
-                "y": 886
+                "x": 640,
+                "y": 640
             }
         },
         "004.tmx": {
-            "scale": 0.33,
-            "selectedLayer": 3,
+            "scale": 0.5,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 136.3636363636365,
-                "y": 1154.5454545454545
+                "x": 128,
+                "y": 128
             }
         },
         "005.tmx": {
-            "scale": 0.33,
-            "selectedLayer": 3,
+            "scale": 0.5,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 133.33333333333348,
-                "y": 1154.5454545454545
+                "x": 768,
+                "y": 656
             }
         },
         "006.tmx": {
             "scale": 0.5,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 606,
-                "y": 654
+                "x": 686,
+                "y": 642
             }
         },
         "006.tmx#spikes": {
@@ -97,34 +97,34 @@
         },
         "007.tmx": {
             "scale": 0.6709375,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 1150.6287843502562,
-                "y": 129.66930600838384
+                "x": 959.85095482068,
+                "y": 578.2952957615278
             }
         },
         "008.tmx": {
             "scale": 0.6709375,
-            "selectedLayer": 2,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 1126.7815556590594,
-                "y": 150.53563111318124
+                "x": 128.17885421518395,
+                "y": 129.66930600838384
             }
         },
         "009.tmx": {
             "scale": 0.6709375,
-            "selectedLayer": 4,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 640.89427107592,
-                "y": 640.89427107592
+                "x": 128.17885421518395,
+                "y": 129.66930600838384
             }
         },
         "010.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 896,
-                "y": 128
+                "x": 208,
+                "y": 144
             }
         },
         "010.tmx#block_corner": {
@@ -144,63 +144,63 @@
         },
         "011.tmx": {
             "scale": 0.6709375,
-            "selectedLayer": 2,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 1126.7815556590594,
-                "y": 150.53563111318124
+                "x": 320.44713553796,
+                "y": 640.89427107592
             }
         },
         "012.tmx": {
-            "scale": 0.6709375,
-            "selectedLayer": 2,
+            "scale": 0.75,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 1150.6287843502562,
-                "y": 1150.6287843502564
+                "x": 93.33333333333337,
+                "y": 98.66666666666669
             }
         },
         "013.tmx": {
             "scale": 0.6709375,
-            "selectedLayer": 2,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 643.8751746623195,
-                "y": 952.398695854681
+                "x": 576.804843968328,
+                "y": 1150.6287843502564
             }
         },
         "014.tmx": {
             "scale": 0.6709375,
-            "selectedLayer": 2,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 696.040987424313,
-                "y": 755.6590591523056
+                "x": 704.983698183512,
+                "y": 576.804843968328
             }
         },
         "015.tmx": {
             "scale": 0.5,
-            "selectedLayer": 2,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 726,
-                "y": 622
+                "x": 512,
+                "y": 448
             }
         },
         "016.tmx": {
             "scale": 0.6709375,
-            "selectedLayer": 2,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 605.1234280391244,
-                "y": 558.9194224499302
+                "x": 704.983698183512,
+                "y": 560.40987424313
             }
         },
         "017.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 3,
+            "scale": 1,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 526.6666666666666,
-                "y": 570.6666666666665
+                "x": 333,
+                "y": 509
             }
         },
         "018.tmx": {
             "scale": 0.5,
-            "selectedLayer": 3,
+            "selectedLayer": 6,
             "viewCenter": {
                 "x": 444,
                 "y": 616
@@ -208,42 +208,66 @@
         },
         "019.tmx": {
             "scale": 0.5,
-            "selectedLayer": 5,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 488,
-                "y": 708
+                "x": 706,
+                "y": 702
             }
         },
         "020.tmx": {
             "scale": 0.5,
-            "selectedLayer": 6,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 792,
-                "y": 548
+                "x": 128,
+                "y": 648
             }
         },
         "021.tmx": {
             "scale": 0.5,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 480,
-                "y": 342
+                "x": 512,
+                "y": 448
             }
         },
         "022.tmx": {
             "scale": 0.5,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 752,
-                "y": 420
+                "x": 624,
+                "y": 750
+            }
+        },
+        "023.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 634,
+                "y": 520
+            }
+        },
+        "024.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 639.4038192827202,
+                "y": 660.2701443875176
+            }
+        },
+        "025.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 633.4420121099208,
+                "y": 779.5062878435026
             }
         },
         "030.tmx": {
             "scale": 0.6709375,
-            "selectedLayer": 2,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 640.89427107592,
-                "y": 845.0861667442945
+                "x": 625.9897531439218,
+                "y": 716.9073125291104
             }
         },
         "1.tsx": {
@@ -536,18 +560,18 @@
     "project": "levels.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "016.tmx",
-        "017.tmx",
-        "019.tmx",
-        "020.tmx",
-        "021.tmx",
-        "022.tmx",
-        "015.tmx",
-        "013.tmx",
-        "014.tmx",
-        "018.tmx",
+        "010.tmx",
+        "009.tmx",
+        "008.tmx",
+        "007.tmx",
+        "006.tmx",
+        "005.tmx",
+        "004.tmx",
+        "003.tmx",
+        "002.tmx",
         "001.tmx",
-        "002.tmx"
+        "023.tmx",
+        "022.tmx"
     ],
     "resizeMap.removeObjects": true,
     "textEdit.monospace": true,

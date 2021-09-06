@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="21" height="21" tilewidth="64" tileheight="64" infinite="0" nextlayerid="9" nextobjectid="36">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="21" height="21" tilewidth="64" tileheight="64" infinite="0" nextlayerid="10" nextobjectid="46">
  <tileset firstgid="1" source="grass.tsx"/>
  <tileset firstgid="2" source="block_large.tsx"/>
  <tileset firstgid="4" source="spikes.tsx"/>
@@ -70,5 +70,37 @@
   <object id="13" x="64" y="640" width="128" height="16"/>
   <object id="14" x="64" y="64" width="128" height="16"/>
   <object id="15" x="688" y="192" width="16" height="192"/>
+ </objectgroup>
+ <objectgroup id="9" name="carrots">
+  <object id="36" x="128" y="704">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="37" x="1216" y="1216">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="39" x="1024" y="640">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="43" x="640" y="320">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="44" x="1024" y="128">
+   <properties>
+    <property name="src" value="levels/assets/carrot.json"/>
+   </properties>
+   <point/>
+  </object>
  </objectgroup>
 </map>

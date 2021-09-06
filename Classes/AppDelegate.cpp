@@ -44,9 +44,6 @@ static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
 AppDelegate::AppDelegate()
 {
-    //ScreenLog::GetInstance()->SetLevelMask(LL_DEBUG | LL_INFO | LL_WARNING | LL_ERROR | LL_FATAL);
-    //ScreenLog::GetInstance()->SetFontFile("fonts/MonospaceBold.ttf");
-    //ScreenLog::GetInstance()->SetTimeoutSeconds(5);
     duy::ScreenLog::GetInstance()->SetFontFamily("fonts/MonospaceBold.ttf");
     duy::ScreenLog::GetInstance()->SetFontSize(20.f);
     duy::ScreenLog::GetInstance()->SetTimeout(10.f);
@@ -89,31 +86,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 
-    // turn on display FPS
-    director->setDisplayStats(true);
-    
-
-    // set FPS. the default value is 1.0/60 if you don't call this
-    //director->setAnimationInterval(1.0f / 60);
-
     // Set the design resolution
     glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
-    auto frameSize = glview->getFrameSize();
-    //if (frameSize.height > mediumResolutionSize.height) // if the frame's height is larger than the height of medium size.
-    //{        
-    //    CCLOG("Your resolution size is large");
-    //    director->setContentScaleFactor(MIN(largeResolutionSize.height/designResolutionSize.height, largeResolutionSize.width/designResolutionSize.width));
-    //}
-    //else if (frameSize.height > smallResolutionSize.height) // if the frame's height is larger than the height of small size.
-    //{   
-    //    CCLOG("Your resolution size is medium");
-    //    director->setContentScaleFactor(MIN(mediumResolutionSize.height/designResolutionSize.height, mediumResolutionSize.width/designResolutionSize.width));
-    //}
-    //else // if the frame's height is smaller than the height of medium size.
-    //{   
-    //    CCLOG("Your resolution size is small");
-    //    director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
-    //}
+
     director->setContentScaleFactor(MIN(mediumResolutionSize.height / designResolutionSize.height, mediumResolutionSize.width / designResolutionSize.width));
 
     register_all_packages();
