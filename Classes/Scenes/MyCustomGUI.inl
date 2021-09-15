@@ -7,6 +7,11 @@
 #include "2d/CCTMXTiledMap.h"
 #include "ui/UIImageView.h"
 
+#define USE_AUDIO_ENGINE CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+#if USE_AUDIO_ENGINE
+#include "audio/include/AudioEngine.h"
+#endif
 
 using Vec2 = cocos2d::Vec2;
 
@@ -70,7 +75,17 @@ inline void MyCustomGUI<TGUI>::AddCallbackToButton(const std::string& name, cons
 		{
 			if (auto button = dynamic_cast<cocos2d::ui::Button*>(child))
 			{
-				button->addClickEventListener(callback);
+				button->addClickEventListener([callback](cocos2d::Ref* ref)
+				{
+					if (callback)
+					{
+						callback(ref);
+					}
+
+				#if USE_AUDIO_ENGINE
+					cocos2d::AudioEngine::play2d("sfx/select.wav");
+				#endif
+				});
 			}
 		}
 	}
@@ -130,7 +145,7 @@ inline cocos2d::ui::Text* MyCustomGUI<TGUI>::MakeText(cocos2d::ValueMap& value)
 	}
 
 	auto text = cocos2d::ui::Text::create(str, fontName, fontSize);
-	
+
 	text->setAnchorPoint(Vec2(anchorPointX, anchorPointY));
 	text->setName(name);
 	text->setColor(color);

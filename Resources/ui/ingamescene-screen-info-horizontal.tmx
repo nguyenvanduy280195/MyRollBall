@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="64" height="4" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="7">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="64" height="4" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="8">
  <tileset firstgid="1" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
   <image source="assets/ui_tilesheet.png" width="480" height="144"/>
  </tileset>
@@ -9,14 +9,14 @@
   </data>
  </layer>
  <objectgroup id="6" name="images">
-  <object id="2" x="32" y="32">
+  <object id="2" x="128" y="32">
    <properties>
     <property name="invisible" type="bool" value="false"/>
-    <property name="src" value="levels/assets/carrot_mini.png"/>
+    <property name="src" value="ui/assets/coin-mini.png"/>
    </properties>
    <point/>
   </object>
-  <object id="6" name="key" x="176" y="32">
+  <object id="6" name="key" x="256" y="32">
    <properties>
     <property name="invisible" type="bool" value="true"/>
     <property name="src" value="levels/assets/key.png"/>
@@ -24,8 +24,21 @@
    <point/>
   </object>
  </objectgroup>
+ <objectgroup id="8" name="buttons">
+  <object id="7" name="pause" x="32" y="32">
+   <properties>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/button-pause.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
  <objectgroup id="7" name="texts">
-  <object id="4" name="carrot" x="80" y="48">
+  <object id="4" name="carrot" x="176" y="48">
    <properties>
     <property name="color" value="#ffffff"/>
     <property name="enableShadow" type="bool" value="true"/>

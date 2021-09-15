@@ -1,0 +1,13 @@
+{
+  "path.image": "levels/assets/coin.png",
+  "path.plist": "levels/assets/coin.plist",
+  "animation.delay": 0.1,
+  "frames.number": 6,
+  "anchor.point.x": 0.5,
+  "anchor.point.y": 0.5,
+  "body.size.width": 16,
+  "body.size.height": 32,
+  "body.radius": 0.0,
+  "body.offset.x": -8.0,
+  "body.offset.y": 0.0
+}

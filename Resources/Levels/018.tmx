@@ -61,34 +61,34 @@
   <object id="24" x="1199.5" y="960" width="16.5" height="320"/>
   <object id="25" x="64" y="768" width="16.5" height="320"/>
  </objectgroup>
- <objectgroup id="7" name="carrots">
+ <objectgroup id="7" name="coins">
   <object id="26" x="1152" y="1024">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
   <object id="28" x="128" y="1024">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
   <object id="29" x="1152" y="832">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
   <object id="30" x="1152" y="128">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
   <object id="31" x="576" y="448">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>

@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="true"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.37"
-     inkscape:cx="-936.48649"
-     inkscape:cy="801.35135"
+     inkscape:zoom="4.19"
+     inkscape:cx="-536.39618"
+     inkscape:cy="1487.7088"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
@@ -93,6 +93,29 @@
          x="-222.48381"
          y="139.55803">Bunny finds home</tspan></text>
     <g
-       id="g25620" />
+       id="g25620">
+      <g
+         id="g978"
+         inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\button-pause.png"
+         inkscape:export-xdpi="98.25"
+         inkscape:export-ydpi="98.25"
+         transform="matrix(0.48585796,0,0,0.50000003,-73.899233,196.29224)"
+         style="stroke-width:2.0289">
+        <rect
+           style="fill:#e6f5c8;fill-opacity:1;stroke:none;stroke-width:5.36812;paint-order:stroke markers fill"
+           id="rect852"
+           width="3.8273969"
+           height="8.4666662"
+           x="-143.73311"
+           y="392.58447" />
+        <rect
+           style="fill:#e6f5c8;fill-opacity:1;stroke:none;stroke-width:5.36812;paint-order:stroke markers fill"
+           id="rect974"
+           width="3.8273969"
+           height="8.4666662"
+           x="-138.8474"
+           y="392.58447" />
+      </g>
+    </g>
   </g>
 </svg>

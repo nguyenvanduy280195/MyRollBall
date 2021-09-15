@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "dialog-choosing-level.tmx",
+    "activeFile": "dialog-pausing-game.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -120,7 +120,7 @@
             "scale": 1.5473873873873873,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 248.16022356776898,
+                "x": 247.51397298556122,
                 "y": 104.0463437354448
             }
         },
@@ -142,6 +142,28 @@
             }
         },
         "dialog-game-over.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
+        "dialog-option.tmx": {
+            "scale": 1.7891666666666666,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 160.40987424312996,
+                "y": 240.33535165346998
+            }
+        },
+        "dialog-option.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
+        "dialog-pausing-game.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128,
+                "y": 112
+            }
+        },
+        "dialog-pausing-game.tmx#ui_tilesheet": {
             "scaleInDock": 1
         },
         "dialog-victory-0.tmx": {
@@ -199,10 +221,10 @@
             "scaleInEditor": 1
         },
         "ingamescene-screen-info-horizontal.tmx": {
-            "scale": 1.5,
-            "selectedLayer": 1,
+            "scale": 2,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 32,
+                "x": 512,
                 "y": 32
             }
         },
@@ -273,8 +295,8 @@
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 48,
-                "y": 274
+                "x": 0,
+                "y": 672
             }
         },
         "scene-main-menu.tmx#text_control_ball_felt": {
@@ -295,24 +317,24 @@
     "map.tileWidth": 16,
     "map.width": 20,
     "openFiles": [
-        "scene-main-menu.tmx",
-        "dialog-choosing-level.tmx"
+        "dialog-pausing-game.tmx",
+        "ingamescene-screen-info-horizontal.tmx"
     ],
     "project": "ui.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "ingamescene-screen-info-horizontal.tmx",
+        "dialog-pausing-game.tmx",
+        "dialog-exit-game.tmx",
+        "dialog-option.tmx",
         "scene-main-menu.tmx",
         "dialog-choosing-level.tmx",
         "scene-coming-soon.tmx",
-        "ingamescene-screen-info-horizontal.tmx",
         "ingamescene-screen-info.tmx",
         "dialog-credits.tmx",
-        "dialog-exit-game.tmx",
         "dialog-victory.tmx",
         "dialog-game-over.tmx",
-        "dialog-victory-0.tmx",
-        "dialog-about.tmx",
-        "layer-exit-game.tmx"
+        "dialog-victory-0.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.margin": 0,

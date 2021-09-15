@@ -18,7 +18,7 @@ private:
 	void CheckVictory(cocos2d::PhysicsContact& contact);
 	void CheckGameOver(cocos2d::PhysicsContact& contact);
 	void CheckGettingKey(cocos2d::PhysicsContact& contact);
-	void CheckGettingCarrot(cocos2d::PhysicsContact& contact);
+	void CheckGettingCoin(cocos2d::PhysicsContact& contact);
 
 
 

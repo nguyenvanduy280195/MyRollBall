@@ -44,22 +44,22 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="5" name="carrots">
+ <objectgroup id="5" name="coins">
   <object id="21" x="1152" y="768">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
   <object id="22" x="128" y="128">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
   <object id="23" x="320" y="128">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>

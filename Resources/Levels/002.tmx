@@ -33,10 +33,10 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="5" name="carrots">
+ <objectgroup id="5" name="coins">
   <object id="8" x="640" y="640">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>

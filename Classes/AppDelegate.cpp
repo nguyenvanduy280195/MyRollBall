@@ -29,7 +29,8 @@
 #include "Scenes/MainMenuScene.h"
 #include "ScreenLog/ScreenLog.h"
 
-// #define USE_AUDIO_ENGINE 1
+
+#define USE_AUDIO_ENGINE CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
 #if USE_AUDIO_ENGINE
 #include "audio/include/AudioEngine.h"

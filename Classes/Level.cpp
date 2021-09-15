@@ -7,6 +7,8 @@
 #include "Utils/TMXUtil.h"
 #include "json/document.h"
 #include "Utils/StaticMethods.h"
+#include "Crossbow.h"
+#include "Utils/Cocos2dCreator.h"
 
 using Super = cocos2d::TMXTiledMap;
 using Vec2 = cocos2d::Vec2;
@@ -44,16 +46,17 @@ bool Level::init(const std::string& filename)
 		}
 	});
 
-	TMXUtil::ForeachAllObjectsInObjectGroup(this, "carrots", [this](cocos2d::ValueMap& value)
+	TMXUtil::ForeachAllObjectsInObjectGroup(this, "coins", [this](cocos2d::ValueMap& value)
 	{
-		auto carrot = MakeCarrot(value);
-		addChild(carrot);
+		auto coin = MakeCoin(value);
+		addChild(coin);
 	});
 
-	TMXUtil::ForeachAllObjectsInObjectGroup(this, "lasers", [this](cocos2d::ValueMap& value)
+	TMXUtil::ForeachAllObjectsInObjectGroup(this, "crossbows", [this](cocos2d::ValueMap& value)
 	{
-		auto laserShooter = MakeLaserShooter(value);
-		addChild(laserShooter);
+		//auto laserShooter = MakeLaserShooter(value);
+		auto crossbow = Cocos2dCreator::CreateNode<Crossbow>(value, _contentSize);
+		addChild(crossbow);
 	});
 
 	TMXUtil::ForeachAllObjectsInObjectGroup(this, "rotating-blocks", [this](cocos2d::ValueMap& value)
@@ -262,36 +265,6 @@ cocos2d::Sprite* Level::MakeKey(cocos2d::ValueMap& value)
 	return key;
 }
 
-cocos2d::Sprite* Level::MakeLaserShooter(cocos2d::ValueMap& value)
-{
-	auto x = value["x"].asFloat();
-	auto y = value["y"].asFloat();
-	auto src = value["src"].asString();
-	auto direction = value["direction"].asString();
-
-	auto laserShooter = cocos2d::Sprite::create(src);
-	laserShooter->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	laserShooter->setPosition(x, y);
-	laserShooter->setLocalZOrder(500);
-	if (direction.compare("right") == 0)
-	{
-		laserShooter->setRotation(90);
-	}
-	else if (direction.compare("bottom") == 0)
-	{
-		laserShooter->setRotation(180);
-	}
-	else if (direction.compare("left") == 0)
-	{
-		laserShooter->setRotation(-90);
-	}
-
-	auto laserBeam = MakeLaserBeam(value, 0.5f * laserShooter->getContentSize());
-	laserShooter->addChild(laserBeam);
-
-	return laserShooter;
-}
-
 cocos2d::Sprite* Level::MakeRotatingBlock(cocos2d::ValueMap& value)
 {
 	auto x = value["x"].asFloat();
@@ -320,16 +293,52 @@ cocos2d::Sprite* Level::MakeRotatingBlock(cocos2d::ValueMap& value)
 	return rotatingBlock;
 }
 
-cocos2d::Sprite* Level::MakeCarrot(cocos2d::ValueMap& value)
+cocos2d::Sprite* Level::MakeCoin(cocos2d::ValueMap& value)
 {
-	auto carrot = MakeSpriteWithBoxBodyShape(value);
-	carrot->setName("carrot");
-	auto body = carrot->getPhysicsBody();
-	body->setCategoryBitmask(CARROT_CATEGORY_BITMASK);
-	body->setCollisionBitmask(CARROT_COLLISION_BITMASK);
-	body->setContactTestBitmask(CARROT_CONTACT_TEST_BITMASK);
+	auto x = value["x"].asFloat();
+	auto y = value["y"].asFloat();
+	auto src = value["src"].asString();
 
-	return carrot;
+	auto document = StaticMethods::GetJSONFromFile(src);
+	auto textureFileName = document["path.image"].GetString();
+	auto plist = document["path.plist"].GetString();
+	auto animationDelay = document["animation.delay"].GetFloat();
+	auto nFrames = document["frames.number"].GetInt();
+	auto anchorPointX = document["anchor.point.x"].GetFloat();
+	auto anchorPointY = document["anchor.point.y"].GetFloat();
+	auto bodyWidth = document["body.size.width"].GetFloat();
+	auto bodyHeight = document["body.size.height"].GetFloat();
+	auto bodyOffsetX = document["body.offset.x"].GetFloat();
+	auto bodyOffsetY = document["body.offset.y"].GetFloat();
+
+	auto body = cocos2d::PhysicsBody::createBox(Size(bodyWidth, bodyHeight), cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, Vec2(bodyOffsetX, bodyOffsetY));
+	body->setDynamic(false);
+	body->setCategoryBitmask(COIN_CATEGORY_BITMASK);
+	body->setCollisionBitmask(COIN_COLLISION_BITMASK);
+	body->setContactTestBitmask(COIN_CONTACT_TEST_BITMASK);
+	
+	StaticMethods::OpenSpritesheet open(plist, textureFileName);
+	//cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist, textureFileName);
+	cocos2d::Vector<cocos2d::SpriteFrame*> frames;
+	frames.reserve(nFrames);
+	for (int i = 0; i < nFrames; i++)
+	{
+		auto name = cocos2d::StringUtils::format("coin-%d.png", i);
+		auto spriteFrame = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName(name);
+		frames.pushBack(spriteFrame);
+	}
+	auto animation = cocos2d::Animation::createWithSpriteFrames(frames, animationDelay);
+	auto animate = cocos2d::Animate::create(animation);
+
+	auto coin = cocos2d::Sprite::createWithSpriteFrameName("coin-0.png");
+	
+	coin->setName("coin");
+	coin->setAnchorPoint(Vec2(anchorPointX, anchorPointY));
+	coin->setPosition(x, y);
+	coin->setPhysicsBody(body);
+	coin->runAction(cocos2d::RepeatForever::create(animate));
+
+	return coin;
 }
 
 cocos2d::PhysicsShape* Level::MakeSpikeBodyShape(cocos2d::ValueMap& value)
@@ -343,67 +352,4 @@ cocos2d::PhysicsShape* Level::MakeSpikeBodyShape(cocos2d::ValueMap& value)
 	const auto offset = Vec2(xOffset, yOffset);
 
 	return cocos2d::PhysicsShapeEdgeBox::create(size, cocos2d::PHYSICSSHAPE_MATERIAL_DEFAULT, 0.0f, offset);
-}
-
-cocos2d::Sprite* Level::MakeLaserBeam(cocos2d::ValueMap& value, const cocos2d::Vec2& position)
-{
-	auto src = value["src-laser"].asString();
-	const float laserScaleFactorY = value["laser-scale-factor-y"].asFloat();
-	const float durationOfFadeIn = value["laser-scale-factor-y"].asFloat();
-	const float durationOfFadeInDelay = value["laser-scale-factor-y"].asFloat();
-	const float durationOfFadeOut = value["laser-scale-factor-y"].asFloat();
-	const float durationOfFadeOutDelay = value["laser-scale-factor-y"].asFloat();
-
-
-	auto laserBeam = cocos2d::Sprite::create(src);
-	laserBeam->setScaleY(laserScaleFactorY);
-	laserBeam->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
-	laserBeam->setPosition(position);
-
-	auto body = MakeLaserBeamBody(laserBeam->getContentSize());
-	laserBeam->setPhysicsBody(body);
-
-	auto action = MakeLaserBeamAction(body, durationOfFadeIn, durationOfFadeInDelay, durationOfFadeOut, durationOfFadeOutDelay);
-	laserBeam->runAction(action);
-
-	return laserBeam;
-}
-
-cocos2d::PhysicsBody* Level::MakeLaserBeamBody(const cocos2d::Size& size)
-{
-	auto body = cocos2d::PhysicsBody::createBox(size);
-	body->setDynamic(false);
-	body->setCategoryBitmask(LASER_CATEGORY_BITMASK);
-	body->setCollisionBitmask(LASER_COLLISION_BITMASK);
-	body->setContactTestBitmask(LASER_CONTACT_TEST_BITMASK);
-
-	return body;
-}
-
-/*
-*		 fade out			delay			fade in			 delay
-* shown ----------> hidden -------> hidden ---------> shown ------->
-*/
-cocos2d::Action* Level::MakeLaserBeamAction(cocos2d::PhysicsBody* body,
-											float durationOfFadeIn,
-											float durationOfFadeInDelay,
-											float durationOfFadeOut,
-											float durationOfFadeOutDelay)
-{
-	auto setBodyEnalbled = [body](bool enabled)
-	{
-		if (body)
-		{
-			body->setEnabled(enabled);
-		}
-	};
-
-	auto fadeIn = cocos2d::FadeIn::create(durationOfFadeIn);
-	auto onBodyEnabled = cocos2d::CallFunc::create([setBodyEnalbled]() { setBodyEnalbled(true); });
-	auto delay = [](float seconds) { return cocos2d::DelayTime::create(seconds); };
-	auto onBodyDisabled = cocos2d::CallFunc::create([setBodyEnalbled]() { setBodyEnalbled(false); });
-	auto fadeOut = cocos2d::FadeOut::create(durationOfFadeOut);
-
-	auto sequence = cocos2d::Sequence::create(onBodyEnabled, fadeIn, delay(durationOfFadeInDelay), fadeOut, onBodyDisabled, delay(durationOfFadeOutDelay), nullptr);
-	return cocos2d::RepeatForever::create(sequence);
 }

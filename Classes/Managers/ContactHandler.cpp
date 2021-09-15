@@ -12,6 +12,15 @@
 
 #include "2d/CCActionInterval.h"
 
+
+#define USE_AUDIO_ENGINE CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+#if USE_AUDIO_ENGINE
+#include "audio/include/AudioEngine.h"
+#endif
+
+//#include "editor-support/cocostudio/SimpleAudioEngine.h"
+
 ContactHandler::ContactHandler(InGameScene* owner)
 {
 	_inGameScene = owner;
@@ -27,15 +36,15 @@ ContactHandler::ContactHandler(InGameScene* owner)
 bool ContactHandler::OnContactBegan(cocos2d::PhysicsContact& contact)
 {
 	CCASSERT(_inGameScene != nullptr, "Please assign InGameScene");
-	if(_inGameScene == nullptr)
+	if (_inGameScene == nullptr)
 	{
 		return false;
 	}
-	
+
 	CheckVictory(contact);
 	CheckGameOver(contact);
 	CheckGettingKey(contact);
-	CheckGettingCarrot(contact);
+	CheckGettingCoin(contact);
 
 	return true;
 }
@@ -91,19 +100,25 @@ void ContactHandler::CheckGettingKey(cocos2d::PhysicsContact& contact)
 
 	if (nodeA->getName().compare("key") == 0)
 	{
-		_inGameScene->_level->Locked = false;
-		_inGameScene->ShowKeyInScreenInfo();
 		nodeA->removeFromParent();
 	}
 	else if (nodeB->getName().compare("key") == 0)
 	{
-		_inGameScene->_level->Locked = false;
-		_inGameScene->ShowKeyInScreenInfo();
 		nodeB->removeFromParent();
 	}
+	else
+	{
+		return;
+	}
+
+	_inGameScene->_level->Locked = false;
+	_inGameScene->ShowKeyInScreenInfo();
+#if USE_AUDIO_ENGINE
+	cocos2d::AudioEngine::play2d("sfx/key.wav");
+#endif
 }
 
-void ContactHandler::CheckGettingCarrot(cocos2d::PhysicsContact& contact)
+void ContactHandler::CheckGettingCoin(cocos2d::PhysicsContact& contact)
 {
 	const auto nodeA = contact.getShapeA()->getBody()->getNode();
 	const auto nodeB = contact.getShapeB()->getBody()->getNode();
@@ -113,14 +128,22 @@ void ContactHandler::CheckGettingCarrot(cocos2d::PhysicsContact& contact)
 		return;
 	}
 
-	if (nodeA->getName().compare("carrot") == 0)
+	if (nodeA->getName().compare("coin") == 0)
 	{
-		_inGameScene->IncreaseNumberOfCarrots();
 		nodeA->removeFromParent();
 	}
-	else if (nodeB->getName().compare("carrot") == 0)
+	else if (nodeB->getName().compare("coin") == 0)
 	{
-		_inGameScene->IncreaseNumberOfCarrots();
+
 		nodeB->removeFromParent();
 	}
+	else
+	{
+		return;
+	}
+
+	_inGameScene->IncreaseNumberOfCoin();
+#if USE_AUDIO_ENGINE
+	cocos2d::AudioEngine::play2d("sfx/coin.wav");
+#endif
 }

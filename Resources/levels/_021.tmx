@@ -49,7 +49,7 @@
     <property name="duration-of-fade-out-delay" type="float" value="1"/>
     <property name="laser-scale-factor-y" type="float" value="1"/>
     <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
+    <property name="src-laser" value="levels/assets/arrow.png"/>
    </properties>
    <point/>
   </object>
@@ -62,7 +62,7 @@
     <property name="duration-of-fade-out-delay" type="float" value="1"/>
     <property name="laser-scale-factor-y" type="float" value="1"/>
     <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
+    <property name="src-laser" value="levels/assets/arrow.png"/>
    </properties>
    <point/>
   </object>
@@ -75,7 +75,7 @@
     <property name="duration-of-fade-out-delay" type="float" value="1"/>
     <property name="laser-scale-factor-y" type="float" value="1"/>
     <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
+    <property name="src-laser" value="levels/assets/arrow.png"/>
    </properties>
    <point/>
   </object>
@@ -88,7 +88,7 @@
     <property name="duration-of-fade-out-delay" type="float" value="1"/>
     <property name="laser-scale-factor-y" type="float" value="1"/>
     <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
+    <property name="src-laser" value="levels/assets/arrow.png"/>
    </properties>
    <point/>
   </object>
@@ -101,7 +101,7 @@
     <property name="duration-of-fade-out-delay" type="float" value="1"/>
     <property name="laser-scale-factor-y" type="float" value="1"/>
     <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
+    <property name="src-laser" value="levels/assets/arrow.png"/>
    </properties>
    <point/>
   </object>
@@ -114,7 +114,7 @@
     <property name="duration-of-fade-out-delay" type="float" value="1"/>
     <property name="laser-scale-factor-y" type="float" value="1"/>
     <property name="src" value="levels/assets/laser_shooter.png"/>
-    <property name="src-laser" value="levels/assets/laser.png"/>
+    <property name="src-laser" value="levels/assets/arrow.png"/>
    </properties>
    <point/>
   </object>
@@ -147,34 +147,34 @@
   <object id="43" x="64" y="384" width="15" height="128"/>
   <object id="44" x="64" y="576" width="128" height="15"/>
  </objectgroup>
- <objectgroup id="8" name="carrots">
+ <objectgroup id="8" name="coins">
   <object id="51" name="carrot" x="1152" y="384">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
   <object id="52" name="carrot" x="704" y="960">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
   <object id="53" name="carrot" x="128" y="640">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
   <object id="54" name="carrot" x="128" y="448">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
   <object id="55" name="carrot" x="512" y="448">
    <properties>
-    <property name="src" value="levels/assets/carrot.json"/>
+    <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>

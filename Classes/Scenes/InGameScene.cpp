@@ -32,6 +32,10 @@
 
 #include "MyCustomGUI.inl"
 #include "Player.h"
+#include "Dialogs/PausingGameDialog.h"
+#include "json/document.h"
+#include "json/stringbuffer.h"
+#include "json/prettywriter.h"
 
 using Vec2 = cocos2d::Vec2;
 using Size = cocos2d::Size;
@@ -46,7 +50,8 @@ cocos2d::Scene* InGameScene::CreateScene(int level)
 {
 	auto scene = cocos2d::Scene::createWithPhysics();
 
-#if CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID
+//#if CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID
+#if 1
 	scene->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
 #endif
 	scene->getPhysicsWorld()->setGravity(cocos2d::Vec2(0, 0.0f));
@@ -81,6 +86,24 @@ bool InGameScene::init(int level)
 	_screenInfo = Cocos2dCreator::CreateNode<ScreenInfo>();
 	addChild(_screenInfo, 1000000);
 
+	rapidjson::Document document;
+	auto profilePath = cocos2d::FileUtils::getInstance()->getWritablePath() + "profile.json";
+	if (!cocos2d::FileUtils::getInstance()->isFileExist(profilePath))
+	{
+		document.SetObject();
+		document.AddMember("coin", _nCoins, document.GetAllocator());
+
+		StaticMethods::WriteJSONOnFile(document, profilePath);
+	}
+	else
+	{
+		auto jsonFileContent = cocos2d::FileUtils::getInstance()->getStringFromFile(profilePath);
+		document.Parse(jsonFileContent.c_str());
+		_nCoins = document["coin"].GetInt();
+	}
+
+	_screenInfo->SetCoinText(std::to_string(_nCoins));
+
 	// level
 	const auto path = cocos2d::StringUtils::format(FORMAT_LEVEL.c_str(), _currentLevel);
 	if (_level = Cocos2dCreator::CreateNode<Level>(path))
@@ -105,6 +128,15 @@ bool InGameScene::init(int level)
 		return false;
 	}
 
+	_screenInfo->AddPauseButtonCallback([this](cocos2d::Ref*)
+	{
+		auto dialog = Cocos2dCreator::CreateNode<PausingGameDialog>();
+		dialog->OnEventPaused = [this]() { _eventDispatcher->pauseEventListenersForTarget(this); };
+		dialog->OnEventUnpaused = [this]() { _eventDispatcher->resumeEventListenersForTarget(this); };
+		addChild(dialog);
+		dialog->Show();
+
+	});
 
 	return true;
 }
@@ -161,12 +193,12 @@ cocos2d::Vec2 InGameScene::GetVectorToPlayer() const
 	return position;
 }
 
-void InGameScene::IncreaseNumberOfCarrots()
+void InGameScene::IncreaseNumberOfCoin()
 {
-	_nCarrots++;
+	_nCoins++;
 	if (_screenInfo)
 	{
-		_screenInfo->SetCarrotText(std::to_string(_nCarrots));
+		_screenInfo->SetCoinText(std::to_string(_nCoins));
 	}
 }
 
@@ -187,6 +219,13 @@ void InGameScene::ShowVictory()
 {
 	StopGame();
 	_player->MoveToCenterGoal(_level->GetGoalPosition(), [this]() { ShowVictoryDialog(); });
+	
+	auto profilePath = cocos2d::FileUtils::getInstance()->getWritablePath() + "profile.json";
+	
+	auto document = StaticMethods::GetJSONFromFile(profilePath);
+	document["coin"] = _nCoins;
+
+	StaticMethods::WriteJSONOnFile(document, profilePath);
 }
 
 void InGameScene::ShowGameOver()
@@ -246,7 +285,7 @@ bool ScreenInfo::init()
 	return true;
 }
 
-void ScreenInfo::SetCarrotText(const std::string& text)
+void ScreenInfo::SetCoinText(const std::string& text)
 {
 	SetTextContent("carrot", text);
 }

@@ -5,6 +5,9 @@
 #include "2d/CCTMXTiledMap.h"
 #include "ScreenLog/ScreenLog.h"
 
+#include "json/stringbuffer.h"
+#include "json/prettywriter.h"
+
 cocos2d::Color3B StaticMethods::MakeColor3BFromHex(const std::string& hex)
 {
 	if (hex.empty())
@@ -54,4 +57,14 @@ rapidjson::Document StaticMethods::GetJSONFromFile(const std::string filePath)
 	}
 
 	return document;
+}
+
+void StaticMethods::WriteJSONOnFile(rapidjson::Document& document, const std::string filePath)
+{
+	rapidjson::StringBuffer strbuf;
+	rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(strbuf);
+	document.Accept(writer);
+
+	auto newJsonFileContent = strbuf.GetString();
+	cocos2d::FileUtils::getInstance()->writeStringToFile(newJsonFileContent, filePath);
 }

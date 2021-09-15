@@ -1,0 +1,8 @@
+{
+  "path.image": "levels/assets/crossbow.png",
+  "path.plist": "levels/assets/crossbow.plist",
+  "animation.delay": 0.5,
+  "frames.number": 5,
+  "anchor.point.x": 0.5,
+  "anchor.point.y": 0.5
+}

@@ -41,7 +41,7 @@ public:
 	void ShowGameOverDialog();
 	void StopGame();
 
-	void IncreaseNumberOfCarrots();
+	void IncreaseNumberOfCoin();
 	void ShowKeyInScreenInfo();
 
 	// Inherited via IScene
@@ -64,7 +64,7 @@ private:
 	cocos2d::ui::Button* _dashButton;
 
 	int _currentLevel;
-	int _nCarrots;
+	int _nCoins;
 
 	const std::string FORMAT_LEVEL = "levels/%03d.tmx";
 
@@ -80,7 +80,10 @@ class ScreenInfo : public MyCustomGUI<cocos2d::Layer>
 {
 public:
 	bool init();
+
 	float GetHeight() const { return _tiledMap->getContentSize().height; }
-	void SetCarrotText(const std::string& text);
+
+	void SetCoinText(const std::string& text);
 	void ShowKey();
+	void AddPauseButtonCallback(const std::function<void(cocos2d::Ref*)>& callback) { AddCallbackToButton("pause", callback); }
 };

@@ -3,6 +3,7 @@
 #include "base/ccTypes.h"
 #include "base/CCValue.h"
 #include "json/document.h"
+#include "2d/CCSpriteFrameCache.h"
 
 
 namespace cocos2d
@@ -21,6 +22,8 @@ public:
 	static void PopScene();
 
 	static rapidjson::Document GetJSONFromFile(const std::string filePath);
+	static void WriteJSONOnFile(rapidjson::Document& document, const std::string filePath);
+	
 
 	template<class TObj>
 	static void RequireObjectNotNull(TObj* obj, const std::function<void(TObj*)>& action)
@@ -30,5 +33,22 @@ public:
 			action(obj);
 		}
 	}
+
+
+
+
+	class OpenSpritesheet
+	{
+	public:
+		OpenSpritesheet(const std::string& plist, const std::string& textureFileName)
+		{
+			cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist, textureFileName);
+		}
+
+		~OpenSpritesheet()
+		{
+			cocos2d::SpriteFrameCache::destroyInstance();
+		}
+	};
 
 };

@@ -58,6 +58,7 @@ endif()
 
 list(APPEND GAME_SOURCE
 Classes/AppDelegate.cpp
+Classes/Crossbow.cpp
 Classes/Level.cpp
 Classes/Player.cpp
 Classes/Infos/GameInfo.cpp
@@ -76,6 +77,7 @@ Classes/Scenes/Dialogs/ExitGameDialog.cpp
 Classes/Scenes/Dialogs/GameOverDialog.cpp
 Classes/Scenes/Dialogs/MyDialog.cpp
 Classes/Scenes/Dialogs/OptionsDialog.cpp
+Classes/Scenes/Dialogs/PausingGameDialog.cpp
 Classes/Scenes/Dialogs/VictoryDialog.cpp
 Classes/ScreenLog/ScopeLock.cpp
 Classes/ScreenLog/ScopeLog.cpp
@@ -90,11 +92,14 @@ Classes/Scenes/MyCustomGUI.inl
 Classes/Scenes/MyCustomGUI.inl
 Classes/Scenes/MyCustomGUI.inl
 Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
 )
 
 list(APPEND GAME_HEADER
 Classes/AppDelegate.h
 Classes/Bitmask.h
+Classes/Crossbow.h
 Classes/ILevel.h
 Classes/IPlayer.h
 Classes/Level.h
@@ -118,6 +123,7 @@ Classes/Scenes/Dialogs/ExitGameDialog.h
 Classes/Scenes/Dialogs/GameOverDialog.h
 Classes/Scenes/Dialogs/MyDialog.h
 Classes/Scenes/Dialogs/OptionsDialog.h
+Classes/Scenes/Dialogs/PausingGameDialog.h
 Classes/Scenes/Dialogs/VictoryDialog.h
 Classes/ScreenLog/ScopeLock.h
 Classes/ScreenLog/ScopeLog.h
