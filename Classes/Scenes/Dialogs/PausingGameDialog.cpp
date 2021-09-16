@@ -4,18 +4,11 @@
 
 bool PausingGameDialog::init()
 {
-	if (!MyDialog::init("ui/dialog-pausing-game.tmx"))
+	if (!MyDialog::init("ui/dialog-pausing-game.tmx", true))
 	{
 		return false;
 	}
 	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-
-	auto background = cocos2d::ui::Layout::create();
-	background->setContentSize(winSize);
-	background->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
-	background->setBackGroundColor(cocos2d::Color3B::BLACK);
-	background->setOpacity(100);
-	addChild(background,-1);
 
 	_tiledMap->setPosition(0.5f * winSize);
 

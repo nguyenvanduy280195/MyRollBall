@@ -6,14 +6,14 @@
 #include "2d/CCSprite.h"
 #include "../MyCustomGUI.inl"
 
-bool CreditsDialog::init(const cocos2d::Vec2& boxPosition)
+bool CreditsDialog::init(const cocos2d::Vec2& position)
 {
-	if (!MyDialog::init("ui/dialog-credits.tmx"))
+	if (!MyDialog::init("ui/dialog-credits.tmx", true))
 	{
 		return false;
 	}
 
-	_tiledMap->setPosition(boxPosition);
+	_tiledMap->setPosition(position);
 
 	AddCallbackToButton("close", [this](cocos2d::Ref*){ setVisible(false); });
 

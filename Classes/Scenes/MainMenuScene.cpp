@@ -3,6 +3,7 @@
 #include "2d/CCTMXTiledMap.h"
 #include "ui/UIButton.h"
 #include "2d/CCTransition.h"
+#include "2d/CCActionInterval.h"
 
 #include "Utils/StaticMethods.h"
 #include "Scenes/IntroLevelScene.h"
@@ -14,7 +15,7 @@
 #include "Dialogs/CreditsDialog.h"
 #include "Dialogs/ExitGameDialog.h"
 #include "Dialogs/OptionsDialog.h"
-#include "Dialogs/ChoosingLevelDialog.h"
+#include "Layers/ChoosingLevelLayer.h"
 
 
 #include "ScreenLog/ScreenLog.h"
@@ -30,26 +31,28 @@ bool MainMenuScene::init()
 	}
 
 	_tiledMap->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+	setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
 
-	auto boxPosition = GetBoxPosition();
+	auto layer = Cocos2dCreator::CreateNode<ChoosingLevelLayer>(Vec2::ZERO, cocos2d::StringUtils::format("ui/dialog-choosing-level-%d.tmx", 0));
+	layer->setName(CURRENT_LAYER);
+	addChild(layer);
 
-	_choosingLevelDialog = Cocos2dCreator::CreateNode<ChoosingLevelDialog>(boxPosition);
-	AddCallbackToButton("play", MakeMenuButtonClicked(_choosingLevelDialog));
-	addChild(_choosingLevelDialog);
+	auto centerWindow = 0.5f * cocos2d::Director::getInstance()->getWinSize();
 
-	_optionsDialog = Cocos2dCreator::CreateNode<OptionsDialog>(boxPosition);
-	AddCallbackToButton("options", MakeMenuButtonClicked(_optionsDialog));
-	addChild(_optionsDialog);
+	auto optionsDialog = Cocos2dCreator::CreateNode<OptionsDialog>(centerWindow);
+	addChild(optionsDialog);
 
-	_creditsDialog = Cocos2dCreator::CreateNode<CreditsDialog>(boxPosition);
-	AddCallbackToButton("credits", MakeMenuButtonClicked(_creditsDialog));
-	addChild(_creditsDialog);
+	auto creditsDialog = Cocos2dCreator::CreateNode<CreditsDialog>(centerWindow);
+	addChild(creditsDialog);
 
-	_exitGameDialog = Cocos2dCreator::CreateNode<ExitGameDialog>(boxPosition);
-	AddCallbackToButton("exit", MakeMenuButtonClicked(_exitGameDialog));
-	addChild(_exitGameDialog);
+	AddCallbackToButton("options", [optionsDialog](cocos2d::Ref*) { optionsDialog->Show(); });
+	AddCallbackToButton("credits", [creditsDialog](cocos2d::Ref*) { creditsDialog->Show(); });
+	AddCallbackToButton("next-page", [this](cocos2d::Ref*) { OnNextPageButtonClicked(); });
+	AddCallbackToButton("previous-page", [this](cocos2d::Ref*) { OnPreviousPageButtonClicked(); });
 
-	if(auto child= _tiledMap->getChildByName("version"))
+	SetPreviousPageButtonVisible(false);
+
+	if (auto child = _tiledMap->getChildByName("version"))
 	{
 		child->setPosition(cocos2d::Director::getInstance()->getVisibleOrigin());
 	}
@@ -57,51 +60,108 @@ bool MainMenuScene::init()
 	return true;
 }
 
-const cocos2d::Vec2 MainMenuScene::GetBoxPosition() const
+void MainMenuScene::SetPreviousPageButtonVisible(bool visible)
 {
-	cocos2d::Vec2 boxPosition;
-
-	TMXUtil::RequireTMXObjectGroupNotFound(_tiledMap, "box", [&boxPosition](cocos2d::TMXObjectGroup* objGroup)
+	if (auto pageButton = GetButtonByName("previous-page"))
 	{
-		TMXUtil::RequireTMXObjectNotFound(objGroup, "box", [&boxPosition](cocos2d::ValueMap& value)
+		pageButton->setVisible(visible);
+	}
+}
+
+void MainMenuScene::SetNextPageButtonVisible(bool visible)
+{
+	if (auto pageButton = GetButtonByName("next-page"))
+	{
+		pageButton->setVisible(visible);
+	}
+}
+
+void MainMenuScene::OnNextPageButtonClicked()
+{
+	if (++_iPage >= nPages)
+	{
+		return;
+	}
+	
+	if (auto child = getChildByName(CURRENT_LAYER))
+	{
+		auto winSize = cocos2d::Director::getInstance()->getWinSize();
+		auto leftDeltaPosition = Vec2(-winSize.width, 0);
+		auto currentLayerAction = MakeCurrentLayerAction(leftDeltaPosition, [this, leftDeltaPosition, winSize]()
 		{
-			const auto x = value["x"].asFloat();
-			const auto y = value["y"].asFloat();
-			boxPosition = Vec2(x, y);
+			auto newLayer = Cocos2dCreator::CreateNode<ChoosingLevelLayer>(Vec2::ZERO, cocos2d::StringUtils::format("ui/dialog-choosing-level-%d.tmx", _iPage));
+			addChild(newLayer);
+			
+			newLayer->setPositionX(winSize.width);
+
+			auto newLayerAction = MakeNewLayerAction(leftDeltaPosition, [newLayer, this]()
+			{
+				newLayer->setName(CURRENT_LAYER);
+			});
+			newLayer->runAction(newLayerAction);
 		});
-	});
-
-	return boxPosition;
-}
-
-void MainMenuScene::HideAllDialogs()
-{
-	if (_choosingLevelDialog->isVisible())
-	{
-		_choosingLevelDialog->Hide();
+		child->runAction(currentLayerAction);
 	}
+	
 
-	if (_optionsDialog->isVisible())
+	SetPreviousPageButtonVisible(true);
+	if (_iPage + 1 >= nPages)
 	{
-		_optionsDialog->Hide();
-	}
-
-	if (_creditsDialog->isVisible())
-	{
-		_creditsDialog->Hide();
-	}
-
-	if (_exitGameDialog->isVisible())
-	{
-		_exitGameDialog->Hide();
+		SetNextPageButtonVisible(false);
 	}
 }
 
-std::function<void(cocos2d::Ref*)> MainMenuScene::MakeMenuButtonClicked(class MyDialog* dialog)
+void MainMenuScene::OnPreviousPageButtonClicked()
 {
-	return [dialog, this](cocos2d::Ref*)
+	if (--_iPage < 0)
 	{
-		HideAllDialogs();
-		dialog->Show();
-	};
+		return;
+	}
+
+	if (auto child = getChildByName(CURRENT_LAYER))
+	{
+		auto winSize = cocos2d::Director::getInstance()->getWinSize();
+		auto leftDeltaPosition = Vec2(winSize.width, 0);
+		auto currentLayerAction = MakeCurrentLayerAction(leftDeltaPosition, [this, leftDeltaPosition, winSize]()
+		{
+			auto newLayer = Cocos2dCreator::CreateNode<ChoosingLevelLayer>(Vec2::ZERO, cocos2d::StringUtils::format("ui/dialog-choosing-level-%d.tmx", _iPage));
+			addChild(newLayer);
+
+			newLayer->setPositionX(-winSize.width);
+
+			auto newLayerAction = MakeNewLayerAction(leftDeltaPosition, [newLayer, this]()
+			{
+				newLayer->setName(CURRENT_LAYER);
+			});
+			newLayer->runAction(newLayerAction);
+		});
+		child->runAction(currentLayerAction);
+	}
+
+	SetNextPageButtonVisible(true);
+	if (_iPage - 1 < 0)
+	{
+		SetPreviousPageButtonVisible(false);
+	}
+}
+
+cocos2d::Action* MainMenuScene::MakeCurrentLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onNewLayerMoving) const
+{
+	auto moveByAction = cocos2d::MoveBy::create(MOVE_DURATION, deltaPosition);
+	auto onNewLayerMovingCallback = cocos2d::CallFunc::create([onNewLayerMoving]() { if (onNewLayerMoving) onNewLayerMoving(); });
+	auto removeSelfAction = cocos2d::RemoveSelf::create();
+
+	auto moveByTogether = cocos2d::Spawn::createWithTwoActions(moveByAction, onNewLayerMovingCallback);
+
+	return cocos2d::Sequence::createWithTwoActions(moveByTogether, removeSelfAction);
+}
+
+cocos2d::Action* MainMenuScene::MakeNewLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onMovingDone) const
+{
+	auto moveByAction = cocos2d::MoveBy::create(MOVE_DURATION, deltaPosition);
+	auto onMovingDoneCallback = cocos2d::CallFunc::create([onMovingDone]() { if (onMovingDone) onMovingDone(); });
+
+	return cocos2d::Sequence::create(moveByAction,
+									 onMovingDoneCallback,
+									 nullptr);
 }

@@ -5,7 +5,7 @@
 class OptionsDialog : public MyDialog
 {
 public:
-	bool init(const cocos2d::Vec2& boxPosition);
+	bool init(const cocos2d::Vec2& position);
 
 };
 

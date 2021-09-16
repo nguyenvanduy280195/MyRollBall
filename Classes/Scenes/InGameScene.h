@@ -2,7 +2,7 @@
 
 #include "2d/CCLayer.h"
 #include "Utils/Cocos2dCreator.h"
-#include "IScene.h"
+#include "IInGameScene.h"
 #include "2d/CCTMXTiledMap.h"
 #include "MyCustomGUI.h"
 
@@ -18,7 +18,7 @@ namespace cocos2d::ui
 class Button;
 }
 
-class InGameScene : public cocos2d::Layer, public IScene
+class InGameScene : public cocos2d::Layer, public IInGameScene
 {
 	using Super = cocos2d::Layer;
 	using Point = cocos2d::Point;
@@ -45,45 +45,31 @@ public:
 	void ShowKeyInScreenInfo();
 
 	// Inherited via IScene
-	virtual HandlerManager* GetHandlerManager() const override { return _handlerManager; }
-	virtual GameInfo* GetGameInfo() const override { return _gameInfo; }
+	virtual HandlerManager* GetHandlerManager() const override;
+	virtual GameInfo* GetGameInfo() const override;
 
 private: 
 	void TakeCameraAfterPlayer();
-	cocos2d::Vec2 GetVectorToPlayer() const;
-	
-	
 
+	bool InitPlayer();
+	bool InitLevel();
+	bool InitScreenInfoLayer();
+	bool InitProfile();
+	
 	class Level* _level;
 	class IPlayer* _player;
 	
 	class HandlerManager* _handlerManager;
 	class GameInfo* _gameInfo;
-	class ScreenInfo* _screenInfo;
-
-	cocos2d::ui::Button* _dashButton;
+	class ScreenInfoLayer* _screenInfoLayer;
 
 	int _currentLevel;
 	int _nCoins;
 
 	const std::string FORMAT_LEVEL = "levels/%03d.tmx";
-
+	
 	const std::string time_temp = "5:43";
 	const std::string bestTime_temp = "1:23";
 
 	cocos2d::Follow* _followingPlayerAction;
-
-	
-};
-
-class ScreenInfo : public MyCustomGUI<cocos2d::Layer>
-{
-public:
-	bool init();
-
-	float GetHeight() const { return _tiledMap->getContentSize().height; }
-
-	void SetCoinText(const std::string& text);
-	void ShowKey();
-	void AddPauseButtonCallback(const std::function<void(cocos2d::Ref*)>& callback) { AddCallbackToButton("pause", callback); }
 };

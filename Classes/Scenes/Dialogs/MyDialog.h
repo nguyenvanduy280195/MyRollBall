@@ -13,10 +13,10 @@ public:
 
 	std::function<void()> OnHidden;
 
-	void onEnter() override;
 
 protected:
-	bool init(const std::string& tmxPath);
+	
+	bool init(const std::string& tmxPath, bool backgroundEnabled = false);
 
 	
 };

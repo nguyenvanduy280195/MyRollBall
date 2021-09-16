@@ -23,99 +23,336 @@
      inkscape:pagecheckerboard="true"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="4.19"
-     inkscape:cx="-536.39618"
-     inkscape:cy="1487.7088"
+     inkscape:zoom="4.6789984"
+     inkscape:cx="-400.19249"
+     inkscape:cy="1228.5749"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g25620"
-     showborder="false" />
+     inkscape:current-layer="layer1"
+     showborder="false"
+     inkscape:lockguides="true" />
   <defs
      id="defs2" />
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <path
+       id="path896"
+       style="fill:#091c32;fill-opacity:1;stroke:none;stroke-width:0.529166;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -230.12184,340.94782 -0.0569,0.93627 -0.59049,0.21046 -0.6286,-0.57338 -1.2191,1.28042 0.55238,0.84127 -0.17124,0.42036 -0.99096,0.0381 0.0574,2.10231 0.68549,0.0192 0.28613,0.47782 -0.55238,0.78327 1.44778,1.22351 0.66672,-0.65016 0.36181,0.24856 0.15245,1.03186 1.92392,0.0768 0.095,-0.97495 0.66673,-0.22922 0.6286,0.55401 1.37154,-1.39474 -0.72361,-0.5927 0.34247,-0.42035 0.74295,-0.11491 0.11434,-2.06422 -0.9523,-0.13368 -0.0762,-0.49657 0.57115,-0.63082 -1.48589,-1.37597 -0.6286,0.64958 -0.4187,-0.34413 -0.0762,-0.8407 z m 1.03239,2.69448 a 1.5406571,1.5404324 0 0 1 1.54057,1.54059 1.5406571,1.5404324 0 0 1 -1.54057,1.54001 1.5406571,1.5404324 0 0 1 -1.54113,-1.54001 1.5406571,1.5404324 0 0 1 1.54113,-1.54059 z"
+       inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\btn_option.png"
+       inkscape:export-xdpi="98.25"
+       inkscape:export-ydpi="98.25" />
+    <path
+       id="path1245"
+       style="fill:#091c32;fill-opacity:1;stroke:none;stroke-width:0.529167;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke markers fill"
+       d="m -212.44984,339.29531 a 4.233333,4.233333 0 0 0 -4.23333,4.23333 4.233333,4.233333 0 0 0 4.23333,4.23333 4.233333,4.233333 0 0 0 4.23333,-4.23333 4.233333,4.233333 0 0 0 -4.23333,-4.23333 z m 0,1.73323 a 0.75907097,0.75907097 0 0 1 0.75913,0.75912 0.75907097,0.75907097 0 0 1 -0.75913,0.75911 0.75907097,0.75907097 0 0 1 -0.75913,-0.75911 0.75907097,0.75907097 0 0 1 0.75913,-0.75912 z m -0.65991,1.83192 h 1.31982 v 3.16828 h -1.31982 z"
+       inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\btn_info.png"
+       inkscape:export-xdpi="98.25"
+       inkscape:export-ydpi="98.25" />
     <rect
-       style="fill:#1ea7e1;fill-opacity:1;stroke-width:0.0264583;paint-order:stroke markers fill"
-       id="rect934"
-       width="285.75"
-       height="190.5"
-       x="-230.04672"
-       y="105.06233" />
+       style="fill:#e6f5c8;fill-opacity:1;stroke:none;stroke-width:0.529167;paint-order:stroke markers fill"
+       id="rect2819"
+       width="27.689123"
+       height="13.844562"
+       x="-144.27588"
+       y="184.11214" />
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0264583;stroke-opacity:1;paint-order:stroke markers fill"
-       id="rect934-2"
-       width="242.26453"
-       height="145.49759"
-       x="-186.56125"
-       y="150.0647" />
+       style="fill:#519850;fill-opacity:1;stroke:none;stroke-width:0.529167;paint-order:stroke markers fill"
+       id="rect4403"
+       width="27.689123"
+       height="13.844562"
+       x="-144.27588"
+       y="204.69188" />
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0264583;stroke-opacity:1;paint-order:stroke markers fill"
-       id="rect934-2-3"
-       width="33.840206"
-       height="16.906876"
-       x="-219.8723"
-       y="168.05612" />
+       style="fill:#91c230;fill-opacity:1;stroke:none;stroke-width:0.529167;paint-order:stroke markers fill"
+       id="rect5655"
+       width="27.689123"
+       height="13.844562"
+       x="-144.27588"
+       y="226.20708" />
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0264583;stroke-opacity:1;paint-order:stroke markers fill"
-       id="rect934-2-3-8"
-       width="33.840206"
-       height="16.906876"
-       x="-219.8723"
-       y="198.89757" />
+       style="fill:#2266b3;fill-opacity:1;stroke:none;stroke-width:0.529167;paint-order:stroke markers fill"
+       id="rect7141"
+       width="27.689123"
+       height="13.844562"
+       x="-144.27588"
+       y="248.65773" />
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0264583;stroke-opacity:1;paint-order:stroke markers fill"
-       id="rect934-2-3-0"
-       width="33.840206"
-       height="16.906876"
-       x="-219.8723"
-       y="229.73904" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0264583;stroke-opacity:1;paint-order:stroke markers fill"
-       id="rect934-2-3-5"
-       width="33.840206"
-       height="16.906876"
-       x="-219.8723"
-       y="260.58047" />
-    <text
-       xml:space="preserve"
-       style="font-size:21.1667px;line-height:1.25;font-family:Felt;-inkscape-font-specification:Felt;fill:#ffffff;stroke-width:0.264583"
-       x="-222.48381"
-       y="139.55803"
-       id="text15754"><tspan
-         sodipodi:role="line"
-         id="tspan15752"
-         style="font-size:21.1667px;fill:#ffffff;stroke-width:0.264583"
-         x="-222.48381"
-         y="139.55803">Bunny finds home</tspan></text>
+       style="fill:#091c32;fill-opacity:1;stroke:none;stroke-width:0.529167;paint-order:stroke markers fill"
+       id="rect8627"
+       width="27.689123"
+       height="13.844562"
+       x="-144.27588"
+       y="269.61166" />
     <g
-       id="g25620">
+       id="g27131"
+       transform="matrix(0.25,0,0,0.25,-48.32461,209.19043)"
+       style="stroke-width:4"
+       inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\button_previous_page.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
       <g
-         id="g978"
-         inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\button-pause.png"
-         inkscape:export-xdpi="98.25"
-         inkscape:export-ydpi="98.25"
-         transform="matrix(0.48585796,0,0,0.50000003,-73.899233,196.29224)"
-         style="stroke-width:2.0289">
-        <rect
-           style="fill:#e6f5c8;fill-opacity:1;stroke:none;stroke-width:5.36812;paint-order:stroke markers fill"
-           id="rect852"
-           width="3.8273969"
-           height="8.4666662"
-           x="-143.73311"
-           y="392.58447" />
-        <rect
-           style="fill:#e6f5c8;fill-opacity:1;stroke:none;stroke-width:5.36812;paint-order:stroke markers fill"
-           id="rect974"
-           width="3.8273969"
-           height="8.4666662"
-           x="-138.8474"
-           y="392.58447" />
+         id="g14144-9"
+         transform="matrix(2.0000001,0,0,2.0000001,60.076506,-193.79223)"
+         style="stroke-width:2"
+         inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\button_previous_page.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <circle
+           style="fill:#91c230;fill-opacity:1;stroke-width:5.29164;paint-order:stroke markers fill"
+           id="path6364-2-4"
+           cx="-53.787991"
+           cy="244.82306"
+           r="8.4666662"
+           inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\levels\assets\next_page.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <circle
+           style="fill:#091c32;fill-opacity:1;stroke-width:5.29164;paint-order:stroke markers fill"
+           id="circle7042-4"
+           cx="-53.787991"
+           cy="244.82306"
+           r="7.0114584"
+           inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\levels\assets\next_page.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
       </g>
+      <g
+         id="g17926-3"
+         transform="matrix(-1.2975256,0,0,1.2975256,-106.93928,-33.667018)"
+         style="stroke-width:3.08279">
+        <rect
+           style="fill:#935328;fill-opacity:1;stroke:#201108;stroke-width:0.407829;stroke-opacity:1;paint-order:stroke markers fill"
+           id="rect13201-1"
+           width="0.51806456"
+           height="14.955511"
+           x="253.70197"
+           y="40.342636"
+           transform="rotate(90)" />
+        <path
+           id="rect20113-3"
+           style="fill:#2266b3;fill-opacity:1;stroke:none;stroke-width:0.407829;paint-order:stroke markers fill"
+           d="m -36.210428,253.95048 -2.29075,-1.11144 -0.7632,0.77763 h -1.15203 v 0.6887 h 1.14382 l 0.79234,0.77762 z" />
+        <path
+           style="fill:#c9c9c9;fill-opacity:1;stroke:none;stroke-width:0.815652px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m -54.970388,254.85302 c -0.009,0.0621 3.5902,0.0864 3.93614,-0.64619 -0.18936,-0.0136 -3.73472,0.0132 -3.73472,0.0132 z"
+           id="path22330-5"
+           sodipodi:nodetypes="cccc" />
+        <path
+           style="fill:#c9c9c9;fill-opacity:1;stroke:none;stroke-width:0.815652px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m -54.970388,253.06897 c -0.009,-0.0621 3.5902,-0.0864 3.93614,0.6462 -0.18936,0.0136 -3.73472,-0.0132 -3.73472,-0.0132 z"
+           id="path24569-3"
+           sodipodi:nodetypes="cccc" />
+      </g>
+    </g>
+    <g
+       id="g26116"
+       transform="matrix(0.68302763,0,0,0.69688069,15.895098,70.842923)"
+       style="stroke-width:1.44945"
+       inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\button_exit.png "
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         style="fill:#091c32;fill-opacity:1;stroke:none;stroke-width:0.889471;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect18024"
+         width="9.0799007"
+         height="18.041719"
+         x="67.440102"
+         y="188.61885"
+         transform="matrix(0.74357296,0.66865481,0,1,0,0)" />
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#091c32;stroke-width:1.53399;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect18024-2"
+         width="11.55669"
+         height="16.933334"
+         x="50.655563"
+         y="234.28961" />
+      <ellipse
+         style="fill:#e6f5c8;fill-opacity:1;stroke:none;stroke-width:0.878687;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+         id="path22224"
+         cx="72.693176"
+         cy="201.33136"
+         rx="0.74214572"
+         ry="0.56546998"
+         transform="matrix(0.7619393,0.64764844,0,1,0,0)" />
+    </g>
+    <g
+       id="g27229"
+       transform="matrix(-0.25,0,0,0.25,-60.398798,209.19043)"
+       style="stroke-width:4"
+       inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\button_next_page.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <g
+         id="g27217"
+         transform="matrix(2.0000001,0,0,2.0000001,60.076506,-193.79223)"
+         style="stroke-width:2"
+         inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\button_previous_page.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <circle
+           style="fill:#91c230;fill-opacity:1;stroke-width:5.29164;paint-order:stroke markers fill"
+           id="circle27213"
+           cx="-53.787991"
+           cy="244.82306"
+           r="8.4666662"
+           inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\levels\assets\next_page.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <circle
+           style="fill:#091c32;fill-opacity:1;stroke-width:5.29164;paint-order:stroke markers fill"
+           id="circle27215"
+           cx="-53.787991"
+           cy="244.82306"
+           r="7.0114584"
+           inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\levels\assets\next_page.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+      </g>
+      <g
+         id="g27227"
+         transform="matrix(-1.2975256,0,0,1.2975256,-106.93928,-33.667018)"
+         style="stroke-width:3.08279">
+        <rect
+           style="fill:#935328;fill-opacity:1;stroke:#201108;stroke-width:0.407829;stroke-opacity:1;paint-order:stroke markers fill"
+           id="rect27219"
+           width="0.51806456"
+           height="14.955511"
+           x="253.70197"
+           y="40.342636"
+           transform="rotate(90)" />
+        <path
+           id="path27221"
+           style="fill:#2266b3;fill-opacity:1;stroke:none;stroke-width:0.407829;paint-order:stroke markers fill"
+           d="m -36.210428,253.95048 -2.29075,-1.11144 -0.7632,0.77763 h -1.15203 v 0.6887 h 1.14382 l 0.79234,0.77762 z" />
+        <path
+           style="fill:#c9c9c9;fill-opacity:1;stroke:none;stroke-width:0.815652px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m -54.970388,254.85302 c -0.009,0.0621 3.5902,0.0864 3.93614,-0.64619 -0.18936,-0.0136 -3.73472,0.0132 -3.73472,0.0132 z"
+           id="path27223"
+           sodipodi:nodetypes="cccc" />
+        <path
+           style="fill:#c9c9c9;fill-opacity:1;stroke:none;stroke-width:0.815652px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m -54.970388,253.06897 c -0.009,-0.0621 3.5902,-0.0864 3.93614,0.6462 -0.18936,0.0136 -3.73472,-0.0132 -3.73472,-0.0132 z"
+           id="path27225"
+           sodipodi:nodetypes="cccc" />
+      </g>
+    </g>
+    <rect
+       style="fill:#2266b3;fill-opacity:1;stroke:none;stroke-width:0.529167;paint-order:stroke markers fill"
+       id="rect27267"
+       width="8.4666662"
+       height="8.4666662"
+       x="-104.29111"
+       y="248.65773"
+       inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\route.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       sodipodi:type="star"
+       style="fill:#091c32;fill-opacity:1;stroke:none;stroke-width:14.6051;paint-order:stroke markers fill"
+       id="path876"
+       inkscape:flatsided="true"
+       sodipodi:sides="3"
+       sodipodi:cx="-745.45868"
+       sodipodi:cy="1144.6895"
+       sodipodi:r1="144.90218"
+       sodipodi:r2="72.451088"
+       sodipodi:arg1="0.076771891"
+       sodipodi:arg2="1.1239694"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m -600.98331,1155.8029 -226.33762,108.4491 19.24913,-250.2386 z"
+       transform="matrix(0.03880403,-0.00252719,0.00291514,0.03363997,-70.655129,306.98681)"
+       inkscape:transform-center-x="-1.4052963"
+       inkscape:transform-center-y="-0.0043644189"
+       inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\button_next_page.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       sodipodi:type="star"
+       style="fill:#091c32;fill-opacity:1;stroke:none;stroke-width:14.6051;paint-order:stroke markers fill"
+       id="path2406"
+       inkscape:flatsided="true"
+       sodipodi:sides="3"
+       sodipodi:cx="-745.45868"
+       sodipodi:cy="1144.6895"
+       sodipodi:r1="144.90218"
+       sodipodi:r2="72.451088"
+       sodipodi:arg1="0.076771891"
+       sodipodi:arg2="1.1239694"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m -600.98331,1155.8029 -226.33762,108.4491 19.24913,-250.2386 z"
+       transform="matrix(-0.03880403,-0.00252719,-0.00291514,0.03363997,-150.69062,305.85587)"
+       inkscape:transform-center-x="1.4052965"
+       inkscape:transform-center-y="-0.0043642806"
+       inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\button_previous_page.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g5753"
+       transform="matrix(0.30305738,0,0,0.30305738,-87.682308,215.80271)"
+       style="stroke-width:3.2997"
+       inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\btn_close.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         style="fill:#091c32;fill-opacity:1;stroke:none;stroke-width:1.74609;paint-order:stroke markers fill"
+         id="rect8627-3"
+         width="15.749415"
+         height="4.005383"
+         x="142.54799"
+         y="294.2045"
+         transform="rotate(45)" />
+      <rect
+         style="fill:#091c32;fill-opacity:1;stroke:none;stroke-width:1.74609;paint-order:stroke markers fill"
+         id="rect5749"
+         width="15.749415"
+         height="4.005383"
+         x="288.33249"
+         y="148.42"
+         transform="matrix(-0.70710678,0.70710678,0.70710678,0.70710678,0,0)" />
+    </g>
+    <circle
+       style="fill:#519850;fill-opacity:1;stroke-width:0.529167;paint-order:stroke markers fill"
+       id="path9392"
+       cx="-107.7079"
+       cy="329.41455"
+       r="4.1279311"
+       inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\btn_pause.png"
+       inkscape:export-xdpi="98.25"
+       inkscape:export-ydpi="98.25" />
+    <g
+       id="g2550"
+       transform="translate(4.9944736,-6.4786396)"
+       inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\btn_pause.png"
+       inkscape:export-xdpi="98.25"
+       inkscape:export-ydpi="98.25">
+      <rect
+         style="fill:#091c32;fill-opacity:1;stroke:none;stroke-width:2.64583;paint-order:stroke markers fill"
+         id="rect852"
+         width="1.8595712"
+         height="5.1038857"
+         x="-114.81904"
+         y="333.34125"
+         inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\btn_pause.png"
+         inkscape:export-xdpi="98.25"
+         inkscape:export-ydpi="98.25" />
+      <rect
+         style="fill:#091c32;fill-opacity:1;stroke:none;stroke-width:2.64583;paint-order:stroke markers fill"
+         id="rect974"
+         width="1.8595712"
+         height="5.1038857"
+         x="-112.44528"
+         y="333.34125"
+         inkscape:export-filename="C:\Users\tensa\Documents\Cocos2dxProjects\MyRollBall\Resources\ui\assets\btn_pause.png"
+         inkscape:export-xdpi="98.25"
+         inkscape:export-ydpi="98.25" />
     </g>
   </g>
 </svg>

@@ -25,6 +25,8 @@ protected:
 	void AddCallbackToButton(const std::string& name, const std::function<void(cocos2d::Ref*)>& callback);
 	void SetTextContent(const std::string& name, const std::string& content);
 
+	cocos2d::ui::Button* GetButtonByName(const std::string& name) const;
+
 	cocos2d::ui::Button* MakeButton(cocos2d::ValueMap& value);
 	cocos2d::ui::Text* MakeText(cocos2d::ValueMap& value);
 	

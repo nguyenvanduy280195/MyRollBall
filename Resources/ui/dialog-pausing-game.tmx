@@ -13,8 +13,13 @@
    <properties>
     <property name="anchor-point-x" type="float" value="0.5"/>
     <property name="anchor-point-y" type="float" value="0.5"/>
+    <property name="color" value="#e6f5c8ff"/>
+    <property name="enableShadow" type="bool" value="true"/>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
-    <property name="font-size" type="float" value="40"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="shadow.color" value="#091c32"/>
+    <property name="shadow.height" type="float" value="-2"/>
+    <property name="shadow.width" type="float" value="2"/>
     <property name="text" value="Pause"/>
    </properties>
    <point/>

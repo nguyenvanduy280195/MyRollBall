@@ -1,6 +1,6 @@
 #pragma once
 
-class IScene
+class IInGameScene
 {
 public:
 	virtual class HandlerManager* GetHandlerManager() const = 0;

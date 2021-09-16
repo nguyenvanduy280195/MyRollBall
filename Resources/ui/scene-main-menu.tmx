@@ -1,65 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="64" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="20">
- <tileset firstgid="1" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
-  <image source="assets/ui_tilesheet.png" width="480" height="144"/>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="64" height="44" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="24">
+ <tileset firstgid="1" name="grass" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="assets/grass.png" width="66" height="66"/>
  </tileset>
- <layer id="1" name="background" width="64" height="45">
+ <layer id="1" name="background" width="64" height="44">
   <data encoding="base64" compression="zlib">
-   eJztwwEJAAAMBKFL/7mXY6DgqqmqqqqqqqqqqqqqPnh4juPM
+   eJzl07cBwDAQxDDJOdv7T+vbAsUXLDAAe2ttSGOaUi/mOS1pTVtB7+lIZ7oK+k5PetNX0Po/bf2ftv5PW/+nrf/T1v9p6/+09X/a+j9t/Z+2/k9b/6et/9PW/2nr/7T1f9r6P239n7b+T1v/p63/09b/aev/tPV/2vo/bf2ftv5PW/+nrf/T1v9p6/+09X/a+j9t/Z+2/k9b/6et/9PW/2nr/7T1f9o/JV1dgQ==
   </data>
  </layer>
- <layer id="12" name="box" width="64" height="45" visible="0">
-  <data encoding="base64" compression="zlib">
-   eJztz0EJAAAIBEH7F7SOGXzIIczCBpgqSZIkSZJ29ZOvSrv4+fn5+fn5+fn5+fn5+fn5+fn570q7+Pn5+VN+SfrUAGzklUo=
-  </data>
- </layer>
- <objectgroup id="8" name="box">
-  <object id="11" name="box" x="640" y="432">
-   <point/>
-  </object>
- </objectgroup>
  <objectgroup id="7" name="buttons">
-  <object id="1" name="play" x="144" y="336">
+  <object id="2" name="options" x="32" y="64">
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
-    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
-    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
-    <property name="title" value="Play"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/btn_option.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
    </properties>
    <point/>
   </object>
-  <object id="2" name="options" x="144" y="400">
+  <object id="3" name="credits" x="992" y="64">
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
-    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
-    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
-    <property name="title" value="Options"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/btn_info.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
    </properties>
    <point/>
   </object>
-  <object id="3" name="credits" x="144" y="464">
+  <object id="22" name="next-page" x="992" y="368">
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
-    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
-    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
-    <property name="title" value="Credits"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/button_next_page.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
    </properties>
    <point/>
   </object>
-  <object id="4" name="exit" x="144" y="528">
+  <object id="23" name="previous-page" x="32" y="368">
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
-    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
-    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
-    <property name="title" value="Exit"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/button_previous_page.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
    </properties>
    <point/>
   </object>
@@ -67,19 +57,31 @@
  <objectgroup id="10" name="texts">
   <object id="17" name="version" x="0" y="672">
    <properties>
-    <property name="color" value="#ffffff"/>
+    <property name="anchor-point-x" type="float" value="0"/>
+    <property name="anchor-point-y" type="float" value="0"/>
+    <property name="color" value="#e6f5c8ff"/>
+    <property name="enableShadow" type="bool" value="true"/>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
-    <property name="text" value="210906a"/>
+    <property name="shadow.color" value="#091c32"/>
+    <property name="shadow.height" type="float" value="-2"/>
+    <property name="shadow.width" type="float" value="2"/>
+    <property name="text" value="210917a"/>
    </properties>
    <point/>
   </object>
-  <object id="18" name="game-title" x="48" y="208">
+  <object id="18" name="game-title" x="32" y="192">
    <properties>
-    <property name="color" value="#ffffff"/>
+    <property name="anchor-point-x" type="float" value="0"/>
+    <property name="anchor-point-y" type="float" value="0"/>
+    <property name="color" value="#e6f5c8ff"/>
+    <property name="color-shadow" value="#091c32"/>
     <property name="enableShadow" type="bool" value="true"/>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
-    <property name="font-size" type="float" value="80"/>
+    <property name="font-size" type="float" value="100"/>
+    <property name="shadow.color" value="#091c32"/>
+    <property name="shadow.height" type="float" value="-10"/>
+    <property name="shadow.width" type="float" value="10"/>
     <property name="text" value="Control ball"/>
    </properties>
    <point/>

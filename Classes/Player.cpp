@@ -15,7 +15,7 @@
 #include "math/CCMathBase.h"
 
 #include "Infos/GameInfo.h"
-#include "Scenes/IScene.h"
+#include "Scenes/IInGameScene.h"
 #include "ScreenLog/ScreenLog.h"
 #include "Bitmask.h"
 #include "Infos/PlayerInfo.h"
@@ -28,106 +28,153 @@ using KeyCode = cocos2d::EventKeyboard::KeyCode;
 using Vec2 = cocos2d::Vec2;
 using Size = cocos2d::Size;
 
-bool Player::init(IScene* owner, const Vec2& position)
-{
-	_owner = owner;
-	const auto& playerInfo = _owner->GetGameInfo()->GetPlayerInfo();
+#define DRAWING_PLAYER_ANCHOR_POINT 0
 
+bool Player::init(class IInGameScene* owner, const Vec2& position)
+{
+	if (owner == nullptr)
+	{
+		CCLOG("Player::init::owner is nullptr");
+		return false;
+	}
+	_inGameScene = owner;
+
+	PlayerInfo playerInfo;
+	if (auto gameInfo = _inGameScene->GetGameInfo())
+	{
+		playerInfo = gameInfo->GetPlayerInfo();
+	}
+	
 	if (!Super::initWithFile(playerInfo.imagePath))
 	{
+		CCLOG("Creating Player Object fails");
 		return false;
 	}
 
-	_owner->GetHandlerManager()->accelerationHandler->onAcceleration = [this](cocos2d::Acceleration* acceleration)
+#if CC_PLATFORM_ANDROID == CC_TARGET_PLATFORM:
+	_inGameScene->GetHandlerManager()->accelerationHandler->onAcceleration = [this](cocos2d::Acceleration* acceleration)
 	{
-		const auto accelerationVec2 = Vec2((float)acceleration->x, (float)acceleration->y);
+		const Vec2 accelerationVec2((float)acceleration->x, (float)acceleration->y);
 		MoveByAcceleration(accelerationVec2);
 	};
-
-
-	setAnchorPoint(Vec2(playerInfo.anchorPointX, playerInfo.anchorPointY));
-
-	// draw anchor point
-	auto anchorPoint = cocos2d::DrawNode::create();
-	anchorPoint->drawDot(Vec2(_contentSize.width * _anchorPoint.x, _contentSize.height * _anchorPoint.y), 5, cocos2d::Color4F(0.0, 1.0, 0.0, 1.0));
-	//addChild(anchorPoint);
-
+#endif
 
 	setPosition(position);
+	setPhysicsBody(MakeBody());
+	setAnchorPoint(Vec2(playerInfo.anchorPointX, playerInfo.anchorPointY));
 
-	auto body = MakeBody();
-	setPhysicsBody(body);
+#if DRAWING_PLAYER_ANCHOR_POINT
+	auto anchorPoint = cocos2d::DrawNode::create();
+	anchorPoint->drawDot(Vec2(_contentSize.width * _anchorPoint.x, _contentSize.height * _anchorPoint.y), 5, cocos2d::Color4F(0.0, 1.0, 0.0, 1.0));
+	addChild(anchorPoint);
+#endif
 
+	CCLOG("Creating Player Object successes");
 	return true;
 }
 
 void Player::update(float deltaTime)
 {
+#if CC_PLATFORM_ANDROID != CC_TARGET_PLATFORM:
 	MoveByKeyboard(deltaTime);
+#endif
 }
+
+void Player::Break()
+{
+	// run broken animations
+}
+
+void Player::Dash()
+{
+	auto velocity = _physicsBody->getVelocity();
+	auto newVelocity = (1 + _inGameScene->GetGameInfo()->GetPlayerInfo().dashPower) * velocity.getNormalized() * 500;
+	_physicsBody->setVelocity(newVelocity);
+}
+
+void Player::MoveToCenterGoal(const cocos2d::Vec2& goalPosition, const std::function<void()>& onMovingDone)
+{
+	auto moveToGoalAction = cocos2d::MoveTo::create(1, goalPosition);
+	auto onMoveToGoalActionFinished = cocos2d::CallFunc::create(onMovingDone);
+	runAction(cocos2d::Sequence::createWithTwoActions(moveToGoalAction, onMoveToGoalActionFinished));
+}
+
+void Player::RemoveBodyFromWorld() { _physicsBody->removeFromWorld(); }
+
+cocos2d::Node* Player::AsNode() const { return (cocos2d::Node*)this; }
 
 void Player::MoveByAcceleration(const Vec2& accelerationVec2)
 {
-	auto f = [this](float t)
+	if (auto handlerManager = _inGameScene->GetHandlerManager())
 	{
-		auto x = _owner->GetGameInfo()->GetPlayerInfo().moveSpeed * t * 2;
-		return x;
-	};
-	const auto deltaX = (int)(accelerationVec2.x * 100);
-	const auto x = (float)deltaX / 100;
-	const auto fx = f(x);
+		if (auto gameInfo = _inGameScene->GetGameInfo())
+		{
+			const auto moveSpeed = gameInfo->GetPlayerInfo().moveSpeed;
+			auto f = [moveSpeed](float t)
+			{
+				const auto deltaT = (int)(t * 100);
+				const auto tt = (float)deltaT / 100;
+				return moveSpeed * tt * 2;
+			};
 
-	const auto deltaY = (int)(accelerationVec2.y * 100);
-	const auto y = (float)deltaY / 100;
-	const auto fy = f(y);
+			const auto fx = f(accelerationVec2.x);
+			const auto fy = f(accelerationVec2.y);
 
-	_physicsBody->applyImpulse(Vec2(fx, fy));
-
-	// debug
-	//{
-	//	const auto& velocity = _physicsBody->getVelocity();
-	//	CCLOG("P(%.0f, %.0f) V(%f, %f) A(%f, %f) F(%f, %f)", _position.x, _position.y,
-	//		  velocity.x, velocity.y,
-	//		  accelerationVec2.x, accelerationVec2.y,
-	//		  fx, fy);
-	//}
+			_physicsBody->applyImpulse(Vec2(fx, fy));
+		}
+	}
 }
 
 void Player::MoveByKeyboard(float deltaTime)
 {
-	// x
-	auto x = 0.f;
-	if (_owner->GetHandlerManager()->keyboardHandler->pressingKeys[KeyCode::KEY_RIGHT_ARROW])
+	if (auto handlerManager = _inGameScene->GetHandlerManager())
 	{
-		x = _owner->GetGameInfo()->GetPlayerInfo().moveSpeed;
-	}
-	else if (_owner->GetHandlerManager()->keyboardHandler->pressingKeys[KeyCode::KEY_LEFT_ARROW])
-	{
-		x = -_owner->GetGameInfo()->GetPlayerInfo().moveSpeed;
-	}
+		auto x = 0.f;
+		auto y = 0.f;
+		auto moveSpeed = 10000.0f;
 
-	// y
-	auto y = 0.f;
-	if (_owner->GetHandlerManager()->keyboardHandler->pressingKeys[KeyCode::KEY_UP_ARROW])
-	{
-		y = _owner->GetGameInfo()->GetPlayerInfo().moveSpeed;
-	}
-	if (_owner->GetHandlerManager()->keyboardHandler->pressingKeys[KeyCode::KEY_DOWN_ARROW])
-	{
-		y = -_owner->GetGameInfo()->GetPlayerInfo().moveSpeed;
-	}
+		if (auto gameInfo = _inGameScene->GetGameInfo())
+		{
+			moveSpeed = gameInfo->GetPlayerInfo().moveSpeed;
+		}
 
-	_physicsBody->applyImpulse(Vec2(x, y));
+		if (handlerManager->keyboardHandler->pressingKeys[KeyCode::KEY_RIGHT_ARROW])
+		{
+			x = moveSpeed;
+		}
+		else if (handlerManager->keyboardHandler->pressingKeys[KeyCode::KEY_LEFT_ARROW])
+		{
+			x = -moveSpeed;
+		}
+
+		if (handlerManager->keyboardHandler->pressingKeys[KeyCode::KEY_UP_ARROW])
+		{
+			y = moveSpeed;
+		}
+		else if (handlerManager->keyboardHandler->pressingKeys[KeyCode::KEY_DOWN_ARROW])
+		{
+			y = -moveSpeed;
+		}
+
+		_physicsBody->applyImpulse(Vec2(x, y));
+	}
 }
 
 cocos2d::PhysicsBody* Player::MakeBody()
 {
-	const auto radius = 0.5f * _contentSize.width;
-	const auto size = Size(radius, radius);
-	const auto destiny = _owner->GetGameInfo()->GetPlayerInfo().destiny;
-	const auto restitution = _owner->GetGameInfo()->GetPlayerInfo().restitution;
-	const auto friction = _owner->GetGameInfo()->GetPlayerInfo().friction;
-	const auto offset = Vec2(0, -_contentSize.height * (0.5f - _anchorPoint.y));
+	auto radius = 0.5f * _contentSize.width;
+	auto size = Size(radius, radius);
+	auto offset = Vec2(0, -_contentSize.height * (0.5f - _anchorPoint.y));
+	auto destiny = 0.1f; // PHYSICSSHAPE_MATERIAL_DEFAULT
+	auto restitution = 0.5f; // PHYSICSSHAPE_MATERIAL_DEFAULT
+	auto friction = 0.5f; // PHYSICSSHAPE_MATERIAL_DEFAULT
+
+	if (auto gameInfo = _inGameScene->GetGameInfo())
+	{
+		destiny = gameInfo->GetPlayerInfo().destiny;
+		restitution = gameInfo->GetPlayerInfo().restitution;
+		friction = gameInfo->GetPlayerInfo().friction;
+	}
 
 	auto body = cocos2d::PhysicsBody::createCircle(radius, cocos2d::PhysicsMaterial(destiny, restitution, friction), offset);
 
@@ -140,35 +187,4 @@ cocos2d::PhysicsBody* Player::MakeBody()
 	body->setLinearDamping(1.0f);
 
 	return body;
-}
-
-
-void Player::Break()
-{
-	// run broken animations
-}
-
-void Player::Dash()
-{
-	auto velocity = _physicsBody->getVelocity();
-	auto newVelocity = (1 + _owner->GetGameInfo()->GetPlayerInfo().dashPower) * velocity.getNormalized() * 500;
-	_physicsBody->setVelocity(newVelocity);
-}
-
-
-void Player::MoveToCenterGoal(const cocos2d::Vec2& goalPosition, const std::function<void()>& onMovingDone)
-{
-	auto moveToGoalAction = cocos2d::MoveTo::create(1, goalPosition);
-	auto onMoveToGoalActionFinished = cocos2d::CallFunc::create(onMovingDone);
-	runAction(cocos2d::Sequence::createWithTwoActions(moveToGoalAction, onMoveToGoalActionFinished));
-}
-
-void Player::RemoveBodyFromWorld()
-{
-	_physicsBody->removeFromWorld();
-}
-
-cocos2d::Node* Player::AsNode() const
-{
-	return (cocos2d::Node*)this;
 }

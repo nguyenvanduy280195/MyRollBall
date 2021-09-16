@@ -8,6 +8,7 @@
 namespace cocos2d
 {
 class TMXTiledMap;
+class Action;
 
 namespace ui
 {
@@ -19,17 +20,21 @@ class MainMenuScene : public MyCustomGUI<cocos2d::Scene>
 {
 public:
 	bool init();
-
 private:
-	const cocos2d::Vec2 GetBoxPosition() const;
+	void SetPreviousPageButtonVisible(bool visible);
+	void SetNextPageButtonVisible(bool visible);
 
-	void HideAllDialogs();
+	void OnNextPageButtonClicked();
+	void OnPreviousPageButtonClicked();
 
+	cocos2d::Action* MakeCurrentLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onNewLayerMoving) const;
+	cocos2d::Action* MakeNewLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onMovingDone) const;
 
-	std::function<void(cocos2d::Ref*)> MakeMenuButtonClicked(class MyDialog* dialog);
+	std::vector<class ChoosingLevelLayer*> _choosingLevelLayers;
 
-	class MyDialog* _choosingLevelDialog;
-	class MyDialog* _optionsDialog;
-	class MyDialog* _creditsDialog;
-	class MyDialog* _exitGameDialog;
+	const std::string CURRENT_LAYER = "current-layer";
+	
+	const int nPages = 3;
+	int _iPage = 0;
+	float MOVE_DURATION = .5f;
 };

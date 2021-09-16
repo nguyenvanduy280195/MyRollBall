@@ -34,8 +34,7 @@
 #include "Player.h"
 #include "Dialogs/PausingGameDialog.h"
 #include "json/document.h"
-#include "json/stringbuffer.h"
-#include "json/prettywriter.h"
+#include "Layers/ScreenInfoLayer.h"
 
 using Vec2 = cocos2d::Vec2;
 using Size = cocos2d::Size;
@@ -83,13 +82,64 @@ bool InGameScene::init(int level)
 	_handlerManager = new (std::nothrow) HandlerManager(this);
 	_gameInfo = new (std::nothrow) GameInfo();
 
-	_screenInfo = Cocos2dCreator::CreateNode<ScreenInfo>();
-	addChild(_screenInfo, 1000000);
+	return InitProfile() && InitScreenInfoLayer() && InitLevel() && InitPlayer();
+}
 
+bool InGameScene::InitPlayer() { 
+	if (_player = Cocos2dCreator::CreateNode<Player>(this, _level->GetStartPosition()))
+	{
+		addChild(_player->AsNode());
+		return true;
+	}
+	return false;
+}
+
+bool InGameScene::InitLevel()
+{
+	const auto path = cocos2d::StringUtils::format(FORMAT_LEVEL.c_str(), _currentLevel);
+	if (_level = Cocos2dCreator::CreateNode<Level>(path))
+	{
+		addChild(_level);
+		CCLOG("Creating Level Object successes");
+		return true;
+	}
+
+	CCLOG("Creating Level Object fails");
+	return false;
+}
+
+bool InGameScene::InitScreenInfoLayer()
+{
+	if (_screenInfoLayer = Cocos2dCreator::CreateNode<ScreenInfoLayer>())
+	{
+		addChild(_screenInfoLayer, 1000000);
+
+
+		_screenInfoLayer->AddPauseButtonCallback([this](cocos2d::Ref*)
+		{
+			auto dialog = Cocos2dCreator::CreateNode<PausingGameDialog>();
+			dialog->OnEventPaused = [this]() { _eventDispatcher->pauseEventListenersForTarget(this); };
+			dialog->OnEventUnpaused = [this]() { _eventDispatcher->resumeEventListenersForTarget(this); };
+			addChild(dialog);
+			dialog->Show();
+		});
+		_screenInfoLayer->SetCoinText(std::to_string(_nCoins));
+
+		CCLOG("Creating ScreenInfoLayer Object successes");
+		return true;
+	}
+
+	CCLOG("Creating ScreenInfoLayer Object fails");
+	return false;
+}
+
+bool InGameScene::InitProfile()
+{
 	rapidjson::Document document;
 	auto profilePath = cocos2d::FileUtils::getInstance()->getWritablePath() + "profile.json";
 	if (!cocos2d::FileUtils::getInstance()->isFileExist(profilePath))
 	{
+		CCLOG("profile.json doesn't exist. The file will be created");
 		document.SetObject();
 		document.AddMember("coin", _nCoins, document.GetAllocator());
 
@@ -97,46 +147,11 @@ bool InGameScene::init(int level)
 	}
 	else
 	{
+		CCLOG("profile.json exists");
 		auto jsonFileContent = cocos2d::FileUtils::getInstance()->getStringFromFile(profilePath);
 		document.Parse(jsonFileContent.c_str());
 		_nCoins = document["coin"].GetInt();
 	}
-
-	_screenInfo->SetCoinText(std::to_string(_nCoins));
-
-	// level
-	const auto path = cocos2d::StringUtils::format(FORMAT_LEVEL.c_str(), _currentLevel);
-	if (_level = Cocos2dCreator::CreateNode<Level>(path))
-	{
-		addChild(_level);
-	}
-	else
-	{
-		CCLOG("Creating Level Object fails");
-		return false;
-	}
-
-
-	// player
-	if (_player = Cocos2dCreator::CreateNode<Player>(this, _level->GetStartPosition()))
-	{
-		addChild(_player->AsNode());
-	}
-	else
-	{
-		CCLOG("Creating Player Object fails");
-		return false;
-	}
-
-	_screenInfo->AddPauseButtonCallback([this](cocos2d::Ref*)
-	{
-		auto dialog = Cocos2dCreator::CreateNode<PausingGameDialog>();
-		dialog->OnEventPaused = [this]() { _eventDispatcher->pauseEventListenersForTarget(this); };
-		dialog->OnEventUnpaused = [this]() { _eventDispatcher->resumeEventListenersForTarget(this); };
-		addChild(dialog);
-		dialog->Show();
-
-	});
 
 	return true;
 }
@@ -150,19 +165,19 @@ void InGameScene::onEnterTransitionDidFinish()
 
 void InGameScene::update(float)
 {
-	if (_screenInfo)
+	if (_screenInfoLayer)
 	{
 		const auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
-		_screenInfo->setPosition(visibleOrigin - _position);
+		_screenInfoLayer->setPosition(visibleOrigin - _position);
 	}
 }
 
 void InGameScene::TakeCameraAfterPlayer()
 {
 	auto screenInfoHeight = 0.0f;
-	if (_screenInfo)
+	if (_screenInfoLayer)
 	{
-		screenInfoHeight = _screenInfo->GetHeight();
+		screenInfoHeight = _screenInfoLayer->GetHeight();
 	}
 
 	const auto& levelPosition = _level->getPosition();
@@ -173,38 +188,21 @@ void InGameScene::TakeCameraAfterPlayer()
 	runAction(_followingPlayerAction);
 }
 
-cocos2d::Vec2 InGameScene::GetVectorToPlayer() const
-{
-	const auto& winSize = cocos2d::Director::getInstance()->getWinSize();
-	auto& playerPosition = _player->AsNode()->getPosition();
-	Vec2 position = 0.5f * winSize - playerPosition;
-
-	const auto& levelPosition = _level->getPosition();
-	const auto& levelSize = _level->getContentSize();
-
-	const auto cameraXMin = -((levelPosition.x + levelSize.width) - winSize.width);
-	const auto cameraXMax = -levelPosition.x;
-	const auto cameraYMin = -((levelPosition.y + levelSize.height) - winSize.height);
-	const auto cameraYMax = -levelPosition.y;
-
-	position.x = cocos2d::clampf(position.x, cameraXMin, cameraXMax);
-	position.y = cocos2d::clampf(position.y, cameraYMin, cameraYMax);
-
-	return position;
-}
-
 void InGameScene::IncreaseNumberOfCoin()
 {
 	_nCoins++;
-	if (_screenInfo)
+	if (_screenInfoLayer)
 	{
-		_screenInfo->SetCoinText(std::to_string(_nCoins));
+		_screenInfoLayer->SetCoinText(std::to_string(_nCoins));
 	}
 }
 
 void InGameScene::ShowKeyInScreenInfo()
 {
-	_screenInfo->ShowKey();
+	if (_screenInfoLayer)
+	{
+		_screenInfoLayer->ShowKey();
+	}
 }
 
 void InGameScene::StopGame()
@@ -217,22 +215,30 @@ void InGameScene::StopGame()
 
 void InGameScene::ShowVictory()
 {
-	StopGame();
-	_player->MoveToCenterGoal(_level->GetGoalPosition(), [this]() { ShowVictoryDialog(); });
-	
 	auto profilePath = cocos2d::FileUtils::getInstance()->getWritablePath() + "profile.json";
-	
 	auto document = StaticMethods::GetJSONFromFile(profilePath);
 	document["coin"] = _nCoins;
-
 	StaticMethods::WriteJSONOnFile(document, profilePath);
+
+	if (_player)
+	{
+		_player->MoveToCenterGoal(_level->GetGoalPosition(), [this]() { ShowVictoryDialog(); });
+	}
+
+	StopGame();
 }
 
 void InGameScene::ShowGameOver()
 {
-	StopGame();
-	_player->Break();
+	if (_player)
+	{
+		_player->Break();
+	}
+
+	
 	ShowGameOverDialog();
+
+	StopGame();
 }
 
 void InGameScene::ShowVictoryDialog()
@@ -241,59 +247,45 @@ void InGameScene::ShowVictoryDialog()
 	dialog->SetLevelTextContent(std::to_string(_currentLevel));
 	dialog->SetTimeTextContent(time_temp);
 	dialog->SetBestTimeTextContent(bestTime_temp);
-	dialog->SetOnMainMenuButtonPressed([](cocos2d::Ref*)
-	{
-		cocos2d::Director::getInstance()->popToRootScene();
-	});
+	dialog->SetOnMainMenuButtonPressed([](cocos2d::Ref*){ cocos2d::Director::getInstance()->popToRootScene(); });
 	dialog->SetOnNextButtonPressed([this](cocos2d::Ref*)
 	{
 		auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>(_currentLevel + 1);
 		cocos2d::Director::getInstance()->replaceScene(scene);
 	});
-	getParent()->addChild(dialog, INT16_MAX);
+	_parent->addChild(dialog, INT16_MAX);
 	dialog->Show();
 }
 
 void InGameScene::ShowGameOverDialog()
 {
 	auto dialog = Cocos2dCreator::CreateNode<GameOverDialog>();
-	dialog->SetOnMainMenuButtonPressed([](cocos2d::Ref*)
-	{
-		cocos2d::Director::getInstance()->popToRootScene();
-	});
+	dialog->SetOnMainMenuButtonPressed([](cocos2d::Ref*){ cocos2d::Director::getInstance()->popToRootScene(); });
 	dialog->SetOnReplayButtonPressed([this](cocos2d::Ref*)
 	{
 		auto scene = Cocos2dCreator::CreateNode<IntroLevelScene>(_currentLevel);
 		cocos2d::Director::getInstance()->replaceScene(scene);
 	});
-	getParent()->addChild(dialog, INT16_MAX);
+	_parent->addChild(dialog, INT16_MAX);
 	dialog->Show();
 }
 
-
-//////////////////////
-
-bool ScreenInfo::init()
+HandlerManager* InGameScene::GetHandlerManager() const
 {
-	if (!MyCustomGUI<cocos2d::Layer>::init("ui/ingamescene-screen-info-horizontal.tmx"))
+	if (_handlerManager == nullptr)
 	{
-		return false;
+		CCLOG("InGameScene::_handlerManager is nullptr");
 	}
-
-	//setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-
-	return true;
+	
+	return _handlerManager;
 }
 
-void ScreenInfo::SetCoinText(const std::string& text)
+GameInfo* InGameScene::GetGameInfo() const
 {
-	SetTextContent("carrot", text);
-}
-
-void ScreenInfo::ShowKey()
-{
-	if (auto child = _tiledMap->getChildByName("key"))
+	if (_gameInfo == nullptr)
 	{
-		child->setVisible(true);
+		CCLOG("InGameScene::_gameInfo is nullptr");
 	}
+
+	return _gameInfo;
 }

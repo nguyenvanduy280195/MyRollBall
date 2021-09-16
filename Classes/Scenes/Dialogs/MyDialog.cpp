@@ -3,13 +3,25 @@
 #include "../MyCustomGUI.inl"
 #include "2d/CCActionInterval.h"
 #include "2d/CCActionInstant.h"
+#include "ui/UILayout.h"
 //#include "ScreenLog/ScreenLog.h"
 
-bool MyDialog::init(const std::string& tmxPath)
+bool MyDialog::init(const std::string& tmxPath, bool backgroundEnabled)
 {
 	if (!Super::init(tmxPath))
 	{
 		return false;
+	}
+
+	if (backgroundEnabled)
+	{
+		auto winSize = cocos2d::Director::getInstance()->getWinSize();
+		auto background = cocos2d::ui::Layout::create();
+		background->setContentSize(winSize);
+		background->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
+		background->setBackGroundColor(cocos2d::Color3B::BLACK);
+		background->setOpacity(100);
+		addChild(background, -1);
 	}
 
 	_tiledMap->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
@@ -45,11 +57,4 @@ void MyDialog::Hide()
 		auto action = cocos2d::Sequence::createWithTwoActions(scaleTo, onHide);
 		_tiledMap->runAction(action);
 	}
-}
-
-void MyDialog::onEnter()
-{
-	Super::onEnter();
-
-	//_tiledMap->setVisible(false);
 }

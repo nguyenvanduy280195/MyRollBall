@@ -32,7 +32,6 @@ private:
 	cocos2d::Sprite* MakeGoal(cocos2d::ValueMap& value);
 	cocos2d::Sprite* MakeKey(cocos2d::ValueMap& value);
 	cocos2d::Sprite* MakeRotatingBlock(cocos2d::ValueMap& value);
-	cocos2d::Sprite* MakeCoin(cocos2d::ValueMap& value);
 
 	cocos2d::PhysicsShape* MakeSpikeBodyShape(cocos2d::ValueMap& value);
 	

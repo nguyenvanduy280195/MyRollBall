@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "dialog-pausing-game.tmx",
+    "activeFile": "scene-main-menu.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -11,6 +11,20 @@
         "": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/_000.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 640.89427107592,
+                "y": 640.89427107592
+            }
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/_000.tmx#grass": {
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/_000.tmx#wood": {
+            "scaleInDock": 1
         },
         "C:/Users/tensa/OneDrive/Desktop/TileGameResources/TileMap.tmx": {
             "scale": 0.17515625,
@@ -93,12 +107,52 @@
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
+        "dialog-choosing-level-0.tmx": {
+            "scale": 0.9258789062499999,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 554.0681362725452,
+                "y": 225.73146292585173
+            }
+        },
+        "dialog-choosing-level-0.tmx#route": {
+            "scaleInDock": 1
+        },
+        "dialog-choosing-level-1.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 473.3333333333333,
+                "y": 334.6666666666667
+            }
+        },
+        "dialog-choosing-level-1.tmx#background": {
+            "scaleInDock": 1
+        },
+        "dialog-choosing-level-1.tmx#route": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "dialog-choosing-level-1.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
+        "dialog-choosing-level-2.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 540,
+                "y": 252
+            }
+        },
+        "dialog-choosing-level-2.tmx#route": {
+            "scaleInDock": 1
+        },
         "dialog-choosing-level.tmx": {
             "scale": 1.5,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 307.3333333333333,
-                "y": 260
+                "x": 272,
+                "y": 352
             }
         },
         "dialog-choosing-level.tmx#ui_tilesheet": {
@@ -107,10 +161,10 @@
         },
         "dialog-credits.tmx": {
             "scale": 1,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 672,
-                "y": 0
+                "x": 16,
+                "y": 208
             }
         },
         "dialog-credits.tmx#ui_tilesheet": {
@@ -146,10 +200,10 @@
         },
         "dialog-option.tmx": {
             "scale": 1.7891666666666666,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 160.40987424312996,
-                "y": 240.33535165346998
+                "y": 185.56124825337682
             }
         },
         "dialog-option.tmx#ui_tilesheet": {
@@ -157,10 +211,10 @@
         },
         "dialog-pausing-game.tmx": {
             "scale": 1.5,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 128,
-                "y": 112
+                "y": 32
             }
         },
         "dialog-pausing-game.tmx#ui_tilesheet": {
@@ -179,11 +233,11 @@
             "scaleInDock": 1
         },
         "dialog-victory.tmx": {
-            "scale": 1.5,
-            "selectedLayer": 7,
+            "scale": 2,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 202.66666666666666,
-                "y": 198
+                "x": 48,
+                "y": 320
             }
         },
         "dialog-victory.tmx#UIpackSheet_transparent": {
@@ -206,6 +260,7 @@
             "scaleInDock": 1
         },
         "dialog-victory.tmx#time": {
+            "dynamicWrapping": true,
             "scaleInDock": 1
         },
         "dialog-victory.tmx#trophy": {
@@ -221,12 +276,15 @@
             "scaleInEditor": 1
         },
         "ingamescene-screen-info-horizontal.tmx": {
-            "scale": 2,
+            "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 512,
-                "y": 32
+                "x": 176,
+                "y": 48
             }
+        },
+        "ingamescene-screen-info-horizontal.tmx#route": {
+            "scaleInDock": 1
         },
         "ingamescene-screen-info-horizontal.tmx#ui_tilesheet": {
             "scaleInDock": 1
@@ -291,13 +349,27 @@
         "scene-coming-soon.tmx#ui_tilesheet": {
             "scaleInDock": 1
         },
+        "scene-main-menu-1.tmx": {
+            "scale": 0.9258789062499999,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 422.30144499525375,
+                "y": 427.70171922792963
+            }
+        },
+        "scene-main-menu-1.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
         "scene-main-menu.tmx": {
             "scale": 2,
-            "selectedLayer": 4,
+            "selectedLayer": 2,
             "viewCenter": {
                 "x": 0,
                 "y": 672
             }
+        },
+        "scene-main-menu.tmx#grass": {
+            "scaleInDock": 1
         },
         "scene-main-menu.tmx#text_control_ball_felt": {
             "dynamicWrapping": true,
@@ -309,39 +381,38 @@
         }
     },
     "last.imagePath": "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/assets",
-    "map.height": 30,
+    "map.height": 20,
     "map.lastUsedFormat": "tmx",
     "map.layerDataFormat": null,
     "map.renderOrder": null,
-    "map.tileHeight": 16,
-    "map.tileWidth": 16,
+    "map.tileHeight": 64,
+    "map.tileWidth": 64,
     "map.width": 20,
     "openFiles": [
-        "dialog-pausing-game.tmx",
-        "ingamescene-screen-info-horizontal.tmx"
+        "scene-main-menu.tmx"
     ],
     "project": "ui.tiled-project",
-    "property.type": "bool",
+    "property.type": "float",
     "recentFiles": [
-        "ingamescene-screen-info-horizontal.tmx",
-        "dialog-pausing-game.tmx",
-        "dialog-exit-game.tmx",
-        "dialog-option.tmx",
         "scene-main-menu.tmx",
-        "dialog-choosing-level.tmx",
-        "scene-coming-soon.tmx",
-        "ingamescene-screen-info.tmx",
+        "dialog-choosing-level-0.tmx",
+        "dialog-choosing-level-2.tmx",
+        "dialog-choosing-level-1.tmx",
+        "ingamescene-screen-info-horizontal.tmx",
         "dialog-credits.tmx",
         "dialog-victory.tmx",
-        "dialog-game-over.tmx",
-        "dialog-victory-0.tmx"
+        "dialog-pausing-game.tmx",
+        "dialog-choosing-level.tmx",
+        "dialog-option.tmx",
+        "scene-main-menu-1.tmx",
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/_000.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.margin": 0,
     "tileset.spacing": 0,
     "tileset.tileSize": {
-        "height": 16,
-        "width": 16
+        "height": 32,
+        "width": 32
     },
     "tileset.type": 0
 }

@@ -58,6 +58,7 @@ endif()
 
 list(APPEND GAME_SOURCE
 Classes/AppDelegate.cpp
+Classes/CoinCreator.cpp
 Classes/Crossbow.cpp
 Classes/Level.cpp
 Classes/Player.cpp
@@ -71,7 +72,6 @@ Classes/Scenes/InGameScene.cpp
 Classes/Scenes/IntroLevelScene.cpp
 Classes/Scenes/MainMenuScene.cpp
 Classes/Scenes/MyCustomGUI.inl
-Classes/Scenes/Dialogs/ChoosingLevelDialog.cpp
 Classes/Scenes/Dialogs/CreditsDialog.cpp
 Classes/Scenes/Dialogs/ExitGameDialog.cpp
 Classes/Scenes/Dialogs/GameOverDialog.cpp
@@ -79,6 +79,9 @@ Classes/Scenes/Dialogs/MyDialog.cpp
 Classes/Scenes/Dialogs/OptionsDialog.cpp
 Classes/Scenes/Dialogs/PausingGameDialog.cpp
 Classes/Scenes/Dialogs/VictoryDialog.cpp
+Classes/Scenes/Layers/ChoosingLevelLayer.cpp
+Classes/Scenes/Layers/MyLayer.cpp
+Classes/Scenes/Layers/ScreenInfoLayer.cpp
 Classes/ScreenLog/ScopeLock.cpp
 Classes/ScreenLog/ScopeLog.cpp
 Classes/ScreenLog/ScreenLog.cpp
@@ -94,11 +97,26 @@ Classes/Scenes/MyCustomGUI.inl
 Classes/Scenes/MyCustomGUI.inl
 Classes/Scenes/MyCustomGUI.inl
 Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
+Classes/Scenes/MyCustomGUI.inl
 )
 
 list(APPEND GAME_HEADER
 Classes/AppDelegate.h
 Classes/Bitmask.h
+Classes/CoinCreator.h
 Classes/Crossbow.h
 Classes/ILevel.h
 Classes/IPlayer.h
@@ -112,12 +130,11 @@ Classes/Managers/ContactHandler.h
 Classes/Managers/HandlerManager.h
 Classes/Managers/KeyboardHandler.h
 Classes/Scenes/ComingSoonScene.h
+Classes/Scenes/IInGameScene.h
 Classes/Scenes/InGameScene.h
 Classes/Scenes/IntroLevelScene.h
-Classes/Scenes/IScene.h
 Classes/Scenes/MainMenuScene.h
 Classes/Scenes/MyCustomGUI.h
-Classes/Scenes/Dialogs/ChoosingLevelDialog.h
 Classes/Scenes/Dialogs/CreditsDialog.h
 Classes/Scenes/Dialogs/ExitGameDialog.h
 Classes/Scenes/Dialogs/GameOverDialog.h
@@ -125,6 +142,9 @@ Classes/Scenes/Dialogs/MyDialog.h
 Classes/Scenes/Dialogs/OptionsDialog.h
 Classes/Scenes/Dialogs/PausingGameDialog.h
 Classes/Scenes/Dialogs/VictoryDialog.h
+Classes/Scenes/Layers/ChoosingLevelLayer.h
+Classes/Scenes/Layers/MyLayer.h
+Classes/Scenes/Layers/ScreenInfoLayer.h
 Classes/ScreenLog/ScopeLock.h
 Classes/ScreenLog/ScopeLog.h
 Classes/ScreenLog/ScreenLog.h

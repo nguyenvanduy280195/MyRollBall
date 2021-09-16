@@ -9,12 +9,12 @@
   </data>
  </layer>
  <objectgroup id="2" name="buttons">
-  <object id="1" name="close" x="672" y="0">
+  <object id="1" name="close" x="656" y="16">
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
     <property name="src-disabled" value=""/>
-    <property name="src-normal" value="ui/assets/red_cross.png"/>
+    <property name="src-normal" value="ui/assets/btn_close.png"/>
     <property name="src-pressed" value=""/>
     <property name="title" value=""/>
    </properties>

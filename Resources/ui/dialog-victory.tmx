@@ -1,30 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="9">
- <tileset firstgid="1" name="victory" tilewidth="164" tileheight="20" tilecount="1" columns="0">
-  <grid orientation="orthogonal" width="1" height="1"/>
-  <tile id="0">
-   <image width="164" height="20" source="assets/text-victory.png"/>
-  </tile>
- </tileset>
- <tileset firstgid="2" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="12">
+ <tileset firstgid="1" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
   <image source="assets/ui_tilesheet.png" width="480" height="144"/>
  </tileset>
- <tileset firstgid="272" name="trophy" tilewidth="16" tileheight="16" tilecount="100" columns="10">
-  <image source="assets/trophy.png" width="160" height="160"/>
- </tileset>
- <tileset firstgid="372" name="best-time" tilewidth="165" tileheight="16" tilecount="1" columns="0">
+ <tileset firstgid="271" name="best-time" tilewidth="165" tileheight="16" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="165" height="16" source="assets/text-best-time.png"/>
   </tile>
  </tileset>
- <tileset firstgid="373" name="time" tilewidth="74" tileheight="16" tilecount="1" columns="0">
+ <tileset firstgid="272" name="time" tilewidth="74" tileheight="16" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="74" height="16" source="assets/text-time.png"/>
   </tile>
  </tileset>
- <tileset firstgid="374" name="level" tilewidth="101" tileheight="16" tilecount="1" columns="0">
+ <tileset firstgid="273" name="level" tilewidth="101" tileheight="16" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="101" height="16" source="assets/text-level.png"/>
@@ -32,26 +23,9 @@
  </tileset>
  <layer id="1" name="background" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJyTYmBgkKYSlgFiCyC2pBK2GjVv1LxR80bNGzVv1LxR80bNo4N5YUAcTiUcAcQAKiqFmQ==
+   eJyTZGBgkKISlgZicyC2oBK2HDVv1LxR80bNGzVv1LxR80bNo4N5oUAcRiUcDsQAKFWDQQ==
   </data>
  </layer>
- <group id="13" name="info">
-  <layer id="9" name="level" width="20" height="30">
-   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhB8oYB9oFo2AUjIJRgBsAADG5AHg=
-  </data>
-  </layer>
-  <layer id="11" name="time" width="20" height="30">
-   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQG1QyjjQLhgFo2AUDCQAAONGAHc=
-  </data>
-  </layer>
-  <layer id="12" name="best-time" width="20" height="30">
-   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMNJACeNAu2AUjILhDQCWIgB2
-  </data>
-  </layer>
- </group>
  <objectgroup id="4" name="buttons">
   <object id="1" name="main-menu" x="160" y="368">
    <properties>
@@ -95,6 +69,36 @@
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="9" x="48" y="256">
+   <properties>
+    <property name="anchor-point-x" type="float" value="0"/>
+    <property name="anchor-point-y" type="float" value="0"/>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="text" value="Level"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="10" x="48" y="288.667">
+   <properties>
+    <property name="anchor-point-x" type="float" value="0"/>
+    <property name="anchor-point-y" type="float" value="0"/>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="text" value="Time"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="11" x="48" y="320">
+   <properties>
+    <property name="anchor-point-x" type="float" value="0"/>
+    <property name="anchor-point-y" type="float" value="0"/>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="text" value="Best Time"/>
    </properties>
    <point/>
   </object>

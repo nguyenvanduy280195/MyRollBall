@@ -9,6 +9,7 @@
 #include "Utils/StaticMethods.h"
 #include "Crossbow.h"
 #include "Utils/Cocos2dCreator.h"
+#include "CoinCreator.h"
 
 using Super = cocos2d::TMXTiledMap;
 using Vec2 = cocos2d::Vec2;
@@ -22,8 +23,7 @@ bool Level::init(const std::string& filename)
 		return false;
 	}
 
-	auto body = MakeBody();
-	setPhysicsBody(body);
+	setPhysicsBody(MakeBody());
 
 	TMXUtil::ForeachAllObjectsInObjectGroup(this, "positions", [this](cocos2d::ValueMap& value)
 	{
@@ -48,13 +48,17 @@ bool Level::init(const std::string& filename)
 
 	TMXUtil::ForeachAllObjectsInObjectGroup(this, "coins", [this](cocos2d::ValueMap& value)
 	{
-		auto coin = MakeCoin(value);
+		CoinCreator coinCreator(value);
+
+		auto coin = coinCreator.CreateSprite();
 		addChild(coin);
+
+		auto animateAction = coinCreator.CreateAnimateAction();
+		coin->runAction(cocos2d::RepeatForever::create(animateAction));
 	});
 
 	TMXUtil::ForeachAllObjectsInObjectGroup(this, "crossbows", [this](cocos2d::ValueMap& value)
 	{
-		//auto laserShooter = MakeLaserShooter(value);
 		auto crossbow = Cocos2dCreator::CreateNode<Crossbow>(value, _contentSize);
 		addChild(crossbow);
 	});
@@ -291,54 +295,6 @@ cocos2d::Sprite* Level::MakeRotatingBlock(cocos2d::ValueMap& value)
 	rotatingBlock->setPhysicsBody(body);
 
 	return rotatingBlock;
-}
-
-cocos2d::Sprite* Level::MakeCoin(cocos2d::ValueMap& value)
-{
-	auto x = value["x"].asFloat();
-	auto y = value["y"].asFloat();
-	auto src = value["src"].asString();
-
-	auto document = StaticMethods::GetJSONFromFile(src);
-	auto textureFileName = document["path.image"].GetString();
-	auto plist = document["path.plist"].GetString();
-	auto animationDelay = document["animation.delay"].GetFloat();
-	auto nFrames = document["frames.number"].GetInt();
-	auto anchorPointX = document["anchor.point.x"].GetFloat();
-	auto anchorPointY = document["anchor.point.y"].GetFloat();
-	auto bodyWidth = document["body.size.width"].GetFloat();
-	auto bodyHeight = document["body.size.height"].GetFloat();
-	auto bodyOffsetX = document["body.offset.x"].GetFloat();
-	auto bodyOffsetY = document["body.offset.y"].GetFloat();
-
-	auto body = cocos2d::PhysicsBody::createBox(Size(bodyWidth, bodyHeight), cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, Vec2(bodyOffsetX, bodyOffsetY));
-	body->setDynamic(false);
-	body->setCategoryBitmask(COIN_CATEGORY_BITMASK);
-	body->setCollisionBitmask(COIN_COLLISION_BITMASK);
-	body->setContactTestBitmask(COIN_CONTACT_TEST_BITMASK);
-	
-	StaticMethods::OpenSpritesheet open(plist, textureFileName);
-	//cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist, textureFileName);
-	cocos2d::Vector<cocos2d::SpriteFrame*> frames;
-	frames.reserve(nFrames);
-	for (int i = 0; i < nFrames; i++)
-	{
-		auto name = cocos2d::StringUtils::format("coin-%d.png", i);
-		auto spriteFrame = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName(name);
-		frames.pushBack(spriteFrame);
-	}
-	auto animation = cocos2d::Animation::createWithSpriteFrames(frames, animationDelay);
-	auto animate = cocos2d::Animate::create(animation);
-
-	auto coin = cocos2d::Sprite::createWithSpriteFrameName("coin-0.png");
-	
-	coin->setName("coin");
-	coin->setAnchorPoint(Vec2(anchorPointX, anchorPointY));
-	coin->setPosition(x, y);
-	coin->setPhysicsBody(body);
-	coin->runAction(cocos2d::RepeatForever::create(animate));
-
-	return coin;
 }
 
 cocos2d::PhysicsShape* Level::MakeSpikeBodyShape(cocos2d::ValueMap& value)

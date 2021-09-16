@@ -137,6 +137,10 @@ inline cocos2d::ui::Text* MyCustomGUI<TGUI>::MakeText(cocos2d::ValueMap& value)
 	const auto anchorPointX = value["anchor-point-x"].asFloat();
 	const auto anchorPointY = value["anchor-point-y"].asFloat();
 	const auto color = StaticMethods::MakeColor3BFromHex(value["color"].asString());
+	const auto shadowColor = StaticMethods::MakeColor3BFromHex(value["shadow.color"].asString());
+	const auto shadowWidth = value["shadow.width"].asFloat();
+	const auto shadowHeight = value["shadow.height"].asFloat();
+
 	auto str = value["text"].asString();
 
 	if (str.empty())
@@ -153,8 +157,21 @@ inline cocos2d::ui::Text* MyCustomGUI<TGUI>::MakeText(cocos2d::ValueMap& value)
 
 	if (value["enableShadow"].asBool())
 	{
-		text->enableShadow();
+		text->enableShadow(cocos2d::Color4B(shadowColor), cocos2d::Size(shadowWidth, shadowHeight));
 	}
 
 	return text;
+}
+
+template<class TGUI>
+inline cocos2d::ui::Button* MyCustomGUI<TGUI>::GetButtonByName(const std::string& name) const
+{
+	if (auto child = _tiledMap->getChildByName(name))
+	{
+		if (auto button = dynamic_cast<cocos2d::ui::Button*>(child))
+		{
+			return button;
+		}
+	}
+	return nullptr;
 }
