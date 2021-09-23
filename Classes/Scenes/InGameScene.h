@@ -1,21 +1,13 @@
 #pragma once
 
 #include "2d/CCLayer.h"
-#include "Utils/Cocos2dCreator.h"
 #include "IInGameScene.h"
-#include "2d/CCTMXTiledMap.h"
-#include "MyCustomGUI.h"
 
 namespace cocos2d
 {
 class TMXTiledMap;
 class Sprite;
 class Follow;
-}
-
-namespace cocos2d::ui
-{
-class Button;
 }
 
 class InGameScene : public cocos2d::Layer, public IInGameScene

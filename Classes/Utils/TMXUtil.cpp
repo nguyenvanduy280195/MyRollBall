@@ -1,6 +1,6 @@
 #include "TMXUtil.h"
 #include "2d/CCTMXTiledMap.h"
-#include "ScreenLog/ScreenLog.h"
+//#include "ScreenLog/ScreenLog.h"
 
 using Vec2 = cocos2d::Vec2;
 

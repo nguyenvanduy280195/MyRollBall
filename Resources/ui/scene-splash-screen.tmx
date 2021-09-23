@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="30">
+ <tileset firstgid="1" name="color-4" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="assets/color-4.png" width="32" height="32"/>
+ </tileset>
+ <layer id="13" name="Tile Layer 1" width="32" height="22">
+  <data encoding="base64" compression="zlib">
+   eJztwwENAAAMw6DOv+kLOSSsmqqqPnkxYQLB
+  </data>
+ </layer>
+ <objectgroup id="10" name="images">
+  <object id="25" name="cocos2d-x" x="512" y="352">
+   <properties>
+    <property name="action.name" value="Sequence#logo"/>
+    <property name="invisible" type="bool" value="false"/>
+    <property name="src" value="ui/assets/logo_cocos2dx.png"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="14" name="actions">
+  <object id="28" name="FadeOut#0" x="0" y="0">
+   <properties>
+    <property name="duration" type="float" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="27" name="FadeIn#0" x="0" y="0">
+   <properties>
+    <property name="duration" type="float" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="29" name="Sequence#logo" x="16" y="16">
+   <properties>
+    <property name="action0" value="FadeIn#0"/>
+    <property name="action1" value="FadeOut#0"/>
+    <property name="nActions" type="int" value="2"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>

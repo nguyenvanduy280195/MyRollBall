@@ -12,6 +12,8 @@
 
 #include "MyCustomGUI.inl"
 
+// TODO convert this tmx file
+
 bool IntroLevelScene::init() { return init(1); }
 
 bool IntroLevelScene::init(int level)
@@ -25,8 +27,6 @@ bool IntroLevelScene::init(int level)
 
 	auto background = cocos2d::ui::Layout::create();
 	background->setContentSize(winSize);
-	//background->setBackGroundColorType(cocos2d::ui::Layout::BackGroundColorType::SOLID);
-	//background->setBackGroundColor(cocos2d::Color3B::GREEN);
 	addChild(background);
 	
 	auto text = cocos2d::ui::Text::create(cocos2d::StringUtils::format("Level %d", _level),
@@ -34,9 +34,7 @@ bool IntroLevelScene::init(int level)
 										  50);
 	text->setPosition(0.5f * winSize);
 	addChild(text);
-	//ScreenLog::GetInstance()->AttachToScene(this);
-	//ScreenLog::GetInstance()->Debug(__FUNCTION__);
-
+	
 	return true;
 }
 

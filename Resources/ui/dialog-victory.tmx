@@ -1,29 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="12">
- <tileset firstgid="1" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
-  <image source="assets/ui_tilesheet.png" width="480" height="144"/>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="17" nextobjectid="14">
+ <tileset firstgid="1" name="color-0" tilewidth="16" tileheight="16" tilecount="4" columns="2">
+  <image source="assets/color-0.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="271" name="best-time" tilewidth="165" tileheight="16" tilecount="1" columns="0">
-  <grid orientation="orthogonal" width="1" height="1"/>
-  <tile id="0">
-   <image width="165" height="16" source="assets/text-best-time.png"/>
-  </tile>
- </tileset>
- <tileset firstgid="272" name="time" tilewidth="74" tileheight="16" tilecount="1" columns="0">
-  <grid orientation="orthogonal" width="1" height="1"/>
-  <tile id="0">
-   <image width="74" height="16" source="assets/text-time.png"/>
-  </tile>
- </tileset>
- <tileset firstgid="273" name="level" tilewidth="101" tileheight="16" tilecount="1" columns="0">
-  <grid orientation="orthogonal" width="1" height="1"/>
-  <tile id="0">
-   <image width="101" height="16" source="assets/text-level.png"/>
-  </tile>
- </tileset>
+ <tileset firstgid="5" source="color-1.tsx"/>
  <layer id="1" name="background" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJyTZGBgkKISlgZicyC2oBK2HDVv1LxR80bNGzVv1LxR80bNo4N5oUAcRiUcDsQAKFWDQQ==
+   eJxjZWBgYANiVirR7EDMQUWaWu4add+o+0bdN+q+UfeNum/UfaPuo5f7ADUpDz0=
   </data>
  </layer>
  <objectgroup id="4" name="buttons">
@@ -31,10 +14,11 @@
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
-    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
-    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value=""/>
+    <property name="src-pressed" value=""/>
     <property name="title" value="Main Menu"/>
+    <property name="title-color" value="#091c32ff"/>
    </properties>
    <point/>
   </object>
@@ -42,10 +26,11 @@
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
-    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
-    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value=""/>
+    <property name="src-pressed" value=""/>
     <property name="title" value="Next"/>
+    <property name="title-color" value="#091c32ff"/>
    </properties>
    <point/>
   </object>
@@ -103,13 +88,25 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="14" name="positions">
-  <object id="8" name="victory" x="160" y="96">
+ <objectgroup id="14" name="positions"/>
+ <objectgroup id="15" name="images">
+  <object id="12" name="victory" x="164" y="100">
+   <properties>
+    <property name="action.name" value="ScaleTo#0"/>
+    <property name="invisible" type="bool" value="false"/>
+    <property name="scale-factor-x" type="float" value="10"/>
+    <property name="scale-factor-y" type="float" value="10"/>
+    <property name="src" value="ui/assets/text-victory-0.png"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="16" name="actions">
+  <object id="13" name="ScaleTo#0" x="-16" y="16">
    <properties>
     <property name="duration" type="float" value="0.5"/>
-    <property name="scale-factor-0" type="float" value="10"/>
-    <property name="scale-factor-1" type="float" value="1"/>
-    <property name="src" value="ui/assets/text-victory-0.png"/>
+    <property name="scale-factor-x" type="float" value="1"/>
+    <property name="scale-factor-y" type="float" value="1"/>
    </properties>
    <point/>
   </object>

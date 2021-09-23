@@ -1,24 +1,21 @@
 #include "Player.h"
 
+#include "base/CCEventAcceleration.h"
 #include "base/CCDirector.h"
 #include "physics/CCPhysicsBody.h"
+#include "math/CCMathBase.h"
+#include "2d/CCActionInterval.h"
 
 #include "Managers/HandlerManager.h"
 #include "Managers/AccelerationHandler.h"
 #include "Managers/KeyboardHandler.h"
 
-#include "2d/CCActionInterval.h"
-#include "base/CCEventAcceleration.h"
-
-#include "Utils/Cocos2dCreator.h"
-
-#include "math/CCMathBase.h"
+#include "Bitmask.h"
 
 #include "Infos/GameInfo.h"
-#include "Scenes/IInGameScene.h"
-#include "ScreenLog/ScreenLog.h"
-#include "Bitmask.h"
 #include "Infos/PlayerInfo.h"
+
+#include "Scenes/IInGameScene.h"
 
 #include "ScreenLog/ScreenLog.h"
 #include "ScreenLog/ScopeLog.h"
@@ -30,7 +27,7 @@ using Size = cocos2d::Size;
 
 #define DRAWING_PLAYER_ANCHOR_POINT 0
 
-bool Player::init(class IInGameScene* owner, const Vec2& position)
+bool Player::init(IInGameScene* owner, const Vec2& position)
 {
 	if (owner == nullptr)
 	{
@@ -51,7 +48,7 @@ bool Player::init(class IInGameScene* owner, const Vec2& position)
 		return false;
 	}
 
-#if CC_PLATFORM_ANDROID == CC_TARGET_PLATFORM:
+#if CC_PLATFORM_ANDROID == CC_TARGET_PLATFORM
 	_inGameScene->GetHandlerManager()->accelerationHandler->onAcceleration = [this](cocos2d::Acceleration* acceleration)
 	{
 		const Vec2 accelerationVec2((float)acceleration->x, (float)acceleration->y);
@@ -75,7 +72,7 @@ bool Player::init(class IInGameScene* owner, const Vec2& position)
 
 void Player::update(float deltaTime)
 {
-#if CC_PLATFORM_ANDROID != CC_TARGET_PLATFORM:
+#if CC_PLATFORM_ANDROID != CC_TARGET_PLATFORM
 	MoveByKeyboard(deltaTime);
 #endif
 }

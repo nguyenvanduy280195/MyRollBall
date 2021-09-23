@@ -1,18 +1,6 @@
 #pragma once
 
-#include "2d/CCLayer.h"
-#include "base/CCValue.h"
 #include "MyDialog.h"
-
-namespace cocos2d
-{
-namespace ui
-{
-class Button;
-class Layout;
-class Text;
-}
-}
 
 class VictoryDialog : public MyDialog
 {

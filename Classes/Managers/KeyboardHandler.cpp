@@ -1,6 +1,8 @@
 #include "KeyboardHandler.h"
-#include "base/CCEventListenerKeyboard.h"
+
 #include "2d/CCNode.h"
+
+#include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
 KeyboardHandler::KeyboardHandler(cocos2d::Node* owner)

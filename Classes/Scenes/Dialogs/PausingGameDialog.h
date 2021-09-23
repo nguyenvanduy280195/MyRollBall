@@ -5,7 +5,7 @@
 class PausingGameDialog : public MyDialog
 {
 public:
-	bool init();
+	bool init(const cocos2d::Vec2& position = cocos2d::Vec2::ZERO);
 	std::function<void()> OnEventPaused;
 	std::function<void()> OnEventUnpaused;
 };

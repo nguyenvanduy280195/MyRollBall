@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="4">
- <tileset firstgid="1" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
-  <image source="assets/ui_tilesheet.png" width="480" height="144"/>
- </tileset>
- <layer id="1" name="Background" width="20" height="30">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="7">
+ <tileset firstgid="1" source="color-1.tsx"/>
+ <layer id="1" name="Background" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJztzDERACAQA8H4dwUIAYQ8EBEZqiu23SaphwybtkI2Hx8fHx8fH9+Hr+yEXHtcLA0f
+   eJxjZGBgYAJiRirRzEDMQkWaWu4add+o+0bdN+q+UfdR130AA7QD6Q==
   </data>
  </layer>
- <objectgroup id="2" name="positions">
-  <object id="1" name="game-over" x="160" y="144">
+ <objectgroup id="6" name="actions">
+  <object id="6" name="ScaleTo#0" x="160" y="96">
    <properties>
     <property name="duration" type="float" value="0.5"/>
-    <property name="scale-factor-0" type="float" value="10"/>
-    <property name="scale-factor-1" type="float" value="1"/>
+    <property name="scale-factor-x" type="float" value="1"/>
+    <property name="scale-factor-y" type="float" value="1"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="images">
+  <object id="5" name="game-over" x="160" y="96">
+   <properties>
+    <property name="action.name" value="ScaleTo#0"/>
+    <property name="invisible" type="bool" value="false"/>
+    <property name="scale-factor-x" type="float" value="10"/>
+    <property name="scale-factor-y" type="float" value="10"/>
     <property name="src" value="ui/assets/text-game-over.png"/>
    </properties>
    <point/>
   </object>
  </objectgroup>
  <objectgroup id="4" name="buttons">
-  <object id="2" name="main-menu" x="160" y="352">
+  <object id="2" name="main-menu" x="112" y="256">
    <properties>
-    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-name" value=""/>
     <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
-    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
-    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
-    <property name="title" value="Main Menu"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/btn_menu.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
+    <property name="title-color" value=""/>
    </properties>
    <point/>
   </object>
-  <object id="3" name="replay" x="160" y="416">
+  <object id="3" name="replay" x="208" y="256">
    <properties>
-    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-name" value=""/>
     <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
-    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
-    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
-    <property name="title" value="Replay"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/btn_replay.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
+    <property name="title-color" value=""/>
    </properties>
    <point/>
   </object>

@@ -1,8 +1,10 @@
 #include "HandlerManager.h"
 #include "KeyboardHandler.h"
 #include "AccelerationHandler.h"
-#include "Scenes/InGameScene.h"
 #include "ContactHandler.h"
+
+#include "Scenes/InGameScene.h"
+
 
 HandlerManager::HandlerManager(InGameScene* scene)
 {

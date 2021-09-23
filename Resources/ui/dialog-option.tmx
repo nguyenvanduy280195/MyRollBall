@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="3">
- <tileset firstgid="1" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
-  <image source="assets/ui_tilesheet.png" width="480" height="144"/>
- </tileset>
- <layer id="1" name="Tile Layer 1" width="20" height="30">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="3">
+ <tileset firstgid="1" source="color-1.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="10">
   <data encoding="base64" compression="zlib">
-   eJyTZGBgkKISlgZicyC2oBK2HDVv1LxR80bNGzVv1LxR80bNo4N5oUAcRiUcDsQAKFWDQQ==
+   eJxjZGBgYAJiRirRzEDMQkWaWu4add+o+8ihAfReAfU=
   </data>
  </layer>
  <objectgroup id="3" name="buttons">
@@ -21,4 +19,5 @@
    <point/>
   </object>
  </objectgroup>
+ <objectgroup id="4" name="texts"/>
 </map>

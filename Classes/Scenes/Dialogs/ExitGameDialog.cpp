@@ -1,10 +1,12 @@
 #include "ExitGameDialog.h"
-#include "../MyCustomGUI.inl"
+
 #include "base/CCDirector.h"
+
+#include "../MyCustomGUI.inl"
 
 bool ExitGameDialog::init(const cocos2d::Vec2& boxPosition)
 {
-	if (!MyDialog::init("ui/dialog-exit-game.tmx"))
+	if (!MyDialog::init("ui/dialog-exit-game.tmx", true))
 	{
 		return false;
 	}

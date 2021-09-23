@@ -1,7 +1,8 @@
 {
-  "path": "levels/assets/key.png",
-  "anchor.point.x": 0.5,
-  "anchor.point.y": 0.5,
+  "sprite.imagePath": "levels/assets/key.png",
+  "anchorPoint.x": 0.5,
+  "anchorPoint.y": 0.5,
+  "body.type": "box",
   "body.size.width": 64,
   "body.size.height": 24,
   "body.radius": 0.0,

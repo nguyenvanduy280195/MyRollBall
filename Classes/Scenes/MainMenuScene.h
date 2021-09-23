@@ -1,19 +1,12 @@
 #pragma once
 
 #include "2d/CCScene.h"
-#include "2d/CCLayer.h"
 #include "base/CCValue.h"
 #include "MyCustomGUI.h"
 
 namespace cocos2d
 {
-class TMXTiledMap;
-class Action;
-
-namespace ui
-{
-class Button;
-}
+class FiniteTimeAction;
 }
 
 class MainMenuScene : public MyCustomGUI<cocos2d::Scene>
@@ -21,14 +14,21 @@ class MainMenuScene : public MyCustomGUI<cocos2d::Scene>
 public:
 	bool init();
 private:
-	void SetPreviousPageButtonVisible(bool visible);
-	void SetNextPageButtonVisible(bool visible);
+	void InitChoosingLevelLayer();
+	void InitMenuDialog();
 
-	void OnNextPageButtonClicked();
-	void OnPreviousPageButtonClicked();
+	void SetupPreviousPageButton();
+	void SetupNextPageButton();
+	void SetupMenuButton();
 
-	cocos2d::Action* MakeCurrentLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onNewLayerMoving) const;
-	cocos2d::Action* MakeNewLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onMovingDone) const;
+	void OnNextPageButtonClicked(cocos2d::Ref*);
+	void OnPreviousPageButtonClicked(cocos2d::Ref*);
+
+	void PutMenuButtonInTopRightCorner();
+	void PutVersionTextInBottomLeftCorner();
+
+	cocos2d::FiniteTimeAction* MakeCurrentLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onNewLayerMoving) const;
+	cocos2d::FiniteTimeAction* MakeNewLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onMovingDone) const;
 
 	std::vector<class ChoosingLevelLayer*> _choosingLevelLayers;
 
@@ -37,4 +37,9 @@ private:
 	const int nPages = 3;
 	int _iPage = 0;
 	float MOVE_DURATION = .5f;
+
+	class MyButton* _menuButton;
+	class MyButton* _previousPageButton;
+	class MyButton* _nextPageButton;
+	class MenuDialog* _menuDialog;
 };

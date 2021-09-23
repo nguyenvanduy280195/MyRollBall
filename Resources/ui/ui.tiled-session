@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "scene-main-menu.tmx",
+    "activeFile": "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/002.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -11,6 +11,14 @@
         "": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/002.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 640.89427107592,
+                "y": 640.89427107592
+            }
         },
         "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/_000.tmx": {
             "scale": 0.6709375,
@@ -24,6 +32,12 @@
             "scaleInDock": 1
         },
         "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/_000.tmx#wood": {
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/block_large.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/grass.tsx": {
             "scaleInDock": 1
         },
         "C:/Users/tensa/OneDrive/Desktop/TileGameResources/TileMap.tmx": {
@@ -83,6 +97,10 @@
             "dynamicWrapping": true,
             "scaleInEditor": 1
         },
+        "color-1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "dialog-0.tmx": {
             "scale": 1.8673437499999999,
             "selectedLayer": 0,
@@ -108,11 +126,11 @@
             "scaleInDock": 1
         },
         "dialog-choosing-level-0.tmx": {
-            "scale": 0.9258789062499999,
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 554.0681362725452,
-                "y": 225.73146292585173
+                "x": 64,
+                "y": 480
             }
         },
         "dialog-choosing-level-0.tmx#route": {
@@ -122,8 +140,8 @@
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 473.3333333333333,
-                "y": 334.6666666666667
+                "x": 768,
+                "y": 480
             }
         },
         "dialog-choosing-level-1.tmx#background": {
@@ -140,8 +158,8 @@
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 540,
-                "y": 252
+                "x": 620,
+                "y": 480
             }
         },
         "dialog-choosing-level-2.tmx#route": {
@@ -160,12 +178,18 @@
             "scaleInEditor": 1
         },
         "dialog-credits.tmx": {
-            "scale": 1,
+            "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 16,
-                "y": 208
+                "x": 399.3333333333333,
+                "y": 218.66666666666669
             }
+        },
+        "dialog-credits.tmx#color-0": {
+            "scaleInDock": 1
+        },
+        "dialog-credits.tmx#color-1": {
+            "scaleInDock": 1
         },
         "dialog-credits.tmx#ui_tilesheet": {
             "scaleInDock": 1
@@ -174,9 +198,12 @@
             "scale": 1.5473873873873873,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 247.51397298556122,
-                "y": 104.0463437354448
+                "x": 477.5791802515137,
+                "y": 237.82021425244525
             }
+        },
+        "dialog-exit-game.tmx#color-0": {
+            "scaleInDock": 1
         },
         "dialog-exit-game.tmx#text-exit-game-text": {
             "scaleInDock": 1
@@ -189,33 +216,65 @@
         },
         "dialog-game-over.tmx": {
             "scale": 1.7891666666666666,
-            "selectedLayer": 2,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 240.33535165346998,
-                "y": 309.0824406148114
+                "x": 208.47694457382397,
+                "y": 255.98509548206803
             }
+        },
+        "dialog-game-over.tmx#color-0": {
+            "scaleInDock": 1
+        },
+        "dialog-game-over.tmx#color-1": {
+            "scaleInDock": 1
         },
         "dialog-game-over.tmx#ui_tilesheet": {
             "scaleInDock": 1
         },
-        "dialog-option.tmx": {
-            "scale": 1.7891666666666666,
-            "selectedLayer": 1,
-            "viewCenter": {
-                "x": 160.40987424312996,
-                "y": 185.56124825337682
-            }
-        },
-        "dialog-option.tmx#ui_tilesheet": {
-            "scaleInDock": 1
-        },
-        "dialog-pausing-game.tmx": {
+        "dialog-menu.tmx": {
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 128,
                 "y": 32
             }
+        },
+        "dialog-menu.tmx#color-0": {
+            "scaleInDock": 1
+        },
+        "dialog-menu.tmx#color-3": {
+            "scaleInDock": 1
+        },
+        "dialog-menu.tmx#popup_background": {
+            "scaleInDock": 1
+        },
+        "dialog-menu.tmx#route": {
+            "scaleInDock": 1
+        },
+        "dialog-option.tmx": {
+            "scale": 1.7891666666666666,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 303.4932463903121,
+                "y": 16.208663251047966
+            }
+        },
+        "dialog-option.tmx#color-0": {
+            "scaleInDock": 1
+        },
+        "dialog-option.tmx#ui_tilesheet": {
+            "scaleInDock": 1
+        },
+        "dialog-pausing-game.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128,
+                "y": 32
+            }
+        },
+        "dialog-pausing-game.tmx#color-0": {
+            "scaleInDock": 1
         },
         "dialog-pausing-game.tmx#ui_tilesheet": {
             "scaleInDock": 1
@@ -233,11 +292,11 @@
             "scaleInDock": 1
         },
         "dialog-victory.tmx": {
-            "scale": 2,
-            "selectedLayer": 2,
+            "scale": 1.5,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 48,
-                "y": 320
+                "x": 198.66666666666666,
+                "y": 250.66666666666669
             }
         },
         "dialog-victory.tmx#UIpackSheet_transparent": {
@@ -251,6 +310,9 @@
         },
         "dialog-victory.tmx#blueSheet": {
             "dynamicWrapping": false
+        },
+        "dialog-victory.tmx#color-0": {
+            "scaleInDock": 1
         },
         "dialog-victory.tmx#drawing": {
             "dynamicWrapping": false
@@ -279,8 +341,8 @@
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 176,
-                "y": 48
+                "x": 32,
+                "y": 32
             }
         },
         "ingamescene-screen-info-horizontal.tmx#route": {
@@ -339,11 +401,11 @@
             "scaleInDock": 1
         },
         "scene-coming-soon.tmx": {
-            "scale": 1.5,
-            "selectedLayer": 2,
+            "scale": 0.75,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 511.99999999999994,
-                "y": 360
+                "x": 0,
+                "y": 0
             }
         },
         "scene-coming-soon.tmx#ui_tilesheet": {
@@ -361,11 +423,11 @@
             "scaleInDock": 1
         },
         "scene-main-menu.tmx": {
-            "scale": 2,
-            "selectedLayer": 2,
+            "scale": 0.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 0,
-                "y": 672
+                "x": 32,
+                "y": 368
             }
         },
         "scene-main-menu.tmx#grass": {
@@ -378,6 +440,20 @@
         "scene-main-menu.tmx#ui_tilesheet": {
             "dynamicWrapping": false,
             "scaleInDock": 1
+        },
+        "scene-splash-screen.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 512,
+                "y": 352
+            }
+        },
+        "scene-splash-screen.tmx#color-4": {
+            "scaleInDock": 1
+        },
+        "scene-splash-screen.tmx#grass": {
+            "scaleInDock": 1
         }
     },
     "last.imagePath": "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/ui/assets",
@@ -389,30 +465,33 @@
     "map.tileWidth": 64,
     "map.width": 20,
     "openFiles": [
-        "scene-main-menu.tmx"
+        "dialog-exit-game.tmx",
+        "dialog-credits.tmx",
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/002.tmx"
     ],
     "project": "ui.tiled-project",
-    "property.type": "float",
+    "property.type": "int",
     "recentFiles": [
-        "scene-main-menu.tmx",
-        "dialog-choosing-level-0.tmx",
-        "dialog-choosing-level-2.tmx",
-        "dialog-choosing-level-1.tmx",
-        "ingamescene-screen-info-horizontal.tmx",
+        "dialog-exit-game.tmx",
         "dialog-credits.tmx",
-        "dialog-victory.tmx",
+        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/002.tmx",
         "dialog-pausing-game.tmx",
-        "dialog-choosing-level.tmx",
+        "dialog-menu.tmx",
         "dialog-option.tmx",
-        "scene-main-menu-1.tmx",
-        "C:/Users/tensa/Documents/Cocos2dxProjects/MyRollBall/Resources/levels/_000.tmx"
+        "dialog-victory.tmx",
+        "ingamescene-screen-info-horizontal.tmx",
+        "scene-coming-soon.tmx",
+        "scene-main-menu.tmx",
+        "dialog-game-over.tmx",
+        "scene-splash-screen.tmx"
     ],
-    "tileset.embedInMap": true,
+    "tileset.embedInMap": false,
+    "tileset.lastUsedFormat": "tsx",
     "tileset.margin": 0,
     "tileset.spacing": 0,
     "tileset.tileSize": {
-        "height": 32,
-        "width": 32
+        "height": 16,
+        "width": 16
     },
     "tileset.type": 0
 }

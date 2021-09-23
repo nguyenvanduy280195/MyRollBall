@@ -1,15 +1,18 @@
 #include "Level.h"
-#include "2d/CCSprite.h"
-#include "Bitmask.h"
+
 #include "2d/CCActionInterval.h"
-#include "2d/CCActionInstant.h"
-#include "ScreenLog/ScreenLog.h"
+
+#include "Bitmask.h"
+
+#include "LevelComponents/Crossbow.h"
+#include "LevelComponents/CoinCreator.h"
+#include "LevelComponents/CoinLevelComponent.h"
+#include "LevelComponents/KeyLevelComponent.h"
+//#include "ScreenLog/ScreenLog.h"
+
 #include "Utils/TMXUtil.h"
-#include "json/document.h"
 #include "Utils/StaticMethods.h"
-#include "Crossbow.h"
 #include "Utils/Cocos2dCreator.h"
-#include "CoinCreator.h"
 
 using Super = cocos2d::TMXTiledMap;
 using Vec2 = cocos2d::Vec2;
@@ -41,20 +44,20 @@ bool Level::init(const std::string& filename)
 		}
 		else if (name.compare("key") == 0)
 		{
-			auto key = MakeKey(value);
+			auto key = Cocos2dCreator::CreateNode<KeyLevelComponent>(value);
 			addChild(key);
 		}
 	});
 
 	TMXUtil::ForeachAllObjectsInObjectGroup(this, "coins", [this](cocos2d::ValueMap& value)
 	{
-		CoinCreator coinCreator(value);
-
-		auto coin = coinCreator.CreateSprite();
+		//CoinCreator coinCreator(value);
+		//auto coin = coinCreator.CreateSprite();
+		//addChild(coin);
+		//auto animateAction = coinCreator.CreateAnimateAction();
+		//coin->runAction(cocos2d::RepeatForever::create(animateAction));
+		auto coin = Cocos2dCreator::CreateNode<CoinLevelComponent>(value);
 		addChild(coin);
-
-		auto animateAction = coinCreator.CreateAnimateAction();
-		coin->runAction(cocos2d::RepeatForever::create(animateAction));
 	});
 
 	TMXUtil::ForeachAllObjectsInObjectGroup(this, "crossbows", [this](cocos2d::ValueMap& value)
@@ -230,20 +233,6 @@ cocos2d::Sprite* Level::MakeSpriteWithCircleBodyShape(cocos2d::ValueMap& value)
 	return sprite;
 }
 
-cocos2d::Sprite* Level::MakeStart(cocos2d::ValueMap& value)
-{
-	auto name = value["name"].asString();
-	auto x = value["x"].asFloat();
-	auto y = value["y"].asFloat();
-	auto src = value["src"].asString();
-
-	auto sprite = cocos2d::Sprite::create(src);
-	sprite->setName(name);
-	sprite->setPosition(x, y);
-
-	return sprite;
-}
-
 cocos2d::Sprite* Level::MakeGoal(cocos2d::ValueMap& value)
 {
 	auto goal = MakeSpriteWithCircleBodyShape(value);
@@ -255,18 +244,6 @@ cocos2d::Sprite* Level::MakeGoal(cocos2d::ValueMap& value)
 	body->setContactTestBitmask(GOAL_CONTACT_TEST_BITMASK);
 
 	return goal;
-}
-
-cocos2d::Sprite* Level::MakeKey(cocos2d::ValueMap& value)
-{
-	auto key = MakeSpriteWithBoxBodyShape(value);
-
-	auto body = key->getPhysicsBody();
-	body->setCategoryBitmask(KEY_CATEGORY_BITMASK);
-	body->setCollisionBitmask(KEY_COLLISION_BITMASK);
-	body->setContactTestBitmask(KEY_CONTACT_TEST_BITMASK);
-
-	return key;
 }
 
 cocos2d::Sprite* Level::MakeRotatingBlock(cocos2d::ValueMap& value)

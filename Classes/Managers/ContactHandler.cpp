@@ -1,17 +1,16 @@
 #include "ContactHandler.h"
 
-#include "physics/CCPhysicsContact.h"
-#include "physics/CCPhysicsShape.h"
 #include "base/CCEventDispatcher.h"
 
+#include "physics/CCPhysicsContact.h"
+#include "physics/CCPhysicsShape.h"
+
 #include "Scenes/InGameScene.h"
-#include "ScreenLog/ScreenLog.h"
+//#include "ScreenLog/ScreenLog.h"
+
 #include "Level.h"
 #include "Player.h"
 #include "Bitmask.h"
-
-#include "2d/CCActionInterval.h"
-
 
 #define USE_AUDIO_ENGINE CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 

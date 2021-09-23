@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="21" height="21" tilewidth="64" tileheight="64" infinite="0" nextlayerid="10" nextobjectid="46">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="21" height="21" tilewidth="64" tileheight="64" infinite="0" nextlayerid="10" nextobjectid="46">
  <tileset firstgid="1" source="grass.tsx"/>
  <tileset firstgid="2" source="block_large.tsx"/>
  <tileset firstgid="4" source="spikes.tsx"/>
@@ -72,31 +72,31 @@
   <object id="15" x="688" y="192" width="16" height="192"/>
  </objectgroup>
  <objectgroup id="9" name="coins">
-  <object id="36" x="128" y="704">
+  <object id="36" name="coin" x="128" y="704">
    <properties>
     <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
-  <object id="37" x="1216" y="1216">
+  <object id="37" name="coin" x="1216" y="1216">
    <properties>
     <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
-  <object id="39" x="1024" y="640">
+  <object id="39" name="coin" x="1024" y="640">
    <properties>
     <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
-  <object id="43" x="640" y="320">
+  <object id="43" name="coin" x="640" y="320">
    <properties>
     <property name="src" value="levels/assets/coin.json"/>
    </properties>
    <point/>
   </object>
-  <object id="44" x="1024" y="128">
+  <object id="44" name="coin" x="1024" y="128">
    <properties>
     <property name="src" value="levels/assets/coin.json"/>
    </properties>

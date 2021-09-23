@@ -1,13 +1,15 @@
 {
-  "path.image": "levels/assets/coin.png",
-  "path.plist": "levels/assets/coin.plist",
+  "animation.imagePath": "levels/assets/coin.png",
+  "animation.plistPath": "levels/assets/coin.plist",
+  "animation.formatName": "coin-%d.png",
+  "animation.nFrames": 6,
   "animation.delay": 0.1,
-  "frames.number": 6,
-  "anchor.point.x": 0.5,
-  "anchor.point.y": 0.5,
+  "anchorPoint.x": 0.5,
+  "anchorPoint.y": 0.5,
+  "body.type": "box",
   "body.size.width": 16,
   "body.size.height": 32,
-  "body.radius": 0.0,
   "body.offset.x": -8.0,
-  "body.offset.y": 0.0
+  "body.offset.y": 0.0,
+  "children": []
 }

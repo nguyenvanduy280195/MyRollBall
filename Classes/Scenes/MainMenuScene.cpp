@@ -1,25 +1,19 @@
 #include "MainMenuScene.h"
 
-#include "2d/CCTMXTiledMap.h"
-#include "ui/UIButton.h"
-#include "2d/CCTransition.h"
-#include "2d/CCActionInterval.h"
-
-#include "Utils/StaticMethods.h"
-#include "Scenes/IntroLevelScene.h"
-#include "Utils/Cocos2dCreator.h"
-#include "Utils/TMXUtil.h"
-
 #include "MyCustomGUI.inl"
 
-#include "Dialogs/CreditsDialog.h"
-#include "Dialogs/ExitGameDialog.h"
-#include "Dialogs/OptionsDialog.h"
+#include "base/CCDirector.h"
+
+#include "2d/CCActionInstant.h"
+
+#include "Utils/StaticMethods.h"
+#include "Utils/Cocos2dCreator.h"
+
+#include "Dialogs/MenuDialog.h"
+
 #include "Layers/ChoosingLevelLayer.h"
 
-
-#include "ScreenLog/ScreenLog.h"
-
+#include "MyComponents/MyButton.h"
 
 using Vec2 = cocos2d::Vec2;
 
@@ -30,69 +24,46 @@ bool MainMenuScene::init()
 		return false;
 	}
 
-	_tiledMap->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-	setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-
-	auto layer = Cocos2dCreator::CreateNode<ChoosingLevelLayer>(Vec2::ZERO, cocos2d::StringUtils::format("ui/dialog-choosing-level-%d.tmx", 0));
-	layer->setName(CURRENT_LAYER);
-	addChild(layer);
-
-	auto centerWindow = 0.5f * cocos2d::Director::getInstance()->getWinSize();
-
-	auto optionsDialog = Cocos2dCreator::CreateNode<OptionsDialog>(centerWindow);
-	addChild(optionsDialog);
-
-	auto creditsDialog = Cocos2dCreator::CreateNode<CreditsDialog>(centerWindow);
-	addChild(creditsDialog);
-
-	AddCallbackToButton("options", [optionsDialog](cocos2d::Ref*) { optionsDialog->Show(); });
-	AddCallbackToButton("credits", [creditsDialog](cocos2d::Ref*) { creditsDialog->Show(); });
-	AddCallbackToButton("next-page", [this](cocos2d::Ref*) { OnNextPageButtonClicked(); });
-	AddCallbackToButton("previous-page", [this](cocos2d::Ref*) { OnPreviousPageButtonClicked(); });
-
-	SetPreviousPageButtonVisible(false);
-
-	if (auto child = _tiledMap->getChildByName("version"))
+	if (!LoadMyWidgetByName<MyButton>(_menuButton, "menu") ||
+		!LoadMyWidgetByName<MyButton>(_previousPageButton, "previous-page") ||
+		!LoadMyWidgetByName<MyButton>(_nextPageButton, "next-page"))
 	{
-		child->setPosition(cocos2d::Director::getInstance()->getVisibleOrigin());
+		return false;
 	}
+
+	PutVersionTextInBottomLeftCorner();
+
+
+	SetupPreviousPageButton();
+	SetupNextPageButton();
+	SetupMenuButton();
+
+
+	InitChoosingLevelLayer();
+	InitMenuDialog();
 
 	return true;
 }
 
-void MainMenuScene::SetPreviousPageButtonVisible(bool visible)
-{
-	if (auto pageButton = GetButtonByName("previous-page"))
-	{
-		pageButton->setVisible(visible);
-	}
-}
-
-void MainMenuScene::SetNextPageButtonVisible(bool visible)
-{
-	if (auto pageButton = GetButtonByName("next-page"))
-	{
-		pageButton->setVisible(visible);
-	}
-}
-
-void MainMenuScene::OnNextPageButtonClicked()
+void MainMenuScene::OnNextPageButtonClicked(cocos2d::Ref* ref)
 {
 	if (++_iPage >= nPages)
 	{
 		return;
 	}
-	
+
 	if (auto child = getChildByName(CURRENT_LAYER))
 	{
+		auto button = (cocos2d::ui::Button*)ref;
+		button->setEnabled(false);
+
 		auto winSize = cocos2d::Director::getInstance()->getWinSize();
 		auto leftDeltaPosition = Vec2(-winSize.width, 0);
 		auto currentLayerAction = MakeCurrentLayerAction(leftDeltaPosition, [this, leftDeltaPosition, winSize]()
 		{
 			auto newLayer = Cocos2dCreator::CreateNode<ChoosingLevelLayer>(Vec2::ZERO, cocos2d::StringUtils::format("ui/dialog-choosing-level-%d.tmx", _iPage));
-			addChild(newLayer);
-			
 			newLayer->setPositionX(winSize.width);
+			addChild(newLayer);
 
 			auto newLayerAction = MakeNewLayerAction(leftDeltaPosition, [newLayer, this]()
 			{
@@ -100,18 +71,21 @@ void MainMenuScene::OnNextPageButtonClicked()
 			});
 			newLayer->runAction(newLayerAction);
 		});
-		child->runAction(currentLayerAction);
-	}
-	
 
-	SetPreviousPageButtonVisible(true);
+		auto action = cocos2d::Sequence::createWithTwoActions(currentLayerAction,
+															  cocos2d::CallFunc::create([button]() { button->setEnabled(true); }));
+		child->runAction(action);
+	}
+
+
+	_previousPageButton->setVisible(true);
 	if (_iPage + 1 >= nPages)
 	{
-		SetNextPageButtonVisible(false);
+		_nextPageButton->setVisible(false);
 	}
 }
 
-void MainMenuScene::OnPreviousPageButtonClicked()
+void MainMenuScene::OnPreviousPageButtonClicked(cocos2d::Ref* ref)
 {
 	if (--_iPage < 0)
 	{
@@ -120,14 +94,16 @@ void MainMenuScene::OnPreviousPageButtonClicked()
 
 	if (auto child = getChildByName(CURRENT_LAYER))
 	{
+		auto button = (cocos2d::ui::Button*)ref;
+		button->setEnabled(false);
+
 		auto winSize = cocos2d::Director::getInstance()->getWinSize();
 		auto leftDeltaPosition = Vec2(winSize.width, 0);
 		auto currentLayerAction = MakeCurrentLayerAction(leftDeltaPosition, [this, leftDeltaPosition, winSize]()
 		{
 			auto newLayer = Cocos2dCreator::CreateNode<ChoosingLevelLayer>(Vec2::ZERO, cocos2d::StringUtils::format("ui/dialog-choosing-level-%d.tmx", _iPage));
-			addChild(newLayer);
-
 			newLayer->setPositionX(-winSize.width);
+			addChild(newLayer);
 
 			auto newLayerAction = MakeNewLayerAction(leftDeltaPosition, [newLayer, this]()
 			{
@@ -135,33 +111,81 @@ void MainMenuScene::OnPreviousPageButtonClicked()
 			});
 			newLayer->runAction(newLayerAction);
 		});
-		child->runAction(currentLayerAction);
+
+		auto action = cocos2d::Sequence::createWithTwoActions(currentLayerAction,
+															  cocos2d::CallFunc::create([button]() { button->setEnabled(true); }));
+		child->runAction(action);
 	}
 
-	SetNextPageButtonVisible(true);
+	_nextPageButton->setVisible(true);
 	if (_iPage - 1 < 0)
 	{
-		SetPreviousPageButtonVisible(false);
+		_previousPageButton->setVisible(false);
 	}
 }
 
-cocos2d::Action* MainMenuScene::MakeCurrentLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onNewLayerMoving) const
+cocos2d::FiniteTimeAction* MainMenuScene::MakeCurrentLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onNewLayerMoving) const
 {
 	auto moveByAction = cocos2d::MoveBy::create(MOVE_DURATION, deltaPosition);
 	auto onNewLayerMovingCallback = cocos2d::CallFunc::create([onNewLayerMoving]() { if (onNewLayerMoving) onNewLayerMoving(); });
 	auto removeSelfAction = cocos2d::RemoveSelf::create();
-
 	auto moveByTogether = cocos2d::Spawn::createWithTwoActions(moveByAction, onNewLayerMovingCallback);
-
 	return cocos2d::Sequence::createWithTwoActions(moveByTogether, removeSelfAction);
 }
 
-cocos2d::Action* MainMenuScene::MakeNewLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onMovingDone) const
+cocos2d::FiniteTimeAction* MainMenuScene::MakeNewLayerAction(const cocos2d::Vec2& deltaPosition, const std::function<void()>& onMovingDone) const
 {
 	auto moveByAction = cocos2d::MoveBy::create(MOVE_DURATION, deltaPosition);
 	auto onMovingDoneCallback = cocos2d::CallFunc::create([onMovingDone]() { if (onMovingDone) onMovingDone(); });
+	return cocos2d::Sequence::createWithTwoActions(moveByAction, onMovingDoneCallback);
+}
 
-	return cocos2d::Sequence::create(moveByAction,
-									 onMovingDoneCallback,
-									 nullptr);
+void MainMenuScene::PutMenuButtonInTopRightCorner()
+{
+	auto menuButtonSize = _menuButton->getContentSize();
+	auto visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
+	auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+	auto menuButtonPosition = Vec2(visibleOrigin.x + visibleSize.width - menuButtonSize.width,
+								   visibleOrigin.y + visibleSize.height - menuButtonSize.height);
+	_menuButton->setPosition(menuButtonPosition);
+}
+
+void MainMenuScene::PutVersionTextInBottomLeftCorner()
+{
+	if (auto child = _tiledMap->getChildByName("version"))
+	{
+		child->setPosition(cocos2d::Director::getInstance()->getVisibleOrigin());
+	}
+}
+
+void MainMenuScene::InitChoosingLevelLayer()
+{
+	auto layer = Cocos2dCreator::CreateNode<ChoosingLevelLayer>(Vec2::ZERO, cocos2d::StringUtils::format("ui/dialog-choosing-level-%d.tmx", 0));
+	layer->setName(CURRENT_LAYER);
+	addChild(layer);
+}
+
+void MainMenuScene::InitMenuDialog()
+{
+	_menuDialog = Cocos2dCreator::CreateNode<MenuDialog>(_menuButton->getPosition());
+	_menuDialog->OnActionBegan = [this]() { _menuButton->setEnabled(false); };
+	_menuDialog->OnActionEnded = [this]() { _menuButton->setEnabled(true); };
+	addChild(_menuDialog);
+}
+
+void MainMenuScene::SetupPreviousPageButton()
+{
+	_previousPageButton->setVisible(false);
+	_previousPageButton->addClickEventListener(CC_CALLBACK_1(MainMenuScene::OnPreviousPageButtonClicked, this));
+}
+
+void MainMenuScene::SetupNextPageButton()
+{
+	_nextPageButton->addClickEventListener(CC_CALLBACK_1(MainMenuScene::OnNextPageButtonClicked, this));
+}
+
+void MainMenuScene::SetupMenuButton()
+{
+	PutMenuButtonInTopRightCorner();
+	_menuButton->addClickEventListener([this](cocos2d::Ref*) { _menuDialog->Show(); });
 }

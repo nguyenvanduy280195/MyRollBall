@@ -1,0 +1,28 @@
+{
+    "animation.imagePath": "",
+    "animation.plistPath": "",
+    "animation.formatName": "",
+    "animation.nFrames": 2,
+    "animation.delay": 0.5,
+    "anchorPoint.x": 0.5,
+    "anchorPoint.y": 0.5,
+    "body.type": "box",
+    "body.size.width": 0,
+    "body.size.height": 0,
+    "body.radius": 32.0,
+    "body.offset.x": 0.0,
+    "body.offset.y": 0.0,
+    "children": [
+        {
+            "sprite.imagePath": "",
+            "anchorPoint.x": 0.5,
+            "anchorPoint.y": 0.5,
+            "body.type": "circle",
+            "body.size.radius": 0,
+            "body.radius": 32.0,
+            "body.offset.x": 0.0,
+            "body.offset.y": 0.0,
+            "children": []
+        }
+    ]
+}

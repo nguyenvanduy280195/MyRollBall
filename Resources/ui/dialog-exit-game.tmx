@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="31" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="7">
- <tileset firstgid="1" name="ui_tilesheet" tilewidth="16" tileheight="16" tilecount="270" columns="30">
-  <image source="assets/ui_tilesheet.png" width="480" height="144"/>
- </tileset>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="31" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="7">
+ <tileset firstgid="1" source="color-1.tsx"/>
  <layer id="1" name="background" width="31" height="13">
   <data encoding="base64" compression="zlib">
-   eJw7yMDAcGgA8GEgvg/EDwYAPxy1e9TuUbtH7R6Gdv8F4n8DgP8DMQAbkGCw
+   eJxjZGBgYAJixgGgmYGYZYDogfDvqL9H/T3q71F/D1d/AwD8gQPL
   </data>
  </layer>
  <objectgroup id="6" name="texts">
@@ -13,8 +11,13 @@
    <properties>
     <property name="anchor-point-x" type="float" value="0.5"/>
     <property name="anchor-point-y" type="float" value="0.5"/>
+    <property name="color" value="#e6f5c8ff"/>
+    <property name="enableShadow" type="bool" value="true"/>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
+    <property name="shadow.color" value="#091c32"/>
+    <property name="shadow.height" type="float" value="-2"/>
+    <property name="shadow.width" type="float" value="2"/>
     <property name="text" value="Do you want to exit the game?"/>
    </properties>
    <point/>
@@ -23,33 +26,40 @@
    <properties>
     <property name="anchor-point-x" type="float" value="0.5"/>
     <property name="anchor-point-y" type="float" value="0.5"/>
+    <property name="color" value="#e6f5c8ff"/>
+    <property name="enableShadow" type="bool" value="true"/>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="40"/>
+    <property name="shadow.color" value="#091c32"/>
+    <property name="shadow.height" type="float" value="-2"/>
+    <property name="shadow.width" type="float" value="2"/>
     <property name="text" value="Exit game"/>
    </properties>
    <point/>
   </object>
  </objectgroup>
  <objectgroup id="4" name="buttons">
-  <object id="3" name="no" x="368" y="160">
+  <object id="3" name="no" x="320" y="160">
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
-    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
-    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value=""/>
+    <property name="src-pressed" value=""/>
     <property name="title" value="No"/>
+    <property name="title-color" value="#091c32ff"/>
    </properties>
    <point/>
   </object>
-  <object id="4" name="yes" x="128" y="160">
+  <object id="4" name="yes" x="160" y="160">
    <properties>
     <property name="font-name" value="fonts/Marker Felt.ttf"/>
     <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value="ui/assets/blue_button_disabled.png"/>
-    <property name="src-normal" value="ui/assets/blue_button_normal.png"/>
-    <property name="src-pressed" value="ui/assets/blue_button_pressed.png"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value=""/>
+    <property name="src-pressed" value=""/>
     <property name="title" value="Yes"/>
+    <property name="title-color" value="#091c32ff"/>
    </properties>
    <point/>
   </object>

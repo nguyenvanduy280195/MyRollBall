@@ -1,15 +1,12 @@
 #include "ChoosingLevelLayer.h"
 
-#include "2d/CCSprite.h"
-#include "2d/CCActionInterval.h"
+#include "../MyCustomGUI.inl"
+
 #include "platform/CCFileUtils.h"
 
-#include "../MyCustomGUI.inl"
 #include "../IntroLevelScene.h"
 
-#include "Utils/TMXUtil.h"
 #include "Utils/Cocos2dCreator.h"
-#include "Utils/TMXUtil.h"
 
 bool ChoosingLevelLayer::init(const cocos2d::Vec2& boxPosition, const std::string& tmxPath)
 {
@@ -25,12 +22,12 @@ bool ChoosingLevelLayer::init(const cocos2d::Vec2& boxPosition, const std::strin
 		auto children = _tiledMap->getChildren();
 		for (auto& child : children)
 		{
-			if (child->getName().find("level") != std::string::npos)
+			if (cocos2d::StringUtils::contain(child->getName(), "level"))
 			{
 				if (auto button = dynamic_cast<cocos2d::ui::Button*>(child))
 				{
 					auto level = stoi(button->getTitleText());
-					button->addClickEventListener([this, level](cocos2d::Ref*){ StartLevel(level); });
+					button->addClickEventListener([this, level](cocos2d::Ref*) { StartLevel(level); });
 
 					auto levelPath = cocos2d::StringUtils::format("levels/%03d.tmx", level);
 					if (!cocos2d::FileUtils::getInstance()->isFileExist(levelPath))

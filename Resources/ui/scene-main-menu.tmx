@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="64" height="44" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="24">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="64" height="44" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="24">
  <tileset firstgid="1" name="grass" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="assets/grass.png" width="66" height="66"/>
  </tileset>
@@ -9,23 +9,12 @@
   </data>
  </layer>
  <objectgroup id="7" name="buttons">
-  <object id="2" name="options" x="32" y="64">
+  <object id="2" name="menu" x="993.333" y="66.6667">
    <properties>
-    <property name="font-name" value="fonts/Marker Felt.ttf"/>
-    <property name="font-size" type="float" value="20"/>
+    <property name="font-name" value=""/>
+    <property name="font-size" type="float" value="0"/>
     <property name="src-disabled" value=""/>
-    <property name="src-normal" value="ui/assets/btn_option.png"/>
-    <property name="src-pressed" value=""/>
-    <property name="title" value=""/>
-   </properties>
-   <point/>
-  </object>
-  <object id="3" name="credits" x="992" y="64">
-   <properties>
-    <property name="font-name" value="fonts/Marker Felt.ttf"/>
-    <property name="font-size" type="float" value="20"/>
-    <property name="src-disabled" value=""/>
-    <property name="src-normal" value="ui/assets/btn_info.png"/>
+    <property name="src-normal" value="ui/assets/btn_menu.png"/>
     <property name="src-pressed" value=""/>
     <property name="title" value=""/>
    </properties>
@@ -33,7 +22,7 @@
   </object>
   <object id="22" name="next-page" x="992" y="368">
    <properties>
-    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-name" value=""/>
     <property name="font-size" type="float" value="20"/>
     <property name="src-disabled" value=""/>
     <property name="src-normal" value="ui/assets/button_next_page.png"/>
@@ -44,7 +33,7 @@
   </object>
   <object id="23" name="previous-page" x="32" y="368">
    <properties>
-    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-name" value=""/>
     <property name="font-size" type="float" value="20"/>
     <property name="src-disabled" value=""/>
     <property name="src-normal" value="ui/assets/button_previous_page.png"/>
@@ -70,7 +59,7 @@
    </properties>
    <point/>
   </object>
-  <object id="18" name="game-title" x="32" y="192">
+  <object id="18" name="game-title" x="32" y="224">
    <properties>
     <property name="anchor-point-x" type="float" value="0"/>
     <property name="anchor-point-y" type="float" value="0"/>

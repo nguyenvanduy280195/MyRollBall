@@ -1,7 +1,6 @@
 #include "OptionsDialog.h"
-#include "../MyCustomGUI.inl"
 
-#include "ui/UILayout.h"
+#include "../MyCustomGUI.inl"
 
 bool OptionsDialog::init(const cocos2d::Vec2& position)
 {
@@ -12,7 +11,7 @@ bool OptionsDialog::init(const cocos2d::Vec2& position)
 
 	_tiledMap->setPosition(position);
 
-	AddCallbackToButton("close", [this](cocos2d::Ref*) { setVisible(false); });
+	AddCallbackToButton("close", [this](cocos2d::Ref*) { Hide(); });
 
 	return true;
 }

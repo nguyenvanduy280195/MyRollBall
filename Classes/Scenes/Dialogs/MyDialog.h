@@ -1,22 +1,25 @@
 #pragma once
 
 #include "../MyCustomGUI.h"
+#include "../TouchSwallower.h"
 #include "2d/CCLayer.h"
 
-class MyDialog : public MyCustomGUI<cocos2d::Layer>
+namespace cocos2d
 {
-	using Super = MyCustomGUI<cocos2d::Layer>;
+class EventListenerTouchOneByOne;
+}
+
+class MyDialog : public MyCustomGUI<TouchSwallower<cocos2d::Layer>>
+{
+	using Super = MyCustomGUI<TouchSwallower<cocos2d::Layer>>;
 public:
 	cocos2d::TMXTiledMap* GetTiledMap() { return _tiledMap; }
-	void Show();
-	void Hide();
+	virtual void Show();
+	virtual void Hide();
 
 	std::function<void()> OnHidden;
 
 
 protected:
-	
 	bool init(const std::string& tmxPath, bool backgroundEnabled = false);
-
-	
 };

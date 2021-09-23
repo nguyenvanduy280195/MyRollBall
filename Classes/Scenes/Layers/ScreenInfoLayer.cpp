@@ -1,5 +1,5 @@
 #include "ScreenInfoLayer.h"
-
+#include "../MyCustomGUI.inl"
 
 bool ScreenInfoLayer::init() { return MyLayer::init("ui/ingamescene-screen-info-horizontal.tmx"); }
 

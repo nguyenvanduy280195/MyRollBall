@@ -1,6 +1,5 @@
 #pragma once
 #include "base/CCRef.h"
-#include "base/CCRefPtr.h"
 
 namespace cocos2d
 {

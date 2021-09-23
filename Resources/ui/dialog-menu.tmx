@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="8" height="2" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="16">
+ <tileset firstgid="1" name="color-3" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="assets/color-3.png" width="32" height="32"/>
+ </tileset>
+ <layer id="3" name="background" width="8" height="2">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYKQAAwACYAAR
+  </data>
+ </layer>
+ <objectgroup id="2" name="buttons">
+  <object id="9" name="close" x="224" y="32">
+   <properties>
+    <property name="duration" type="float" value="0.3"/>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="hidden.x" type="float" value="224"/>
+    <property name="hidden.y" type="float" value="32"/>
+    <property name="shown.x" type="float" value="224"/>
+    <property name="shown.y" type="float" value="32"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/btn_close_32x32.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
+   </properties>
+   <point/>
+  </object>
+  <object id="13" name="exit" x="224" y="32">
+   <properties>
+    <property name="duration" type="float" value="0.3"/>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="hidden.x" type="float" value="224"/>
+    <property name="hidden.y" type="float" value="32"/>
+    <property name="shown.x" type="float" value="160"/>
+    <property name="shown.y" type="float" value="32"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/btn_exit.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
+   </properties>
+   <point/>
+  </object>
+  <object id="14" name="credits" x="224" y="32">
+   <properties>
+    <property name="duration" type="float" value="0.3"/>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="hidden.x" type="float" value="224"/>
+    <property name="hidden.y" type="float" value="32"/>
+    <property name="shown.x" type="float" value="96"/>
+    <property name="shown.y" type="float" value="32"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/btn_credits.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
+   </properties>
+   <point/>
+  </object>
+  <object id="15" name="option" x="224" y="32">
+   <properties>
+    <property name="duration" type="float" value="0.3"/>
+    <property name="font-name" value="fonts/Marker Felt.ttf"/>
+    <property name="font-size" type="float" value="20"/>
+    <property name="hidden.x" type="float" value="224"/>
+    <property name="hidden.y" type="float" value="32"/>
+    <property name="shown.x" type="float" value="32"/>
+    <property name="shown.y" type="float" value="32"/>
+    <property name="src-disabled" value=""/>
+    <property name="src-normal" value="ui/assets/btn_option.png"/>
+    <property name="src-pressed" value=""/>
+    <property name="title" value=""/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>

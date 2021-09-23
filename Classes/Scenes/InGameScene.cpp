@@ -1,40 +1,40 @@
 #include "InGameScene.h"
-#include "Player.h"
+
 #include "base/CCDirector.h"
-#include "Utils/Cocos2dCreator.h"
+#include "base/CCEventDispatcher.h"
+
 #include "2d/CCScene.h"
 #include "physics/CCPhysicsWorld.h"
-#include "2d/CCTMXTiledMap.h"
-#include "2d/CCTMXLayer.h"
-#include "base/CCEventDispatcher.h"
-#include "base/CCEventListenerKeyboard.h"
-#include "Level.h"
+
 #include "2d/CCCamera.h"
+#include "2d/CCActionInstant.h"
+#include "2d/CCActionInterval.h"
+
 #include "Managers/HandlerManager.h"
 #include "Managers/KeyboardHandler.h"
-#include "physics/CCPhysicsContact.h"
-#include "CCEventListenerAcceleration.h"
-#include "2d/CCFastTMXTiledMap.h"
-#include "platform/CCDevice.h"
+
 #include "Infos/GameInfo.h"
 #include "IntroLevelScene.h"
-#include "base/ccUTF8.h"
-#include "2d/CCTransition.h"
-#include "ui/UIButton.h"
 
 #include "Dialogs/VictoryDialog.h"
 #include "Dialogs/GameOverDialog.h"
-
-#include "2d/CCActionInstant.h"
-#include "2d/CCActionInterval.h"
-#include "2d/CCAction.h"
-#include "ScreenLog/ScreenLog.h"
-
-#include "MyCustomGUI.inl"
-#include "Player.h"
 #include "Dialogs/PausingGameDialog.h"
-#include "json/document.h"
+
+#include "MyComponents/MyButton.h"
+
+#include "Player.h"
+#include "Level.h"
+
 #include "Layers/ScreenInfoLayer.h"
+
+#include "Utils/StaticMethods.h"
+#include "Utils/Cocos2dCreator.h"
+
+#include "json/document.h"
+
+#include "platform/CCFileUtils.h"
+
+//#include "ScreenLog/ScreenLog.h"
 
 using Vec2 = cocos2d::Vec2;
 using Size = cocos2d::Size;
@@ -49,8 +49,8 @@ cocos2d::Scene* InGameScene::CreateScene(int level)
 {
 	auto scene = cocos2d::Scene::createWithPhysics();
 
-//#if CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID
-#if 1
+#if CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID
+//#if 1
 	scene->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
 #endif
 	scene->getPhysicsWorld()->setGravity(cocos2d::Vec2(0, 0.0f));
@@ -115,11 +115,20 @@ bool InGameScene::InitScreenInfoLayer()
 		addChild(_screenInfoLayer, 1000000);
 
 
-		_screenInfoLayer->AddPauseButtonCallback([this](cocos2d::Ref*)
+		_screenInfoLayer->AddPauseButtonCallback([this](cocos2d::Ref* ref)
 		{
-			auto dialog = Cocos2dCreator::CreateNode<PausingGameDialog>();
-			dialog->OnEventPaused = [this]() { _eventDispatcher->pauseEventListenersForTarget(this); };
-			dialog->OnEventUnpaused = [this]() { _eventDispatcher->resumeEventListenersForTarget(this); };
+			auto button = (MyButton*)ref;
+			button->setEnabled(false);
+			auto dialog = Cocos2dCreator::CreateNode<PausingGameDialog>(-_position);
+			dialog->OnEventPaused = [this, button]() { 
+				
+				_eventDispatcher->pauseEventListenersForTarget(this); 
+				//button->setEnabled(false);
+			};
+			dialog->OnEventUnpaused = [this, button]() {
+				_eventDispatcher->resumeEventListenersForTarget(this);
+				button->setEnabled(true);
+			};
 			addChild(dialog);
 			dialog->Show();
 		});
